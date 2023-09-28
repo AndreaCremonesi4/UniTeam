@@ -1,0 +1,67 @@
+@import url(custom.css);
+@import url(typography.css);
+@import url(hero.css);
+
+:root{
+    --bs-primary-dark: #002155;
+    --bs-dark-rgb: 0, 33, 85;
+    --bs-primary-dark-rgb: 0, 33, 85;
+    --bs-primary: #2790FF;
+    --bs-primary-rgb: 39, 144, 255;
+    --bs-secondary: #FF6914;
+    --bs-secondary-rgb: 255, 105, 20;
+    --bs-accent: #5AECE3;
+    --bs-accent-rgb: 90, 236, 227;
+
+    --bs-font-sans-serif: Inter;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.text-gradient,
+.btt-gradient{
+    background: linear-gradient(90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
+}
+
+.text-gradient-reverse,
+.btt-gradient-reverse{
+    background: linear-gradient(-90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
+}
+
+.text-gradient,
+.text-gradient-reverse{
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btt-gradient,
+.btt-gradient-reverse{
+    background-size: 150%;
+    background-position: left 0;
+
+    transition: background-position 500ms ease-in-out;
+}
+
+.btt-gradient:hover,
+.btt-gradient-reverse:hover{
+    background-position: right 0;
+}
