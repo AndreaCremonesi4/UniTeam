@@ -1,8 +1,9 @@
 .hero {
     position: relative;
     display: flex;
-    height: 60vh;
     align-items: center;
+    margin-top: 15rem;
+    margin-bottom: 10rem;
 }
 
 .hero-img {
@@ -18,7 +19,7 @@
 
 @media (max-width: 1200px) {
     .hero-body {
-        width: 620px;
+        width: 600px;
     }
 
     .hero-img {
@@ -30,7 +31,8 @@
     .hero {
         flex-wrap: wrap;
         justify-content: center;
-        height: auto;
+        margin-top: 10rem;
+        margin-bottom: 4rem;
     }
 
     .hero-body {
@@ -42,5 +44,11 @@
     .hero-img {
         position: relative;
         width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        margin-top: 8rem;
     }
 }
