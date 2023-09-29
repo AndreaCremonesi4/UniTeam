@@ -1,6 +1,5 @@
 @import url(custom.css);
 @import url(typography.css);
-@import url(hero.css);
 
 :root {
     --bs-primary-dark: #002155;

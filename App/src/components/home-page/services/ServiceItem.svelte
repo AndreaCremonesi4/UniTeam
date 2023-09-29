@@ -13,6 +13,7 @@
 
 <style>
 	.service {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		max-width: min(250px, 90%);
@@ -20,22 +21,33 @@
 		justify-content: center;
 		text-align: center;
 		gap: 1rem;
+		padding: 1rem 2rem;
 	}
 
 	.service-image {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 110px;
+		width: min(110px, 80%);
 		aspect-ratio: 1;
 		border-radius: 10000px;
+
+		background-size: 200%;
+		background-position: left 0;
+		transition: background-position 250ms ease-in-out;
+	}
+
+	.service-image:hover {
+		background-position: right 0;
 	}
 
 	.service-image > img {
-		width: min(50px, 50vw);
+		width: min(50px, 50%);
 	}
 
 	.service-text {
-		margin-bottom: 1rem;
+		font-size: min(16px, calc(0.85rem + .5vw));
+		color: var(--bs-primary-dark);
+		opacity: 0.75;
 	}
 </style>

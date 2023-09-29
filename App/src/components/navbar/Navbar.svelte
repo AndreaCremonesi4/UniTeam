@@ -35,3 +35,29 @@
        </div>
     </div>
  </nav>
+
+
+ <style>
+   .nav-link{
+      color: var(--bs-primary-dark);
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+
+      transition: color 250ms ease-in-out;
+   }
+
+   .nav-link.active,
+   .nav-link:hover{
+      color: var(--bs-primary) !important;
+   }
+
+   .navbar-toggler{
+      border: none;
+   }
+
+   .navbar-toggler:focus{
+      box-shadow: none;
+   }
+ </style>
