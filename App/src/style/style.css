@@ -1,8 +1,9 @@
 @import url(custom.css);
 @import url(typography.css);
 @import url(hero.css);
+@import url(icons.css);
 
-:root{
+:root {
     --bs-primary-dark: #002155;
     --bs-dark-rgb: 0, 33, 85;
     --bs-primary-dark-rgb: 0, 33, 85;
@@ -37,24 +38,24 @@
 }
 
 .text-gradient,
-.btt-gradient{
+.btt-gradient {
     background: linear-gradient(90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
 }
 
 .text-gradient-reverse,
-.btt-gradient-reverse{
+.btt-gradient-reverse {
     background: linear-gradient(-90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
 }
 
 .text-gradient,
-.text-gradient-reverse{
+.text-gradient-reverse {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .btt-gradient,
-.btt-gradient-reverse{
+.btt-gradient-reverse {
     background-size: 150%;
     background-position: left 0;
 
@@ -62,6 +63,6 @@
 }
 
 .btt-gradient:hover,
-.btt-gradient-reverse:hover{
+.btt-gradient-reverse:hover {
     background-position: right 0;
 }
