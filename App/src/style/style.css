@@ -1,7 +1,6 @@
 @import url(custom.css);
 @import url(typography.css);
 @import url(hero.css);
-@import url(icons.css);
 
 :root {
     --bs-primary-dark: #002155;
@@ -65,4 +64,8 @@
 .btt-gradient:hover,
 .btt-gradient-reverse:hover {
     background-position: right 0;
+}
+
+.gradient-light {
+    background: linear-gradient(135deg, #2790FF 0%, #5AECE3 100%);
 }

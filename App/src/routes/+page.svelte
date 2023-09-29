@@ -1,15 +1,7 @@
 <script>
+	import ServiceItem from './../components/home-page/services/ServiceItem.svelte';
+	import ServiceList from '../components/home-page/services/ServiceList.svelte';
 	import Navbar from '../components/navbar/Navbar.svelte';
-
-	import Konva from 'konva';
-	const circle = new Konva.Circle({
-		x: x,
-		y: y,
-		radius: r,
-		fill: fill,
-		stroke: stroke,
-		strokeWidth: strokeWidth
-	});
 </script>
 
 <Navbar />
@@ -32,7 +24,7 @@
 		<img class="hero-img" src="assets/images/hero.png" alt="" />
 	</div>
 
-	<div class="row justify-content-center align-items-center sub-header my-5">
+	<div class="row justify-content-center align-items-center sub-header my-5 pb-5">
 		<div class="col text-center">
 			<p class="text-title mb-3 text-center sub-header">Scopri di più</p>
 			<img src="assets/icons/arrow-down.svg" style="height:40px;" alt="" />
@@ -41,26 +33,26 @@
 </section>
 
 <section class="container">
-	<h2 class="fw-bolder text-center display-6 text-dark">I Nostri Servizi</h2>
-	<div class="icons">
-		<div class="row justify-content-center align-items-center sub-header g-1 mx-4 my-5">
-			<div class="col">
-				<img class="icon" src="assets/icons/reviews.png" alt="" />
-			</div>
-			<div class="col">
-				<img class="icon" src="assets/icons/chat.png" alt="" />
-			</div>
-			<div class="col">
-				<img class="icon" src="assets/icons/people.png" alt="" />
-			</div>
-			<div class="col">
-				<img class="icon" src="assets/icons/link.png" alt="" />
-			</div>
-		</div>
-	</div>
-</section>
+	<h2 class="fw-bolder text-center display-6 text-dark pt-5 pb-3">I Nostri Servizi</h2>
+	<ServiceList>
+		<ServiceItem
+			src="assets/icons/reviews.png"
+			text="Recensioni imparziali e dettagliate per fare scelte informate"
+		/>
 
-<div class="circle">
-	<Circle x="100" y="100" r="23" fill="red" strokeWidth="3" />
-	<Circle x="200" y="200" r="13" fill="green" strokeWidth="3" />
-</div>
+		<ServiceItem
+			src="assets/icons/chat.png"
+			text="Chat in tempo reale per la collaborazione efficace"
+		/>
+
+		<ServiceItem
+			src="assets/icons/people.png"
+			text="Crea e gestisci facilmente i tuoi gruppi studio"
+		/>
+
+		<ServiceItem
+			src="assets/icons/link.png"
+			text="Connettiti con studenti universitari simili a te"
+		/>
+	</ServiceList>
+</section>

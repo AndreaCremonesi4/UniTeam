@@ -14,7 +14,7 @@
 }
 
 .hero-body {
-    width: min(650px, 70vw);
+    width: min(600px, 70vw);
 }
 
 @media (max-width: 1200px) {
