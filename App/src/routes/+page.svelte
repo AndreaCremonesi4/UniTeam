@@ -3,6 +3,7 @@
 	import ServiceList from '../components/home-page/services/ServiceList.svelte';
 	import Navbar from '../components/navbar/Navbar.svelte';
 	import Hero from '../components/home-page/hero/Hero.svelte';
+	import StudyGroups from '../components/home-page/study-groups/StudyGroups.svelte';
 </script>
 
 <Navbar />
@@ -18,7 +19,7 @@
 	</div>
 </section>
 
-<section class="container">
+<section class="container pb-5">
 	<h2 class="text-title text-center display-6 text-dark mb-5">I Nostri Servizi</h2>
 	<ServiceList>
 		<ServiceItem
@@ -42,3 +43,5 @@
 		/>
 	</ServiceList>
 </section>
+
+<StudyGroups />
