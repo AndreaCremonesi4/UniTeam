@@ -33,5 +33,9 @@
 }
 
 .text-title {
-    /*aggiungere cose*/
+    font-size: min(45px, calc(2rem + 1vw));
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: -0.05rem;
 }

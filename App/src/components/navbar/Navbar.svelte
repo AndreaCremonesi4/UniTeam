@@ -1,4 +1,8 @@
-<nav class="navbar fixed-top navbar-expand-md bg-white" aria-label="Offcanvas navbar large">
+<script>
+	import NavLink from "./NavLink.svelte";
+
+</script>
+<nav class="navbar fixed-top navbar-expand-lg bg-white" aria-label="Offcanvas navbar large">
     <div class="container">
        
         <a class="navbar-brand d-flex gap-4 align-items-center" href="/">
@@ -18,18 +22,19 @@
 
           <div class="offcanvas-body">
              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 align-items-center gap-4">
-             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Professori</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link" href="/">Corsi</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link" href="/">Gruppi</a>
-             </li>
-             <li class="nav-item">
-                <button class="btn btn-primary sub-header" style='padding: 0.7rem 3rem; margin-left:0.5rem;'>Accedi</button>
-             </li>
+               <li class="nav-item">
+                  <NavLink href="/" active>Professori</NavLink>
+               </li>
+               <li class="nav-item">
+                  <NavLink href="/">Corsi</NavLink>
+               </li>
+               <li class="nav-item">
+                  <NavLink href="/">Gruppi</NavLink>
+               </li>
+               <li class="nav-item">
+                  <button class="btn btn-primary sub-header" style='padding: 0.7rem 3rem; margin-left:0.5rem;'>Accedi</button>
+               </li>
+             </ul>
           </div>
 
        </div>
@@ -38,26 +43,12 @@
 
 
  <style>
-   .nav-link{
-      color: var(--bs-primary-dark);
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-
-      transition: color 250ms ease-in-out;
-   }
-
-   .nav-link.active,
-   .nav-link:hover{
-      color: var(--bs-primary) !important;
-   }
-
    .navbar-toggler{
       border: none;
    }
 
-   .navbar-toggler:focus{
+   .navbar-toggler:focus,
+   .btn-close:focus{
       box-shadow: none;
    }
  </style>

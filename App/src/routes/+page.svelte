@@ -12,14 +12,14 @@
 
 	<div class="row justify-content-center align-items-center sub-header mb-5 py-md-5 py-sm-3">
 		<div class="col text-center">
-			<p class="text-title mb-3 text-center sub-header">Scopri di più</p>
+			<p class="mb-3 text-center sub-header">Scopri di più</p>
 			<img src="assets/icons/arrow-down.svg" style="height:40px;" alt="" />
 		</div>
 	</div>
 </section>
 
 <section class="container">
-	<h2 class="fw-bolder text-center display-6 text-dark mb-5">I Nostri Servizi</h2>
+	<h2 class="text-title text-center display-6 text-dark mb-5">I Nostri Servizi</h2>
 	<ServiceList>
 		<ServiceItem
 			src="assets/icons/reviews.png"
