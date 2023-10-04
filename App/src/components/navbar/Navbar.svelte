@@ -23,7 +23,7 @@
           <div class="offcanvas-body">
              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 align-items-center gap-4">
                <li class="nav-item">
-                  <NavLink href="/" active>Professori</NavLink>
+                  <NavLink href="/">Professori</NavLink>
                </li>
                <li class="nav-item">
                   <NavLink href="/">Corsi</NavLink>
