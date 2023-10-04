@@ -57,7 +57,7 @@
     }
 
     .container-cta{
-        width: min(1000px, 100vw);
+        width: min(1000px, 95vw);
         margin: 0 0 10rem 0;
     }
 
@@ -85,6 +85,20 @@
 
     .illustration{
         margin-top: -5rem;
-        width:min(500px, 100vw);
+        width:min(500px, 90vw);
+    }
+
+    @media (max-width: 768px) {
+        section{
+            padding-top: 8rem;
+        }
+
+        .container-cta{
+            margin: 0 0 8rem 0;
+        }
+
+        .links{
+            margin-top: 8rem;
+        }
     }
 </style>
