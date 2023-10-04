@@ -37,6 +37,16 @@
     background: #555;
 }
 
+/* ============== GLOBALS ================*/
+
+section {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+}
+
+
+/* ============= GRADIENTS ==============*/
+
 .text-gradient,
 .btt-gradient {
     background: linear-gradient(90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
@@ -74,3 +84,8 @@
 .radial-gradient{
     background: radial-gradient(circle at 100% 0%, #002155 0%, #2790FF 50.52%, #5AECE3 100%);
 }
+
+.radial-gradient-reverse{
+    background: radial-gradient(circle at 0% 0%, #002155 0%, #2790FF 60.52%, #5AECE3 100%);
+}
+
