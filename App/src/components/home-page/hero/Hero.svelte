@@ -6,11 +6,7 @@
                 Recensisci Corsi e Professori, Collabora in Gruppi di Studio, e Comunica in Tempo Reale con
                 Altri Studenti Universitari
             </p>
-            <button
-                class="btn btn-primary btt-gradient-reverse sub-header mt-2"
-                style="padding: 1.15rem 3rem; box-shadow: 2px 5px 10px 0px rgba(28, 53, 93, 0.30);"
-                >Unisciti Ora!</button
-            >
+            <a href="/login" class="btn btn-primary btn-gradient-reverse sub-header mt-2">Unisciti Ora!</a>
         </div>
     
         <img class="hero-img" src="assets/images/hero.png" alt="" />
@@ -42,6 +38,10 @@
 
     .hero-body {
         width: min(600px, 70vw);
+    }
+
+    .btn{
+        box-shadow: 2px 5px 10px 0px rgba(28, 53, 93, 0.30);
     }
 
     @media (max-width: 1200px) {

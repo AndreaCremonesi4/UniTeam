@@ -48,12 +48,12 @@ section {
 /* ============= GRADIENTS ==============*/
 
 .text-gradient,
-.btt-gradient {
+.btn-gradient {
     background: linear-gradient(90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
 }
 
 .text-gradient-reverse,
-.btt-gradient-reverse{
+.btn-gradient-reverse{
     background: linear-gradient(-90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
 }
 
@@ -64,16 +64,16 @@ section {
     -webkit-text-fill-color: transparent;
 }
 
-.btt-gradient,
-.btt-gradient-reverse {
+.btn-gradient,
+.btn-gradient-reverse {
     background-size: 150%;
     background-position: left 0;
 
     transition: background-position 500ms ease-in-out;
 }
 
-.btt-gradient:hover,
-.btt-gradient-reverse:hover {
+.btn-gradient:hover,
+.btn-gradient-reverse:hover {
     background-position: right 0;
 }
 
