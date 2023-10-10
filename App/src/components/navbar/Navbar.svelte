@@ -32,7 +32,7 @@
                   <NavLink href="/">Gruppi</NavLink>
                </li>
                <li class="nav-item">
-                  <button class="btn btn-primary sub-header" style='padding: 0.7rem 3rem; margin-left:0.5rem;'>Accedi</button>
+                  <a href='/login' class="btn btn-primary sub-header" style='padding: 0.7rem 3rem; margin-left:0.5rem;'>Accedi</a>
                </li>
              </ul>
           </div>
