@@ -17,7 +17,7 @@
             <div class="container-cta d-flex flex-column justify-content-center align-items-center text-center">
                 <h1 class="text-title text-white">Unisciti a UniTeam oggi stesso e inizia a sfruttare i vantaggi della nostra piattaforma</h1>
                 <p class="text-body-white mb-5">La tua esperienza universitaria non è mai stata così coinvolgente e informativa.</p>
-                <button class="btn btn-secondary sub-header">Unisciti Ora!</button>
+                <a href="/login" class="btn btn-secondary sub-header">Unisciti Ora!</a>
             </div>
         {/if}
         

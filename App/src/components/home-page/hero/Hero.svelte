@@ -12,7 +12,7 @@
         <img class="hero-img" src="assets/images/hero.png" alt="" />
     </div>
 
-	<div class="row justify-content-center align-items-center sub-header ">
+	<div class="row justify-content-center align-items-center sub-header">
 		<div class="col text-center">
 			<p class="mb-3 text-center sub-header">Scopri di più</p>
 			<img src="assets/icons/arrow-down.svg" style="height:40px;" alt="" />
@@ -26,7 +26,7 @@
         display: flex;
         align-items: center;
         margin-top: 15rem;
-        margin-bottom: 10rem;
+        margin-bottom: 11rem;
     }
 
     .hero-img {
