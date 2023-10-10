@@ -52,7 +52,6 @@
 
     form > button{
         width: 100%;
-        border-radius: 7px;
         padding-top: 1rem;
         padding-bottom: 1rem;
     }

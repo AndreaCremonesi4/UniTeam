@@ -3,17 +3,39 @@
 	import InputGroup from "../../../components/form/InputGroup.svelte";
     import AuthForm from "../../../components/auth/AuthForm.svelte";
 
+    export let data;
+    let { supabase } = data;
+    $: ({ supabase } = data);
+
     let form;
     let username, email, password, confirmPassword;
 
-    onMount(() => {
-        form.addEventListener('submit', event => {
+
+    const handleSignUp = async () => {
+        console.log(password.value)
+        const {error} = await supabase.auth.signUp({
+            email: email.value,
+            password: password.value,
+            options: {
+                emailRedirectTo: `${location.origin}/auth/callback`,
+            },
+        });
+
+        console.log(error);
+    }
+
+    onMount(async () => {
+        form.addEventListener('submit', async (event) => {
             if (!form.checkValidity()) {
                 event.preventDefault()
                 event.stopPropagation()
             }
 
             form.classList.add('was-validated');
+
+            // registra l'utente
+            await handleSignUp();
+            
         }, false);
 
         form.addEventListener('input', event => {
@@ -76,7 +98,6 @@
 
     form > button{
         width: 100%;
-        border-radius: 7px;
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
