@@ -1,3 +1,22 @@
+<script>
+    export let data;
+    let { supabase } = data;
+	$: ({ supabase } = data);
+
+    const loginWithGoogle = async () => {
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                queryParams: {
+                access_type: 'offline',
+                prompt: 'consent',
+                },
+            },
+        });
+    }
+
+</script>
+
 <div class="container">
     <a href="/"><button class="btn-close"></button></a>
 
@@ -7,7 +26,7 @@
         <span>Oppure</span>
     </div>
     
-    <button class="btn google-btn">
+    <button class="btn google-btn" on:click={loginWithGoogle}>
         <img src="assets/images/google_logo.webp" alt="">
         <span>Accedi con Google</span>
     </button>

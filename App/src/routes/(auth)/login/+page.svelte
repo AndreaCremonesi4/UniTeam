@@ -14,6 +14,7 @@
 
 	let form;
 	let email, password;
+	let showSignInError;
 
 	onMount(async () => {
 		form.addEventListener(
@@ -23,8 +24,16 @@
 					event.preventDefault();
 					event.stopPropagation();
 				} else {
+					showSignInError = false;
+
 					const error = await signInWithEmail();
-					if (!error) goto(redirectTo ?? '/');
+
+					if (!error) {
+						goto(redirectTo ?? '/');
+					} 
+					else {
+						showSignInError = true;
+					}
 				}
 
 				form.classList.add('was-validated');
@@ -38,6 +47,7 @@
 	});
 
 	async function signInWithEmail() {
+
 		const { data, error } = await supabase.auth.signInWithPassword({
 			email: email.value,
 			password: password.value
@@ -47,7 +57,7 @@
 	}
 </script>
 
-<AuthForm>
+<AuthForm {data}>
 	<h1 class="text-title text-gradient-reverse">Login</h1>
 
 	<form class="row g-3 mt-2" bind:this={form} novalidate>
@@ -64,15 +74,21 @@
 			</span>
 		</InputGroup>
 
+		{#if showSignInError}
+			<div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+				<i class="bi bi-exclamation-triangle-fill"></i>
+				Credenziali errate!
+			</div>
+		{/if}
+		
+
 		<a href="/password-recovery" class="mt-1">Hai dimenticato la password?</a>
 
 		<button class="btn btn-primary btn-gradient-reverse sub-header" type="submit">Login</button>
 	</form>
 
 	<p class="mt-3">
-		Non hai ancora un account? <a
-			href="/registrazione{redirectTo ? `?redirectTo=${redirectTo}` : ''}">Registrati</a
-		>
+		Non hai ancora un account? <a href="/registrazione{redirectTo ? `?redirectTo=${redirectTo}` : ''}">Registrati</a>
 	</p>
 </AuthForm>
 

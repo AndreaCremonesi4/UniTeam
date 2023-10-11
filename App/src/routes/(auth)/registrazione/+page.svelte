@@ -14,15 +14,14 @@
 
 	let form;
 	let username, email, password, confirmPassword;
+    let showSuccess;
 
 	const handleSignUp = async () => {
 		const { error } = await supabase.auth.signUp({
 			email: email.value,
 			password: password.value,
 			options: {
-				emailRedirectTo: `${location.origin}/auth/callback${
-					redirectTo ? `?redirectTo=${redirectTo}` : ''
-				}`
+				emailRedirectTo: `${location.origin}/auth/callback${redirectTo ? `?redirectTo=${redirectTo}` : ''}`
 			}
 		});
 
@@ -36,16 +35,20 @@
 				if (!form.checkValidity()) {
 					event.preventDefault();
 					event.stopPropagation();
+
+                    form.classList.add('was-validated');
 				} else {
 					// registra l'utente
 					const error = await handleSignUp();
 
 					if (!error) {
-						// portare a una pagina dove mostrare all'utente un messaggio per confermare la mail
+						showSuccess = true;
+						
+						// refresh form
+						form.classList.remove('was-validated');
+                        form.reset();
 					}
 				}
-
-				form.classList.add('was-validated');
 			},
 			false
 		);
@@ -57,61 +60,71 @@
 		});
 
 		email.addEventListener('input', (event) => {
-			email.setCustomValidity(!validateEmail(email.value) ? 'error email' : '');
+			email.setCustomValidity(!validateEmail(email.value) ? 'Email error' : '');
 		});
 
 		password.addEventListener('input', (event) => {
-			if (password.value != confirmPassword.value) confirmPassword.value = '';
-
 			confirmPassword.disabled = password.value.trim() === '';
 		});
 	});
 </script>
 
-<AuthForm>
-	<h1 class="text-title text-gradient-reverse">Registrazione</h1>
+    <AuthForm {data}>
+        {#if showSuccess}
+            <div class="alert alert-success text-start d-flex" role="alert">
+                <div>
+                    <div class="d-flex gap-3">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <h4 class="alert-heading">Registrazione effettuata con successo!</h4>
+                    </div>
+                    <p>Controlla la tua casella di posta elettronica per attivare il tuo account UniTeam.</p>
+                </div>
+                <button type="button" class="btn-close" on:click={() => showSuccess = false}></button>
+            </div>
+        {/if}
 
-	<form class="row g-3 mt-2" bind:this={form} novalidate>
-		<InputGroup bind:input={username} placeholder="Nome Utente" required>
-			<span slot="icon" class="input-group-text gradient-light">
-				<i class="bi bi-person text-white" />
-			</span>
-		</InputGroup>
+        <h1 class="text-title text-gradient-reverse">Registrazione</h1>
 
-		<InputGroup bind:input={email} placeholder="Email" type="email" required>
-			<span slot="icon" class="input-group-text gradient-light" id="email">
-				<i class="bi bi-envelope text-white" />
-			</span>
-			<span slot="invalid">Inserisci un'email valida</span>
-		</InputGroup>
+        <form class="row g-3 mt-2" bind:this={form} novalidate>
+            <InputGroup bind:input={username} placeholder="Nome Utente" required>
+                <span slot="icon" class="input-group-text gradient-light">
+                    <i class="bi bi-person text-white" />
+                </span>
+            </InputGroup>
 
-		<InputGroup bind:input={password} type="password" placeholder="Password" minlength="6">
-			<span slot="icon" class="input-group-text gradient-light">
-				<i class="bi bi-key text-white" />
-			</span>
-			<span slot="invalid">La password deve contenere almeno 6 caratteri!</span>
-		</InputGroup>
+            <InputGroup bind:input={email} placeholder="Email" type="email" required>
+                <span slot="icon" class="input-group-text gradient-light" id="email">
+                    <i class="bi bi-envelope text-white" />
+                </span>
+                <span slot="invalid">Inserisci un'email valida</span>
+            </InputGroup>
 
-		<InputGroup
-			bind:input={confirmPassword}
-			type="password"
-			placeholder="Conferma Password"
-			disabled
-		>
-			<span slot="icon" class="input-group-text gradient-light">
-				<i class="bi bi-key-fill text-white" />
-			</span>
-			<span slot="invalid">Le password non concidono!</span>
-		</InputGroup>
+            <InputGroup bind:input={password} type="password" placeholder="Password" minlength="6">
+                <span slot="icon" class="input-group-text gradient-light">
+                    <i class="bi bi-key text-white" />
+                </span>
+                <span slot="invalid">La password deve contenere almeno 6 caratteri!</span>
+            </InputGroup>
 
-		<button class="btn btn-primary btn-gradient-reverse sub-header" type="submit">Registrati</button
-		>
-	</form>
+            <InputGroup
+                bind:input={confirmPassword}
+                type="password"
+                placeholder="Conferma Password"
+                disabled
+            >
+                <span slot="icon" class="input-group-text gradient-light">
+                    <i class="bi bi-key-fill text-white" />
+                </span>
+                <span slot="invalid">Le password non concidono!</span>
+            </InputGroup>
 
-	<p class="mt-3">
-		Hai già un account? <a href="/login{redirectTo ? `?redirectTo=${redirectTo}` : ''}">Accedi</a>
-	</p>
-</AuthForm>
+            <button class="btn btn-primary btn-gradient-reverse sub-header" type="submit">Registrati</button>
+        </form>
+
+        <p class="mt-3">
+            Hai già un account? <a href="/login{redirectTo ? `?redirectTo=${redirectTo}` : ''}">Accedi</a>
+        </p>
+    </AuthForm>
 
 <style>
 	form {
@@ -125,4 +138,8 @@
 		padding-top: 1rem;
 		padding-bottom: 1rem;
 	}
+
+    .alert{
+        width: min(600px, 90%);
+    }
 </style>

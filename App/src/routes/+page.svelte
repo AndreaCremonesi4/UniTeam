@@ -10,8 +10,8 @@
 	export let data;
 	let { supabase } = data;
 	$: ({ supabase } = data);
-</script>
 
+</script>
 
 <Navbar />
 
