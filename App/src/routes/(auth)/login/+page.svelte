@@ -2,20 +2,41 @@
     import { onMount } from "svelte";
 	import InputGroup from "../../../components/form/InputGroup.svelte";
     import AuthForm from "../../../components/auth/AuthForm.svelte";
+    import { page } from '$app/stores';
+    import { goto } from '$app/navigation';
+
+    export let data;
+    let { supabase } = data;
+    $: ({ supabase } = data);
 
     let form;
     let email, password;
 
-    onMount(() => {
-        form.addEventListener('submit', event => {
+    const redirectTo = $page.url.searchParams.get('redirectTo');
+
+    onMount(async () => {
+        form.addEventListener('submit', async (event) => {
             if (!form.checkValidity()) {
                 event.preventDefault()
                 event.stopPropagation()
-            }
-
+            } else {
+                const error = await signInWithEmail();
+                if(!error)
+                    goto(redirectTo ?? '/');
+            }            
+            
             form.classList.add('was-validated');
         }, false);
     });
+
+    async function signInWithEmail() {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email.value,
+            password: password.value,
+        });
+
+        return error;
+    }
     
 </script>
 
@@ -40,7 +61,7 @@
         <button class="btn btn-primary btn-gradient-reverse sub-header" type="submit">Login</button>
     </form>
 
-    <p class="mt-3">Non hai ancora un account? <a href="/registrazione">Registrati</a></p>
+    <p class="mt-3">Non hai ancora un account? <a href="/registrazione{redirectTo ? `?redirectTo=${redirectTo}` : ''}">Registrati</a></p>
 </AuthForm>
 
 <style>

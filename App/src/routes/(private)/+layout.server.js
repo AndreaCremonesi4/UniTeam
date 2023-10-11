@@ -1,13 +1,10 @@
 import { redirect } from "@sveltejs/kit";
 
-export const load = async ({ locals: { getSession } }) => {
+export const load = async ({ locals: { getSession }, url }) => {
     const session = await getSession();
 
-    console.log(session);
-
     if(!session)
-        throw redirect(303, '/login');
-    // TODO riportare a questa pagina una volta eseguito l'accesso
+        throw redirect(303, `/login?redirectTo=${url.pathname}`);
 
     return {
       session: session
