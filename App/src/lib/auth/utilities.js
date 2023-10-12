@@ -1,3 +1,6 @@
+import { createAvatar } from '@dicebear/core';
+import { initials } from '@dicebear/collection';
+
 export const validateEmail = (email) => {
     return email.match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -18,4 +21,12 @@ export const validatePassword = (password, minLength = 6) => {
         return 'La password deve contenere almeno un carattere speciale';
 
     return null;
+}
+
+export const generateAvatar = (seed) => {
+    const avatar = createAvatar(initials, {
+        seed: seed
+    });
+    
+    return avatar.toDataUriSync();
 }
