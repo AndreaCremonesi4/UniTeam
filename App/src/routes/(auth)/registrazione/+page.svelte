@@ -3,7 +3,7 @@
 	import InputGroup from '../../../components/form/InputGroup.svelte';
 	import AuthForm from '../../../components/auth/AuthForm.svelte';
 	import { page } from '$app/stores';
-	import { validateEmail, validatePassword } from '$lib/auth/utilities';
+	import { validateEmail, validatePassword, generateAvatar } from '$lib/auth/utilities';
 
 	export let data;
 	let { supabase } = data;
@@ -17,12 +17,15 @@
 	let passwordError = "La password deve contenere almeno 6 caratteri!";
 
 	const handleSignUp = async () => {
+		const avatar = generateAvatar(username.value.trim().charAt(0));
+		
 		const { error } = await supabase.auth.signUp({
 			email: email.value,
 			password: password.value,
 			options: {
 				data: {
-					username: username.value.trim()
+					username: username.value.trim(),
+					profile_photo: avatar
 				},
 				emailRedirectTo: `${location.origin}/auth/callback${redirectTo ? `?redirectTo=${redirectTo}` : ''}`
 			}
