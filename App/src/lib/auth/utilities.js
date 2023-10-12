@@ -1,5 +1,6 @@
 import { createAvatar } from '@dicebear/core';
 import { initials } from '@dicebear/collection';
+import { goto } from '$app/navigation';
 
 export const validateEmail = (email) => {
     return email.match(
@@ -8,7 +9,6 @@ export const validateEmail = (email) => {
 };
 
 export const validatePassword = (password, minLength = 6) => {
-    //password.value.match('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,}$')
     if(password.trim().length < minLength)
         return `La password deve contenere almeno ${minLength} caratteri`;
     else if(!password.match(/[a-z]/g))
@@ -29,4 +29,9 @@ export const generateAvatar = (seed) => {
     });
     
     return avatar.toDataUriSync();
+}
+
+export const logout = async (auth) => {
+    auth.signOut();
+    await goto('/');
 }

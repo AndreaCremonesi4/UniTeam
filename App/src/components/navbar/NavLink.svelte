@@ -1,5 +1,8 @@
 <script>
+    import { page } from '$app/stores';
     export let active, href;
+    
+    active = $page.url.pathname.startsWith(href);
 </script>
 
 <a class="nav-link" class:active {href} aria-current="page">
