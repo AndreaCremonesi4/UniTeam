@@ -7,7 +7,7 @@
 }
 
 .main-header {
-    font-size: calc(2rem + 1.5vw);
+    font-size: min(55px, calc(2.5rem + 1.2vw));
     font-style: normal;
     font-weight: 800;
     line-height: 100%;
@@ -38,7 +38,7 @@
 }
 
 .text-title {
-    font-size: min(45px, calc(2rem + 1vw));
+    font-size: min(45px, calc(1.75rem + 0.8vw));
     font-style: normal;
     font-weight: 700;
     line-height: 140%;

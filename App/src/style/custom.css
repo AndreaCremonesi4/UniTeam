@@ -42,3 +42,6 @@
     padding: 0.9rem 3.5rem;
 }
 
+.was-validated .form-control:valid {
+    background-image: none;
+}

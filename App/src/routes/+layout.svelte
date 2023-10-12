@@ -1,5 +1,4 @@
-<!-- src/routes/+layout.svelte -->
-<script lang="ts">
+<script>
     import { invalidate } from '$app/navigation';
     import { onMount } from 'svelte';
   

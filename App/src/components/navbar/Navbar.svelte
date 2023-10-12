@@ -2,6 +2,7 @@
 	import NavLink from "./NavLink.svelte";
 
 </script>
+
 <nav class="navbar fixed-top navbar-expand-lg bg-white" aria-label="Offcanvas navbar large">
     <div class="container">
        

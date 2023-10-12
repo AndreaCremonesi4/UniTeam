@@ -17,7 +17,7 @@
             <div class="container-cta d-flex flex-column justify-content-center align-items-center text-center">
                 <h1 class="text-title text-white">Unisciti a UniTeam oggi stesso e inizia a sfruttare i vantaggi della nostra piattaforma</h1>
                 <p class="text-body-white mb-5">La tua esperienza universitaria non è mai stata così coinvolgente e informativa.</p>
-                <button class="btn btn-secondary sub-header">Unisciti Ora!</button>
+                <a href="/login" class="btn btn-secondary sub-header">Unisciti Ora!</a>
             </div>
         {/if}
         
@@ -57,7 +57,7 @@
     }
 
     .container-cta{
-        width: min(1000px, 100vw);
+        width: min(1000px, 95vw);
         margin: 0 0 10rem 0;
     }
 
@@ -85,6 +85,20 @@
 
     .illustration{
         margin-top: -5rem;
-        width:min(500px, 100vw);
+        width:min(500px, 90vw);
+    }
+
+    @media (max-width: 768px) {
+        section{
+            padding-top: 8rem;
+        }
+
+        .container-cta{
+            margin: 0 0 8rem 0;
+        }
+
+        .links{
+            margin-top: 8rem;
+        }
     }
 </style>

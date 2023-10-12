@@ -6,11 +6,20 @@
 	import StudyGroups from '../components/home-page/study-groups/StudyGroups.svelte';
 	import Reviews from '../components/home-page/reviews/Reviews.svelte';
 	import Footer from '../components/footer/Footer.svelte';
+
+	export let data;
+	let { supabase } = data;
+	$: ({ supabase } = data);
+
 </script>
 
 <Navbar />
 
 <Hero />
+
+{#if data.session}
+	<button on:click={ () => data.supabase.auth.signOut() } style="z-index:1000">Logout</button>
+{/if}
 
 <Services />
 
