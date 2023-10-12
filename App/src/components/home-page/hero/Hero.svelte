@@ -6,7 +6,7 @@
                 Recensisci Corsi e Professori, Collabora in Gruppi di Studio, e Comunica in Tempo Reale con
                 Altri Studenti Universitari
             </p>
-            <a href="/login" class="btn btn-primary btn-gradient-reverse sub-header mt-2">Unisciti Ora!</a>
+            <a href="/registrazione" class="btn btn-primary btn-gradient-reverse sub-header mt-2">Unisciti Ora!</a>
         </div>
     
         <img class="hero-img" src="assets/images/hero.png" alt="" />

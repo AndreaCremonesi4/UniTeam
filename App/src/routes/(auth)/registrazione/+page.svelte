@@ -4,7 +4,7 @@
 	import AuthForm from '../../../components/auth/AuthForm.svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { validateEmail } from '$lib/auth/utilities';
+	import { validateEmail, validatePassword } from '$lib/auth/utilities';
 
 	export let data;
 	let { supabase } = data;
@@ -15,6 +15,7 @@
 	let form;
 	let username, email, password, confirmPassword;
     let showSuccess;
+	let passwordError = "La password deve contenere almeno 6 caratteri!";
 
 	const handleSignUp = async () => {
 		const { error } = await supabase.auth.signUp({
@@ -59,13 +60,20 @@
 			);
 		});
 
+		username.addEventListener('input', (event) => {
+			username.setCustomValidity(username.value.trim() === '' ? 'Username vuoto' : '');
+		});
+
 		email.addEventListener('input', (event) => {
 			email.setCustomValidity(!validateEmail(email.value) ? 'Email error' : '');
 		});
 
 		password.addEventListener('input', (event) => {
+			passwordError = validatePassword(password.value);
+			password.setCustomValidity(passwordError ?? '');
 			confirmPassword.disabled = password.value.trim() === '';
 		});
+
 	});
 </script>
 
@@ -103,7 +111,7 @@
                 <span slot="icon" class="input-group-text gradient-light">
                     <i class="bi bi-key text-white" />
                 </span>
-                <span slot="invalid">La password deve contenere almeno 6 caratteri!</span>
+                <span slot="invalid">{passwordError}</span>
             </InputGroup>
 
             <InputGroup
