@@ -10,6 +10,6 @@
 
 <section>
 	<div class="container">
-		<h1>Professori</h1>
+		<h1>Gruppi</h1>
 	</div>
 </section>

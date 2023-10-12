@@ -1,5 +1,6 @@
 import { createAvatar } from '@dicebear/core';
 import { initials } from '@dicebear/collection';
+import { goto } from '$app/navigation';
 
 export const validateEmail = (email) => {
     return email.match(
@@ -28,4 +29,9 @@ export const generateAvatar = (seed) => {
     });
     
     return avatar.toDataUriSync();
+}
+
+export const logout = async (auth) => {
+    auth.signOut();
+    await goto('/');
 }
