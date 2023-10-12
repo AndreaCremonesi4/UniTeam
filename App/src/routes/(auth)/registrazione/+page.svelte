@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import InputGroup from '../../../components/form/InputGroup.svelte';
 	import AuthForm from '../../../components/auth/AuthForm.svelte';
-	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { validateEmail, validatePassword } from '$lib/auth/utilities';
 
@@ -22,6 +21,9 @@
 			email: email.value,
 			password: password.value,
 			options: {
+				data: {
+					username: username.value.trim()
+				},
 				emailRedirectTo: `${location.origin}/auth/callback${redirectTo ? `?redirectTo=${redirectTo}` : ''}`
 			}
 		});
