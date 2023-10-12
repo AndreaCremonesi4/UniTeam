@@ -10,15 +10,14 @@
 	export let data;
 	let { supabase } = data;
 	$: ({ supabase } = data);
-
 </script>
 
-<Navbar />
+<Navbar {data} />
 
 <Hero />
 
 {#if data.session}
-	<button on:click={ () => data.supabase.auth.signOut() } style="z-index:1000">Logout</button>
+	<button on:click={() => data.supabase.auth.signOut()} style="z-index:1000">Logout</button>
 {/if}
 
 <Services />
@@ -27,4 +26,4 @@
 
 <Reviews />
 
-<Footer homePage/>
+<Footer homePage />
