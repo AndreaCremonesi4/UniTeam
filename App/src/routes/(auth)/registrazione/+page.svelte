@@ -17,7 +17,6 @@
 	let passwordError = "La password deve contenere almeno 6 caratteri!";
 
 	const handleSignUp = async () => {
-		const avatar = generateAvatar(username.value.trim().charAt(0));
 		
 		const { error } = await supabase.auth.signUp({
 			email: email.value,
@@ -25,7 +24,7 @@
 			options: {
 				data: {
 					username: username.value.trim(),
-					profile_photo: avatar
+					profile_photo: generateAvatar(username.value.trim().charAt(0))
 				},
 				emailRedirectTo: `${location.origin}/auth/callback${redirectTo ? `?redirectTo=${redirectTo}` : ''}`
 			}
