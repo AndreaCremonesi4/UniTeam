@@ -53,27 +53,17 @@
 							>
 						</li>
 					{:else}
-						<div class="dropdown show">
-							<a
-								class="btn dropdown-toggle"
-								href="/"
-								role="button"
-								id="dropdownMenuLink"
-								data-toggle="dropdown"
-								aria-haspopup="true"
-								aria-expanded="false"
+						<li class="nav-item dropdown-center">
+							<a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
+								<i class="bi bi-person-circle" style="font-size: 20px;" /></a
 							>
-								<li class="nav-item">
-									<i class="bi bi-person-circle" />
-								</li>
-							</a>
-
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								<a class="dropdown-item" href="/">Action</a>
-								<a class="dropdown-item" href="/">Another action</a>
-								<a class="dropdown-item" href="/">Something else here</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" type="button" href="/">Il mio profilo</a>
+								<a class="dropdown-item" type="button" href="/">Le mie recensioni</a>
+								<div class="dropdown-divider" />
+								<a class="dropdown-item" type="button" href="/">Logout</a>
 							</div>
-						</div>
+						</li>
 					{/if}
 				</ul>
 			</div>
