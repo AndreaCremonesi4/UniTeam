@@ -1,0 +1,91 @@
+@import url(custom.css);
+@import url(typography.css);
+
+:root {
+    --bs-primary-dark: #002155;
+    --bs-dark-rgb: 0, 33, 85;
+    --bs-primary-dark-rgb: 0, 33, 85;
+    --bs-primary: #2790FF;
+    --bs-primary-rgb: 39, 144, 255;
+    --bs-primary-hover: #1f73cd;
+    --bs-secondary: #FF6914;
+    --bs-secondary-rgb: 255, 105, 20;
+    --bs-secondary-hover: #d65a12;
+    --bs-accent: #5AECE3;
+    --bs-accent-rgb: 90, 236, 227;
+
+    --bs-font-sans-serif: Inter;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ============== GLOBALS ================*/
+
+section {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+}
+
+
+/* ============= GRADIENTS ==============*/
+
+.text-gradient,
+.btn-gradient {
+    background: linear-gradient(90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
+}
+
+.text-gradient-reverse,
+.btn-gradient-reverse{
+    background: linear-gradient(-90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
+}
+
+.text-gradient,
+.text-gradient-reverse {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-gradient,
+.btn-gradient-reverse {
+    background-size: 150%;
+    background-position: left 0;
+
+    transition: background-position 500ms ease-in-out;
+}
+
+.btn-gradient:hover,
+.btn-gradient-reverse:hover {
+    background-position: right 0;
+}
+
+.gradient-light {
+    background: linear-gradient(135deg, #2790FF 0%, #5AECE3 100%);
+}
+
+.radial-gradient{
+    background: radial-gradient(circle at 100% 0%, #002155 0%, #2790FF 50.52%, #5AECE3 100%);
+}
+
+.radial-gradient-reverse{
+    background: radial-gradient(circle at 0% 0%, #002155 0%, #2790FF 60.52%, #5AECE3 100%);
+}
+
