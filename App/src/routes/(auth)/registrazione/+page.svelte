@@ -22,7 +22,8 @@
 			password: password.value,
 			options: {
 				data: {
-					username: username.value.trim()
+					username: username.value.trim(),
+					profile_photo: generateAvatar(username.value.trim().charAt(0))
 				},
 				emailRedirectTo: `${location.origin}/auth/callback${redirectTo ? `?redirectTo=${redirectTo}` : ''}`
 			}
