@@ -5,7 +5,6 @@ export const validateEmail = (email) => {
 };
 
 export const validatePassword = (password, minLength = 6) => {
-    //password.value.match('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,}$')
     if(password.trim().length < minLength)
         return `La password deve contenere almeno ${minLength} caratteri`;
     else if(!password.match(/[a-z]/g))
