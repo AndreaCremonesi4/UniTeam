@@ -53,15 +53,24 @@
 							>
 						</li>
 					{:else}
-						<li class="nav-item dropdown-center">
+						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
-								<i class="bi bi-person-circle" style="font-size: 20px;" /></a
-							>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" type="button" href="/">Il mio profilo</a>
-								<a class="dropdown-item" type="button" href="/">Le mie recensioni</a>
-								<div class="dropdown-divider" />
-								<a class="dropdown-item" type="button" href="/">Logout</a>
+								<i class="bi bi-person-circle" style="font-size: 20px;" />
+							</a>
+							<div class="container d-flex">
+								<div
+									class="dropdown-menu align-items-center text-center"
+									aria-labelledby="navbarDropdown"
+								>
+									<a class="dropdown-item" type="button" href="/">Il mio profilo</a>
+									<a class="dropdown-item" type="button" href="/">Le mie recensioni</a>
+									<div class="dropdown-divider" />
+									<button
+										class="btn btn-primary py-2 px-3"
+										on:click={() => data.supabase.auth.signOut()}
+										style="z-index:1000">Logout</button
+									>
+								</div>
 							</div>
 						</li>
 					{/if}
@@ -79,5 +88,12 @@
 	.navbar-toggler:focus,
 	.btn-close:focus {
 		box-shadow: none;
+	}
+
+	.dropdown-menu {
+		position: absolute;
+		top: 50;
+		left: 0;
+		transform: translateX(-37%);
 	}
 </style>
