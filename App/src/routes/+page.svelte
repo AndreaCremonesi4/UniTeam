@@ -16,10 +16,6 @@
 
 <Hero />
 
-{#if data.session}
-	<button on:click={() => data.supabase.auth.signOut()} style="z-index:1000">Logout</button>
-{/if}
-
 <Services />
 
 <StudyGroups />
