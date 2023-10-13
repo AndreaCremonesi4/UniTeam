@@ -11,7 +11,7 @@
 <nav class="navbar fixed-top navbar-expand-lg bg-white" aria-label="Offcanvas navbar large">
 	<div class="container">
 		<a class="navbar-brand d-flex gap-4 align-items-center" href="/">
-			<h1 class="text-gradient nav-title">UniTeam</h1>
+			<h1 class="text-gradient nav-title mb-0">UniTeam</h1>
 		</a>
 
 		<button
@@ -52,23 +52,23 @@
 							<a
 								href="/login"
 								class="btn btn-primary sub-header"
-								style="padding: 0.7rem 3rem; margin-left:0.5rem;">Accedi</a
-							>
+								style="padding: 0.7rem 3rem; margin-left:0.5rem;"
+							>Accedi</a>
 						</li>
 					{:else}
-                  <li class="nav-item dropdown d-flex flex-column align-items-center justify-content-center">
-                     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src={data.session.user.user_metadata.profile_photo} style="width:30px; border-radius:1000px;" alt="">
-                     </button>
-                     <ul class="dropdown-menu dropdown-menu-end">
-                        <div class="d-flex flex-column justify-content-center px-2">
-                           <a class="dropdown-item" type="button" href="/">Il mio profilo</a>
-                           <a class="dropdown-item" type="button" href="/">Le mie recensioni</a>
-                           <div class="dropdown-divider" />
-                           <button class="btn btn-primary py-2 px-3" on:click={() => logout(supabase.auth)}>Logout</button>
-                        </div>
-                     </ul>
-                  </li>
+						<li class="nav-item dropdown d-flex flex-column align-items-center justify-content-center">
+							<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src={data.session.user.user_metadata.profile_photo} class="user-avatar" alt="">
+							</button>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<div class="d-flex flex-column justify-content-center px-2">
+									<a class="dropdown-item" type="button" href="/">Il mio profilo</a>
+									<a class="dropdown-item" type="button" href="/">Le mie recensioni</a>
+									<div class="dropdown-divider" />
+									<button class="btn btn-primary py-2 px-3" on:click={() => logout(supabase.auth)}>Logout</button>
+								</div>
+							</ul>
+						</li>
 					{/if}
 				</ul>
 			</div>
@@ -84,5 +84,10 @@
 	.navbar-toggler:focus,
 	.btn-close:focus {
 		box-shadow: none;
+	}
+
+	.user-avatar {
+		width:26px; 
+		border-radius:1000px;
 	}
 </style>
