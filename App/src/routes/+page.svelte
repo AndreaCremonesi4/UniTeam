@@ -1,5 +1,4 @@
 <script>
-	import ServiceItem from './../components/home-page/services/ServiceItem.svelte';
 	import Services from '../components/home-page/services/Services.svelte';
 	import Navbar from '../components/navbar/Navbar.svelte';
 	import Hero from '../components/home-page/hero/Hero.svelte';

@@ -1,6 +1,9 @@
 <script>
 	import { logout } from '$lib/auth/utilities';
 	import NavLink from './NavLink.svelte';
+	
+	import logo from '$lib/assets/images/logo.png';
+	import hamburger from '$lib/assets/icons/hamburger-menu.svg';
 
 	export let data;
 	let { supabase } = data;
@@ -21,7 +24,7 @@
 			aria-controls="offcanvasNavbar2"
 			aria-label="Toggle navigation"
 		>
-			<img src="assets/icons/hamburger-menu.svg" alt="" />
+			<img src={hamburger} alt="" />
 		</button>
 
 		<div
@@ -31,7 +34,7 @@
 			aria-labelledby="offcanvasNavbar2Label"
 		>
 			<div class="offcanvas-header">
-				<img src="static/assets/images/logo.png" style="height:50px" alt="logo" />
+				<img src={logo} style="height:50px" alt="logo" />
 				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
 			</div>
 

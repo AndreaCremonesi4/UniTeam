@@ -1,3 +1,8 @@
+<script>
+    import hero from '$lib/assets/images/hero.png';
+    import arrowDown from '$lib/assets/icons/arrow-down.svg';
+</script>
+
 <section class="container">
 	<div class="hero">
         <div class="hero-body">
@@ -9,13 +14,13 @@
             <a href="/registrazione" class="btn btn-primary btn-gradient-reverse sub-header mt-2">Unisciti Ora!</a>
         </div>
     
-        <img class="hero-img" src="assets/images/hero.png" alt="" />
+        <img class="hero-img" src={hero} alt="" />
     </div>
 
 	<div class="row justify-content-center align-items-center sub-header">
 		<div class="col text-center">
 			<p class="mb-3 text-center sub-header">Scopri di più</p>
-			<img src="assets/icons/arrow-down.svg" style="height:40px;" alt="" />
+			<img src={arrowDown} style="height:40px;" alt="" />
 		</div>
 	</div>
 </section>

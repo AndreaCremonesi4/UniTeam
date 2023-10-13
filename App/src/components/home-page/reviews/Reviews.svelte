@@ -1,5 +1,8 @@
 <script>
 	import ReviewCard from './ReviewCard.svelte';
+
+	import corsi from '$lib/assets/icons/corsi.png';
+	import professori from '$lib/assets/icons/teacher.png';
 </script>
 
 <section class="container">
@@ -17,13 +20,13 @@
 			<ReviewCard
 				title="Corsi"
 				description="Leggi le recensioni scritte dagli studenti stessi e scopri quali corsi si adattano meglio ai tuoi interessi e obiettivi accademici"
-				icon="assets/icons/corsi.png"
+				icon={corsi}
 				href="/corsi"
 			/>
 			<ReviewCard
 				title="Professori"
 				description="Le valutazioni degli studenti forniscono un'importante prospettiva sugli insegnanti, aiutandoti a trovare docenti che si adattano al tuo stile di apprendimento e alle tue esigenze"
-				icon="assets/icons/teacher.png"
+				icon={professori}
 				href="/professori"
 			/>
 		</div>
