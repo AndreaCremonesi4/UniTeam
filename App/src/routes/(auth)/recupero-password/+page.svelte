@@ -27,6 +27,11 @@
 					event.stopPropagation();
 					form.classList.add('was-validated');
 				} else {
+					await supabase.auth.resetPasswordForEmail(email.value.trim(), {
+						redirectTo: `${location.origin}/aggiorna-password`
+					});
+					console.log(`Mail inviata a ${email.value} con link: ${location.origin}/aggiorna-password`)
+
 					form.reset();
 					showSuccess = true;
 					form.classList.remove('was-validated');
@@ -43,6 +48,8 @@
 </script>
 
 <section>
+	<a href="/login" class="btn btn-back"><i class="bi bi-arrow-left h3"></i></a>
+
 	<div class="container d-flex flex-column align-items-center justify-content-center">
 		{#if showSuccess}
 			<div class="alert alert-success text-start d-flex justify-content-between gap-4" role="alert">
@@ -85,5 +92,19 @@
 	form > button{
 		padding: 0.75rem 0;
 		border-radius:7px;
+	}
+
+	.btn-back{
+		position: absolute;
+		top: 0.5rem;
+		left: 0.5rem;
+	}
+
+	.btn-back > i{
+		opacity: 0.5;
+	}
+
+	.btn-back:hover > i{
+		opacity: 1;
 	}
 </style>

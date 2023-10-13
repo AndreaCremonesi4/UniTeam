@@ -6,6 +6,7 @@
 	import people from '$lib/assets/icons/people.png';
 	import link from '$lib/assets/icons/link.png';
 </script>
+
 <section class="container">
 	<h2 class="text-title text-center display-6 text-dark mb-5">I Nostri Servizi</h2>
 	<div class="list-services my-5">

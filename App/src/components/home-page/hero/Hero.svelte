@@ -49,10 +49,14 @@
         box-shadow: 2px 5px 10px 0px rgba(28, 53, 93, 0.30);
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1400px) {
         .hero-body {
-            width: 600px;
+            width: 550px;
         }
+    }
+
+    @media (max-width: 1200px) {
+        
 
         .hero-img {
             width: min(450px, 80vw);
