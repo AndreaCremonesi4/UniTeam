@@ -72,8 +72,10 @@
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
 								<div class="d-flex flex-column justify-content-center px-2">
-									<a class="dropdown-item" type="button" href="/">Il mio profilo</a>
-									<a class="dropdown-item" type="button" href="/">Le mie recensioni</a>
+									<a class="dropdown-item" type="button" href="/account/profilo">Il mio profilo</a>
+									<a class="dropdown-item" type="button" href="/account/recensioni"
+										>Le mie recensioni</a
+									>
 									<div class="dropdown-divider" />
 
 									<button class="btn btn-primary py-2 px-3" on:click={() => logout(supabase.auth)}
