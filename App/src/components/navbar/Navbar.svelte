@@ -31,7 +31,7 @@
 			aria-labelledby="offcanvasNavbar2Label"
 		>
 			<div class="offcanvas-header">
-				<img src="assets/images/logo.png" style="height:50px" alt="logo" />
+				<img src="static/assets/images/logo.png" style="height:50px" alt="logo" />
 				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
 			</div>
 

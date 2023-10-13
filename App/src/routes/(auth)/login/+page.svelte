@@ -82,7 +82,7 @@
 		{/if}
 		
 
-		<a href="/password-recovery" class="mt-1">Hai dimenticato la password?</a>
+		<a href="/recupero-password" class="mt-1">Hai dimenticato la password?</a>
 
 		<button class="btn btn-primary btn-gradient-reverse sub-header" type="submit">Login</button>
 	</form>
