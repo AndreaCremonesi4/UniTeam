@@ -1,10 +1,15 @@
+<script>
+	import blob from '$lib/assets/images/blob.svg';
+	import gruppiStudio from '$lib/assets/images/gruppi-studio.png'
+</script>
+
 <section class="radial-gradient">
 	<div class="container">
 		<div class="row justify-content-center align-items-center gap-5">
 			<div class="col text-center">
 				<div class="image-container">
-					<img class="blob" src="assets/images/blob.svg" alt="" />
-					<img class="image" src="assets/images/gruppi-studio.png" alt="" />
+					<img class="blob" src={blob} alt="" />
+					<img class="image" src={gruppiStudio} alt="" />
 				</div>
 			</div>
 
@@ -14,7 +19,7 @@
 					Crea gruppi di studio dedicati ai tuoi corsi preferiti o ai tuoi interessi. Collabora in
 					modo efficiente con i tuoi colleghi studenti utilizzando la nostra chat in tempo reale.
 				</p>
-				<a href="/gruppi" class="btn btn-secondary sub-header">Entra</a>
+				<a href="/gruppi" class="btn btn-secondary sub-header mt-3">Entra</a>
 			</div>
 		</div>
 	</div>

@@ -1,4 +1,6 @@
 <script>
+    import googleLogo from '$lib/assets/images/google_logo.webp';
+    
     export let data;
     let { supabase } = data;
 	$: ({ supabase } = data);
@@ -18,7 +20,7 @@
 </script>
 
 <div class="container">
-    <a href="/"><button class="btn-close"></button></a>
+    <a data-sveltekit-reload href="/"><button class="btn-close"></button></a>
 
     <slot />
 
@@ -27,7 +29,7 @@
     </div>
     
     <button class="btn google-btn" on:click={loginWithGoogle}>
-        <img src="assets/images/google_logo.webp" alt="">
+        <img src={googleLogo} alt="">
         <span>Accedi con Google</span>
     </button>
 </div>

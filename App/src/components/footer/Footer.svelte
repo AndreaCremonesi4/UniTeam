@@ -1,5 +1,8 @@
 <script>
 	import ContactForm from "./ContactForm.svelte";
+    
+    import topFooterImage from '$lib/assets/images/reviews-illustration.png';
+    import footerImage from '$lib/assets/images/footer_image.png';
 
     export let homePage;
 
@@ -8,7 +11,7 @@
 <footer>
     {#if homePage}
         <div class="d-flex align-items-center justify-content-center">
-            <img class="illustration" src="assets/images/reviews-illustration.png" alt="">
+            <img class="illustration" src={topFooterImage} alt="">
         </div>
     {/if}
     <section class="radial-gradient-reverse d-flex flex-column align-items-center justify-content-center">   
@@ -17,7 +20,7 @@
             <div class="container-cta d-flex flex-column justify-content-center align-items-center text-center">
                 <h1 class="text-title text-white">Unisciti a UniTeam oggi stesso e inizia a sfruttare i vantaggi della nostra piattaforma</h1>
                 <p class="text-body-white mb-5">La tua esperienza universitaria non è mai stata così coinvolgente e informativa.</p>
-                <a href="/login" class="btn btn-secondary sub-header">Unisciti Ora!</a>
+                <a href="/registrazione" class="btn btn-secondary sub-header">Unisciti Ora!</a>
             </div>
         {/if}
         
@@ -33,7 +36,7 @@
             </div>
         </div>
 
-        <img class="footer-image" src="assets/images/footer_image.png" alt=""/>
+        <img class="footer-image" src={footerImage} alt=""/>
     </section>
     
 </footer>
