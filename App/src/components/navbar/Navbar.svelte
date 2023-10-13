@@ -87,7 +87,7 @@
 	}
 
 	.user-avatar {
-		width:26px; 
+		width:28px; 
 		border-radius:1000px;
 	}
 </style>
