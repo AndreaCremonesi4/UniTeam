@@ -5,9 +5,10 @@
 	export let type = 'text';
 	export let placeholder;
 	export let minlength;
-    export let maxlength;
-    export let min;
-    export let max;
+	export let maxlength;
+	export let min;
+	export let max;
+	export let readonly;
 </script>
 
 <div class="input-group has-validation">
@@ -18,12 +19,13 @@
 		{type}
 		class="form-control"
 		{minlength}
-        {maxlength}
-        {min}
-        {max}
+		{maxlength}
+		{min}
+		{max}
 		{placeholder}
 		{required}
 		{disabled}
+		{readonly}
 	/>
 
 	<div class="invalid-feedback">
