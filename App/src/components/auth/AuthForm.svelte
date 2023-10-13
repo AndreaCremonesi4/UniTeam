@@ -18,7 +18,7 @@
 </script>
 
 <div class="container">
-    <a href="/"><button class="btn-close"></button></a>
+    <a data-sveltekit-reload href="/"><button class="btn-close"></button></a>
 
     <slot />
 
