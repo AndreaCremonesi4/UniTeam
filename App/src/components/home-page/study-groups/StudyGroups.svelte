@@ -3,51 +3,52 @@
 		<div class="row justify-content-center align-items-center gap-5">
 			<div class="col text-center">
 				<div class="image-container">
-                    <img class="blob" src="assets/images/blob.svg" alt="">
-                    <img class="image" src="assets/images/gruppi-studio.png" alt="">
-                </div>
+					<img class="blob" src="assets/images/blob.svg" alt="" />
+					<img class="image" src="assets/images/gruppi-studio.png" alt="" />
+				</div>
 			</div>
 
-            <div class="col text-center text-white">
-                <h2 class="text-title ">Gruppi Studio</h2>
-                <p class="text-body-white">Crea gruppi di studio dedicati ai tuoi corsi preferiti o ai tuoi interessi. Collabora in modo efficiente con i tuoi colleghi studenti utilizzando la nostra chat in tempo reale.</p>
-                <button class="btn btn-secondary sub-header">Entra</button>
-            </div>
-        </div>
+			<div class="col text-center text-white">
+				<h2 class="text-title">Gruppi Studio</h2>
+				<p class="text-body-white">
+					Crea gruppi di studio dedicati ai tuoi corsi preferiti o ai tuoi interessi. Collabora in
+					modo efficiente con i tuoi colleghi studenti utilizzando la nostra chat in tempo reale.
+				</p>
+				<a href="/gruppi" class="btn btn-secondary sub-header">Entra</a>
+			</div>
+		</div>
 	</div>
 </section>
 
 <style>
-    section{
-        padding: 15rem 0rem;
-    }
+	section {
+		padding: 15rem 0rem;
+	}
 
+	.image-container {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-    .image-container{
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+	.blob {
+		width: min(425px, 80vw);
+	}
 
-    .blob{
-        width: min(425px, 80vw);
-    }
+	.image {
+		position: absolute;
+		width: min(550px, 90vw);
+	}
 
-    .image{
-        position: absolute;
-        width: min(550px, 90vw);
-    }
+	@media (max-width: 992px) {
+		section {
+			padding: 8rem 0rem;
+		}
 
-    @media (max-width:992px){
-        section{
-            padding: 8rem 0rem;
-        }
-
-        .row{
-            flex-direction: column;
-            gap: 4rem;
-        }
-    }
-    
+		.row {
+			flex-direction: column;
+			gap: 4rem;
+		}
+	}
 </style>
