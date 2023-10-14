@@ -19,6 +19,6 @@
 
 <style>
 	.user-avatar {
-		width: 20%;
+		width: min(60vw, 150px);
 	}
 </style>
