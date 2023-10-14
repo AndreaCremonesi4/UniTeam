@@ -1,13 +1,7 @@
 <script>
-	import { enhance } from '$app/forms';
 	import { validateEmail } from '$lib/auth/utilities';
 	import { onMount } from 'svelte';
 	import InputGroup from '../../../components/form/InputGroup.svelte';
-	/*await supabase.auth.resetPasswordForEmail('hello@example.com', {
-		redirectTo: `${location.origin}/aggiorna-password`
-	});
-
-	await supabase.auth.updateUser({ password: new_password });*/
 	
 	export let data;
 	let { supabase } = data;
@@ -30,7 +24,6 @@
 					await supabase.auth.resetPasswordForEmail(email.value.trim(), {
 						redirectTo: `${location.origin}/aggiorna-password`
 					});
-					console.log(`Mail inviata a ${email.value} con link: ${location.origin}/aggiorna-password`)
 
 					form.reset();
 					showSuccess = true;

@@ -63,7 +63,7 @@
 				confirmPassword.value !== password.value ? 'Le password non concidono' : ''
 			);
 		});
-
+			
 		username.addEventListener('input', (event) => {
 			username.setCustomValidity(username.value.trim() === '' ? 'Username vuoto' : '');
 		});
