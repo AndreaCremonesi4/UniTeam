@@ -1,17 +1,29 @@
 <script>
+	import { onMount } from "svelte";
+
 	export let input;
 	export let required = true;
 	export let disabled;
 	export let type = 'text';
 	export let placeholder;
 	export let minlength;
-	export let maxlength;
-	export let min;
-	export let max;
-	export let readonly;
+    export let maxlength;
+    export let min;
+    export let max;
+    export let readonly;
+
+	onMount(() => {
+		if(type === 'password' && input){
+			input.addEventListener('keypress', event => {
+				if(event.keyCode === 32)
+					event.preventDefault();
+			})
+		}
+	})
+
 </script>
 
-<div class="input-group has-validation">
+<div class="input-group has-validation {$$props.class}">
 	<slot name="icon" />
 
 	<input
@@ -29,7 +41,7 @@
 	/>
 
 	<div class="invalid-feedback">
-		<slot name="invalid">Compila questo campo!</slot>
+		<slot name="invalid" id="invalid">Compila questo campo!</slot>
 	</div>
 
 	<slot />
