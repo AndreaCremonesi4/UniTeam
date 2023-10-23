@@ -1,27 +1,18 @@
 <script>
-	import Navbar from '../../../../components/navbar/Navbar.svelte';
-	import InputGroup from '../../../../components/form/InputGroup.svelte';
+	import Navbar from '$lib/components/navbar/Navbar.svelte';
+	import InputGroup from '$lib/components/form/InputGroup.svelte';
 	import { onMount } from 'svelte';
-	import { generateAvatar } from '$lib/auth/utilities';
+	import { generateAvatar } from '$lib/controller/auth/utilities';
 
 	export let data;
 	let { supabase } = data;
 	$: ({ supabase } = data);
 
-	let src;
-	let form;
 	let username, email;
-	let showSuccess;
+	let form;
 
 	onMount(async () => {
-		const { data: profile, error } = await supabase //aggiungi errore
-			.from('profiles')
-			.select('id, username, profile_photo')
-			.eq('id', data.session.user.id)
-			.single();
-		src = profile.profile_photo;
-
-		username.value = profile.username;
+		username.value = data.profile.username;
 		email.value = data.session.user.email;
 		form.addEventListener(
 			'submit',
@@ -36,9 +27,8 @@
 					const newUsername = username.value;
 
 					// nuovo username - nuovo logo
-					// controlla docs supabase per error
-					if (updateUser(newUsername)) {
-						showSuccess = true;
+					if (await updateUser(newUsername)) {
+						window.location.reload();
 					}
 				}
 			},
@@ -53,35 +43,37 @@
 	async function updateUser(newUsername) {
 		try {
 			//trovare funzione per modificare nome utente
-			console.log(newUsername);
 			const avatar = generateAvatar(newUsername.trim().charAt(0));
-			const { error } = await supabase
-				.from('profiles')
-				.update({
-					username: newUsername,
-					profile_photo: avatar
-				})
-				.eq('id', data.session.user.id);
 
-			src = avatar;
+			const newProfile = {
+				id: data.session.user.id,
+				username: newUsername,
+				profile_photo: avatar
+			};
+
+			const { error } = await supabase.from('profiles').upsert(newProfile).select();
 
 			if (error) {
 				console.error("Errore nell'aggiornamento del profilo utente:", error.message);
 				return false;
 			}
-			console.log('Profilo utente aggiornato con successo:', data);
-			return true;
 		} catch (error) {
 			console.error("Errore nell'aggiornamento del profilo utente:", error.message);
 			return false;
 		}
+
+		return true;
 	}
 </script>
 
 <Navbar {data} />
 <section class="container">
 	<div class="profile d-flex flex-column align-items-center text-center">
-		<img {src} class="user-avatar rounded-circle image-fluid" alt="Responsive" />
+		<img
+			src={data.profile.profile_photo}
+			class="user-avatar rounded-circle image-fluid"
+			alt="Profilo"
+		/>
 		<h1 class="text-title">Il mio profilo</h1>
 
 		<form class="row d-flex flex-column align-items-center g-3 mt-2" bind:this={form} novalidate>

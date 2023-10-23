@@ -1,7 +1,7 @@
 <script>
-	import { logout } from '$lib/auth/utilities';
+	import { logout } from '$lib/controller/auth/utilities';
 	import NavLink from './NavLink.svelte';
-	
+
 	import logo from '$lib/assets/images/logo.png';
 	import hamburger from '$lib/assets/icons/hamburger-menu.svg';
 
@@ -67,11 +67,7 @@
 								data-bs-toggle="dropdown"
 								aria-expanded="false"
 							>
-								<img
-									src={data.session.user.user_metadata.profile_photo}
-									class="user-avatar"
-									alt=""
-								/>
+								<img src={data.profile.profile_photo} class="user-avatar" alt="" />
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
 								<div class="d-flex flex-column justify-content-center px-2">
