@@ -1,10 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
-	import InputGroup from '../../../components/form/InputGroup.svelte';
-	import AuthForm from '../../../components/auth/AuthForm.svelte';
+	import InputGroup from '$lib/components/form/InputGroup.svelte';
+	import AuthForm from '$lib/components/auth/AuthForm.svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { validateEmail } from '$lib/auth/utilities';
+	import { validateEmail } from '$lib/controller/auth/utilities';
 
 	export let data;
 	let { supabase } = data;
@@ -30,8 +30,7 @@
 
 					if (!error) {
 						goto(redirectTo ?? '/');
-					} 
-					else {
+					} else {
 						showSignInError = true;
 					}
 				}
@@ -47,7 +46,6 @@
 	});
 
 	async function signInWithEmail() {
-
 		const { data, error } = await supabase.auth.signInWithPassword({
 			email: email.value,
 			password: password.value
@@ -76,11 +74,10 @@
 
 		{#if showSignInError}
 			<div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
-				<i class="bi bi-exclamation-triangle-fill"></i>
+				<i class="bi bi-exclamation-triangle-fill" />
 				Credenziali errate!
 			</div>
 		{/if}
-		
 
 		<a href="/recupero-password" class="mt-1">Hai dimenticato la password?</a>
 
@@ -88,7 +85,9 @@
 	</form>
 
 	<p class="mt-3">
-		Non hai ancora un account? <a href="/registrazione{redirectTo ? `?redirectTo=${redirectTo}` : ''}">Registrati</a>
+		Non hai ancora un account? <a
+			href="/registrazione{redirectTo ? `?redirectTo=${redirectTo}` : ''}">Registrati</a
+		>
 	</p>
 </AuthForm>
 

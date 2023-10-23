@@ -1,8 +1,8 @@
 <script>
-	import { validateEmail } from '$lib/auth/utilities';
+	import { validateEmail } from '$lib/controller/auth/utilities';
 	import { onMount } from 'svelte';
-	import InputGroup from '../../../components/form/InputGroup.svelte';
-	
+	import InputGroup from '$lib/components/form/InputGroup.svelte';
+
 	export let data;
 	let { supabase } = data;
 	$: ({ supabase } = data);
@@ -37,11 +37,10 @@
 			email.setCustomValidity(!validateEmail(email.value) ? 'error email' : '');
 		});
 	});
-
 </script>
 
 <section>
-	<a href="/login" class="btn btn-back"><i class="bi bi-arrow-left h3"></i></a>
+	<a href="/login" class="btn btn-back"><i class="bi bi-arrow-left h3" /></a>
 
 	<div class="container d-flex flex-column align-items-center justify-content-center">
 		{#if showSuccess}
@@ -50,19 +49,20 @@
 					<h4 class="alert-heading">Email inviata con successo!</h4>
 					<p>Controlla la tua casella di posta elettronica.</p>
 				</div>
-				<button type="button" class="btn-close py-0" on:click={() => showSuccess = false}></button>
+				<button type="button" class="btn-close py-0" on:click={() => (showSuccess = false)} />
 			</div>
 		{/if}
 
 		<form bind:this={form} novalidate>
 			<h1 class="text-title mb-5 text-center">Recupero Password</h1>
-			<p class="text-body-secondary">Inserire l'indirizzo email associato al tuo account e ti invieremo un link per ripristinare la password</p>
+			<p class="text-body-secondary">
+				Inserire l'indirizzo email associato al tuo account e ti invieremo un link per ripristinare
+				la password
+			</p>
 			<div class="form-group">
 				<span>Email</span>
 				<InputGroup bind:input={email} type="email">
-					<span slot="invalid">
-						Inserisci un'email valida
-					</span>
+					<span slot="invalid"> Inserisci un'email valida </span>
 				</InputGroup>
 			</div>
 			<button class="btn btn-primary mt-3">Invia</button>
@@ -70,34 +70,33 @@
 	</div>
 </section>
 
-
 <style>
 	.alert,
-	form{
-		width:min(500px, 100%);
+	form {
+		width: min(500px, 100%);
 	}
 
-	form{
+	form {
 		display: flex;
 		flex-direction: column;
 	}
 
-	form > button{
+	form > button {
 		padding: 0.75rem 0;
-		border-radius:7px;
+		border-radius: 7px;
 	}
 
-	.btn-back{
+	.btn-back {
 		position: absolute;
 		top: 0.5rem;
 		left: 0.5rem;
 	}
 
-	.btn-back > i{
+	.btn-back > i {
 		opacity: 0.5;
 	}
 
-	.btn-back:hover > i{
+	.btn-back:hover > i {
 		opacity: 1;
 	}
 </style>
