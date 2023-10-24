@@ -1,5 +1,5 @@
 <script>
-	import Navbar from '../../../../components/navbar/Navbar.svelte';
+	import Navbar from '$lib/components/navbar/Navbar.svelte';
 	export let data;
 	let { supabase } = data;
 	$: ({ supabase } = data);

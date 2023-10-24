@@ -1,0 +1,164 @@
+@startuml UseCase
+
+'skinparam linetype polyline
+'skinparam linetype ortho
+
+skinparam nodesep 30
+skinparam ranksep 50
+
+left to right direction
+
+rectangle UniTeam {
+    'Use Case Registrazione'
+    together {
+        usecase "Crea Account" as Crea_Account
+        usecase "Invia Email di\\nVerifica" as Invia_Email_Verifica 
+        usecase Registrazione
+        usecase "Verifica Email" as Verifica_Email
+    }
+
+    'Use Case Accesso'
+    together {
+        usecase Accesso
+        usecase Autenticazione
+        usecase "Recupero Password" as Recupero_Password
+    }
+
+    'Use Case Modifica Profilo'
+    together {
+        usecase "Modifica Profilo" as Modifica_Profilo
+    }
+
+    'Use Case Recensioni'
+    together {
+        usecase "Gestione Recensioni" as Gestione_Recensioni
+        usecase "Scrive Recensione" as Scrive_Recensione
+        usecase "Scrive Recensione\\nCorso" as Scrive_Recensione_Corso
+        usecase "Scrive Recensione\\nProfessore" as Scrive_Recensione_Professore
+        usecase "Modifica Recensione" as Modifica_Recensione
+        usecase "Modifica Recensione\\nCorso" as Modifica_Recensione_Corso
+        usecase "Modifica Recensione\\nProfessore" as Modifica_Recensione_Professore
+        usecase "Legge Recensione" as Legge_Recensione
+    }
+
+    'Use Case Gruppi'
+    together {
+        usecase "Gestione Gruppi" as Gestione_Gruppi
+        usecase "Ricerca Gruppo" as Ricerca_Gruppo
+        usecase "Crea Gruppo" as Crea_Gruppo
+        usecase "Accesso a un Gruppo" as Accesso_Gruppo 
+        usecase "Elimina Gruppo" as Elimina_Gruppo
+        usecase "Gestione Gruppo" as Gestione_Gruppo
+    }
+
+    'Use Case Corsi'
+    together {
+        usecase "Visualizza informazioni Corso" as Visualizza_Info_Corso
+    }
+
+    'Use Case Professori'
+    together {
+        usecase "Visualizza informazioni Professore" as Visualizza_Info_Professore
+    }
+}
+
+actor Sistema
+together {
+    actor "Utente" as Utente <<abstract>>
+    actor "Utente Autenticato" as Utente_Autenticato
+    actor "Utente Non Autenticato" as Utente_Non_Autenticato
+}
+
+Utente <|-- Utente_Autenticato
+Utente <|-- Utente_Non_Autenticato
+
+
+'Registrazione'
+Sistema -up-- Crea_Account
+Crea_Account ..> Invia_Email_Verifica : <<include>>
+Crea_Account ..> Verifica_Email: <<include>>
+
+Utente_Non_Autenticato -- Registrazione
+Registrazione <.. Crea_Account : <<extend>>
+note on link
+    Condizione: 
+    Email disponibile
+    Formato credenziali corretto
+
+    Extension point: 
+    Crea Account
+end note
+
+Utente_Non_Autenticato -- Verifica_Email
+
+
+'Accesso'
+Sistema -up-- Autenticazione
+
+Accesso <.. Autenticazione : <<extend>>
+note on link
+    Condizione: 
+    Credenziali corrette
+
+    Extension point: 
+    Autenticazione
+end note
+
+Accesso <.. Recupero_Password : <<extend>>
+note on link
+    Condizione: 
+    Utente apre il link
+    di recupero password
+
+    Extension point: 
+    Recupero Password
+end note
+
+Utente_Non_Autenticato -r- Accesso
+Accesso -[hidden]l- Utente_Non_Autenticato
+
+
+'Profilo'
+Utente_Autenticato -- Modifica_Profilo
+
+'Recensioni'
+Utente -- Legge_Recensione
+Legge_Recensione -[hidden]- Utente 
+
+Utente_Autenticato -- Modifica_Recensione
+Utente_Autenticato -- Scrive_Recensione
+
+Sistema -up-- Gestione_Recensioni
+Gestione_Recensioni <-[norank]- Scrive_Recensione
+Scrive_Recensione -[hidden]-  Gestione_Recensioni 
+Gestione_Recensioni <-[norank]- Modifica_Recensione
+Modifica_Recensione -[hidden]- Gestione_Recensioni
+
+Scrive_Recensione <|-- Scrive_Recensione_Corso
+Scrive_Recensione <|-- Scrive_Recensione_Professore
+Modifica_Recensione <|-- Modifica_Recensione_Corso
+Modifica_Recensione <|-- Modifica_Recensione_Professore
+
+'Gruppi'
+Sistema -up-- Gestione_Gruppi
+
+Utente_Autenticato -- Gestione_Gruppo
+Utente_Autenticato -- Accesso_Gruppo
+Utente -- Ricerca_Gruppo
+
+Gestione_Gruppi -[norank]- Gestione_Gruppo
+Gestione_Gruppo -[hidden]d- Gestione_Gruppi
+
+Gestione_Gruppo <|-- Crea_Gruppo
+Gestione_Gruppo <|-- Elimina_Gruppo
+
+
+'Corsi'
+Utente -- Visualizza_Info_Corso
+
+
+'Professori'
+Utente -- Visualizza_Info_Professore
+
+
+@enduml

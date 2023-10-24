@@ -1,0 +1,11 @@
+@startuml
+
+together g1{
+    (Pippo)
+    (Piero)
+}
+
+Pippo -u- :user:
+:user: -d- Piero
+
+@enduml

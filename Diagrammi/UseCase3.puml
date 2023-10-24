@@ -1,0 +1,135 @@
+@startuml UseCase
+
+left to right direction
+
+skinparam nodesep 30
+skinparam ranksep 50
+
+'Attori'
+together {
+    actor "Utente" as Utente <<abstract>>
+    actor "Utente Autenticato" as Utente_Autenticato
+    actor "Utente Non Autenticato" as Utente_Non_Autenticato
+}
+actor Sistema
+
+rectangle UniTeam {
+    'Use Case Sistema'
+    together {
+        usecase Autenticazione
+        usecase "Crea Account" as Crea_Account
+        usecase "Invia Email di\\nVerifica" as Invia_Email_Verifica 
+        usecase "Recupero Password" as Recupero_Password
+        usecase "Gestione Gruppi" as Gestione_Gruppi
+        usecase "Gestione Recensioni" as Gestione_Recensioni
+    }
+
+    'Use Case Utente'
+    together {
+        usecase "Legge Recensione" as Legge_Recensione
+        usecase "Ricerca Gruppo" as Ricerca_Gruppo
+        usecase "Visualizza informazioni Corso" as Visualizza_Info_Corso
+        usecase "Visualizza informazioni Professore" as Visualizza_Info_Professore
+    }
+
+    'Use Case Utente Non Autenticato'
+    together {
+        usecase Accesso
+        usecase Registrazione
+        usecase "Verifica Email" as Verifica_Email
+    }
+
+    'Use Case Utente Autenticato'
+    together {
+        usecase "Modifica Profilo" as Modifica_Profilo
+        usecase "Crea Gruppo" as Crea_Gruppo
+        usecase "Accesso a un Gruppo" as Accesso_Gruppo 
+        usecase "Elimina Gruppo" as Elimina_Gruppo
+        usecase "Gestione Gruppo" as Gestione_Gruppo
+        usecase "Scrive Recensione" as Scrive_Recensione
+        usecase "Scrive Recensione\\nCorso" as Scrive_Recensione_Corso
+        usecase "Scrive Recensione\\nProfessore" as Scrive_Recensione_Professore
+        usecase "Modifica Recensione" as Modifica_Recensione
+        usecase "Modifica Recensione\\nCorso" as Modifica_Recensione_Corso
+        usecase "Modifica Recensione\\nProfessore" as Modifica_Recensione_Professore
+    }
+}
+'----Relazioni di generalizzazione'
+'Tra attori'
+Utente <|-- Utente_Autenticato
+Utente <|-- Utente_Non_Autenticato
+
+'Tra casi d'uso'
+Scrive_Recensione <|-- Scrive_Recensione_Corso
+Scrive_Recensione <|-- Scrive_Recensione_Professore
+Modifica_Recensione <|-- Modifica_Recensione_Corso
+Modifica_Recensione <|-- Modifica_Recensione_Professore
+Gestione_Gruppo <|-- Crea_Gruppo
+Gestione_Gruppo <|-- Elimina_Gruppo
+
+'----Relazione semplici tra casi d'uso'
+Gestione_Gruppi -- Gestione_Gruppo
+Gestione_Recensioni - Scrive_Recensione
+Gestione_Recensioni - Modifica_Recensione
+
+'----Relazioni di inclusione'
+Crea_Account ..> Invia_Email_Verifica : <<include>>
+Crea_Account ..> Verifica_Email: <<include>>
+
+'----Relazioni di estensione con extension point'
+Registrazione <..... Crea_Account : <<extend>>
+note on link
+    Condizione: 
+    Email disponibile
+    Formato credenziali corretto
+
+    Extension point: 
+    Crea Account
+end note
+
+Accesso <..... Autenticazione : <<extend>>
+note on link
+    Condizione: 
+    Credenziali corrette
+
+    Extension point: 
+    Autenticazione
+end note
+
+Accesso <..... Recupero_Password : <<extend>>
+note on link
+    Condizione: 
+    Nuova Password Valida
+
+    Extension point: 
+    Recupero Password
+end note
+
+
+'Utente'
+Utente - Legge_Recensione
+Utente - Ricerca_Gruppo
+Utente - Visualizza_Info_Corso
+Utente - Visualizza_Info_Professore
+
+'Sistema'
+Sistema -u-- Autenticazione
+Sistema -u-- Crea_Account
+Sistema -u-- Gestione_Gruppi
+Sistema -u-- Gestione_Recensioni
+Sistema -u-- Recupero_Password
+
+'Utente Non Autenticato'
+Utente_Non_Autenticato -- Accesso
+Utente_Non_Autenticato -- Registrazione
+Utente_Non_Autenticato -- Verifica_Email
+
+'Utente Autenticato'
+Utente_Autenticato - Accesso_Gruppo
+Utente_Autenticato - Accesso_Gruppo
+Utente_Autenticato - Gestione_Gruppo
+Utente_Autenticato - Modifica_Profilo
+Utente_Autenticato - Modifica_Recensione
+Utente_Autenticato - Scrive_Recensione
+
+@enduml
