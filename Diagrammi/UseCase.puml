@@ -1,12 +1,15 @@
 @startuml UseCase
 
-left to right direction
+'skinparam linetype polyline
+'skinparam linetype ortho
 
 'Attori'
 actor Sistema
-actor "Utente" as Utente <<abstract>>
-actor "Utente Autenticato" as Utente_Autenticato
-actor "Utente Non Autenticato" as Utente_Non_Autenticato
+together {
+    actor "Utente" as Utente <<abstract>>
+    actor "Utente Autenticato" as Utente_Autenticato
+    actor "Utente Non Autenticato" as Utente_Non_Autenticato
+}
 
 rectangle UniTeam {
     'Use Case Sistema'
@@ -16,7 +19,6 @@ rectangle UniTeam {
     usecase "Recupero Password" as Recupero_Password
     usecase "Gestione Gruppi" as Gestione_Gruppi
     usecase "Gestione Recensioni" as Gestione_Recensioni
-   
 
     'Use Case Utente'
     usecase "Legge Recensione" as Legge_Recensione
@@ -65,6 +67,7 @@ end note
 
 Utente_Non_Autenticato -- Verifica_Email
 
+
 'Accesso'
 Utente_Non_Autenticato -- Accesso
 Accesso <.. Autenticazione : <<extend>>
@@ -89,6 +92,7 @@ Modifica_Recensione <|-- Modifica_Recensione_Corso
 Modifica_Recensione <|-- Modifica_Recensione_Professore
 
 Utente -- Legge_Recensione
+
 Utente_Autenticato -- Scrive_Recensione
 Utente_Autenticato -- Modifica_Recensione
 
