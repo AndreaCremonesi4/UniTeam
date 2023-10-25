@@ -1,0 +1,79 @@
+@startuml ClassDiagram
+
+'left to right direction
+'skinparam linetype polyline
+skinparam linetype ortho
+
+package Model {
+    class Utente
+    class Professore
+    class Corso
+    class Gruppo
+    class Chat
+    class Messaggio
+    class Recensione
+}
+
+package Controller {
+    class SupabaseServices
+    class ControllerCorsi
+    class AuthController
+    class ControllerProfessori
+    class ControllerRecensioni
+    class ControllerGruppi
+}
+
+package View {
+    class HomePage
+    class Navbar
+    class PaginaLogin
+    class PaginaRegistrazione
+    class PaginaProfiloUtente
+    class PaginaCorsi
+    class PaginaCorso
+    class PaginaProfessori
+    class PaginaProfessore
+    class PaginaGruppi
+    class PaginaGruppo
+}
+
+HomePage --> Navbar
+Navbar --> PaginaLogin
+Navbar --> PaginaRegistrazione
+Navbar --> PaginaProfiloUtente
+Navbar --> PaginaCorsi
+PaginaCorsi --> PaginaCorso
+PaginaProfessori --> PaginaProfessore
+PaginaGruppi --> PaginaGruppo
+
+SupabaseServices -d-> AuthController
+AuthController -[hidden]u-> SupabaseServices
+SupabaseServices -d-> ControllerProfessori
+SupabaseServices -d-> ControllerCorsi
+SupabaseServices -d-> ControllerRecensioni
+SupabaseServices -d-> ControllerGruppi
+
+AuthController -d-> Utente
+Utente -[hidden]u-> AuthController
+
+ControllerProfessori -d-> Professore
+Professore -[hidden]u-> ControllerProfessori
+
+ControllerCorsi -d-> Corso
+Corso -[hidden]l-> ControllerCorsi
+
+ControllerRecensioni -d-> Recensione
+Recensione -[hidden]u-> ControllerRecensioni
+
+ControllerGruppi -d-> Gruppo
+Gruppo -[hidden]u-> ControllerGruppi
+
+Utente ---|> Corso
+Utente ---|> Professore
+Gruppo -l-|> Corso
+Corso -[hidden]r-|> Gruppo
+Gruppo --|> Chat
+Chat --|> Messaggio
+Utente --|> Recensione
+
+@enduml
