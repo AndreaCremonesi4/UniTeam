@@ -73,7 +73,7 @@ Gestione_Recensioni - Scrive_Recensione
 Gestione_Recensioni - Modifica_Recensione
 
 '----Relazioni di inclusione'
-Crea_Account ..> Invia_Email_Verifica : <<include>>
+Crea_Account ...> Invia_Email_Verifica : <<include>>
 Crea_Account ..> Verifica_Email: <<include>>
 
 '----Relazioni di estensione con extension point'
@@ -113,11 +113,11 @@ Utente - Visualizza_Info_Corso
 Utente - Visualizza_Info_Professore
 
 'Sistema'
-Sistema -u-- Autenticazione
-Sistema -u-- Crea_Account
-Sistema -u-- Gestione_Gruppi
-Sistema -u-- Gestione_Recensioni
-Sistema -u-- Recupero_Password
+Sistema -u- Autenticazione
+Sistema -u- Crea_Account
+Sistema -u- Gestione_Gruppi
+Sistema -u- Gestione_Recensioni
+Sistema -u- Recupero_Password
 
 'Utente Non Autenticato'
 Utente_Non_Autenticato -- Accesso
@@ -125,11 +125,11 @@ Utente_Non_Autenticato -- Registrazione
 Utente_Non_Autenticato -- Verifica_Email
 
 'Utente Autenticato'
-Utente_Autenticato - Accesso_Gruppo
-Utente_Autenticato - Accesso_Gruppo
-Utente_Autenticato - Gestione_Gruppo
-Utente_Autenticato - Modifica_Profilo
-Utente_Autenticato - Modifica_Recensione
-Utente_Autenticato - Scrive_Recensione
+Utente_Autenticato -- Accesso_Gruppo
+Utente_Autenticato -- Accesso_Gruppo
+Utente_Autenticato -- Gestione_Gruppo
+Utente_Autenticato -- Modifica_Profilo
+Utente_Autenticato -- Modifica_Recensione
+Utente_Autenticato -- Scrive_Recensione
 
 @enduml

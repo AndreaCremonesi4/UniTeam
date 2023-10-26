@@ -1,0 +1,50 @@
+@startuml
+
+'tanto per capire se un Activity può andare per spigare il processo
+start
+:Utente apre l'applicazione;
+if (Utente è registrato?) then (sì)
+  :Visualizza Home Page,\nRecensioni, Corsi, Professori, Gruppi;
+else (no)
+  :Mostra Pagina di Login;
+  if (Credenziali corrette?) then (sì)
+    :Visualizza Home Page,\nRecensioni, Corsi, Professori, Gruppi;
+  else (no)
+    :Mostra Messaggio di Errore;
+    stop
+  endif
+endif
+
+if (Utente vuole registrarsi?) then (sì)
+  :Mostra Pagina di Registrazione;
+  :Utente inserisce credenziali;
+  if (Credenziali valide?) then (sì)
+    :Invia email di verifica all'indirizzo fornito;
+    if (Utente conferma email) then (sì)
+      :Aggiungi account al database;
+      :Visualizza Home Page,\nRecensioni, Corsi, Professori, Gruppi;
+    else (no)
+      :Mostra Messaggio di Errore;
+      stop
+    endif
+  else (no)
+    :Mostra Messaggio di Errore;
+    stop
+  endif
+else (no)
+  if (Utente vuole modificare il profilo?) then (sì)
+    :Mostra Pagina di Modifica Profilo;
+    :Utente modifica il profilo;
+    :Salva le modifiche;
+    :Visualizza Home Page,\nRecensioni, Corsi, Professori, Gruppi;
+  else (no)
+    if (Utente effettua il logout?) then (sì)
+      :Mostra Pagina di Login;
+    else (no)
+      :Mostra Home Page,\nRecensioni, Corsi, Professori, Gruppi;
+    endif
+  endif
+endif
+
+stop
+@enduml
