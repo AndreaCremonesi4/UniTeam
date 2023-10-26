@@ -1,0 +1,91 @@
+@startuml ClassDiagram
+
+'left to right direction
+'skinparam linetype polyline
+skinparam linetype ortho
+
+package Model {
+    class Utente
+    class Professore <<Entity>>
+    class Corso <<Entity>>
+    class Gruppo <<Entity>>
+    class Chat <<Entity>>
+    class Messaggio <<Entity>>
+    class Recensione <<Entity>>
+}
+
+package Controller {
+    class SupabaseServices
+    class ControllerCorsi
+    class AuthController
+    class ControllerProfessori
+    class ControllerRecensioni
+    class ControllerGruppi
+}
+
+package View {
+    class HomePage <<Boundary>>
+    class Navbar
+    class PaginaLogin <<Boundary>>
+    class PaginaRegistrazione <<Boundary>>
+    class PaginaProfiloUtente <<Boundary>>
+    class PaginaCorsi <<Boundary>>
+    class PaginaCorso <<Boundary>>
+    class PaginaProfessori <<Boundary>>
+    class PaginaProfessore <<Boundary>>
+    class PaginaGruppi <<Boundary>>
+    class PaginaGruppo <<Boundary>>
+    hide members
+}
+
+HomePage --> Navbar
+PaginaCorsi --> PaginaCorso
+PaginaProfessori --> PaginaProfessore
+PaginaGruppi --> PaginaGruppo
+
+Navbar <-- PaginaLogin
+Navbar <-- PaginaRegistrazione
+Navbar <-- PaginaProfiloUtente
+Navbar <-- PaginaCorsi
+Navbar <-- PaginaGruppo
+Navbar <-- PaginaProfessore
+Navbar <-- PaginaGruppi
+Navbar <-- PaginaProfessori
+AuthController <-d-- Navbar
+AuthController -[hidden]- Navbar
+
+
+'========= Controller ========='
+
+SupabaseServices <.d. AuthController : <<use>>
+AuthController <-[hidden]u- SupabaseServices
+SupabaseServices <.d. ControllerProfessori : <<use>>
+SupabaseServices <.d. ControllerCorsi : <<use>>
+SupabaseServices <.d. ControllerRecensioni : <<use>>
+SupabaseServices <.d. ControllerGruppi : <<use>>
+
+ControllerProfessori <-r- Professore
+Professore -[hidden]l-> ControllerProfessori
+
+AuthController <-d- Utente
+Utente -[hidden]u-> AuthController
+
+ControllerCorsi <-d- Corso
+Corso -[hidden]l-> ControllerCorsi
+
+ControllerRecensioni <-r- Recensione
+Recensione -[hidden]u-> ControllerRecensioni
+
+ControllerGruppi <--  Gruppo
+Gruppo -[hidden]u-> ControllerGruppi
+
+Gruppo -l-> Corso
+Corso -[hidden]r-> Gruppo
+Gruppo --* Chat
+Chat --* Messaggio
+Utente -> Recensione
+
+Recensione -> Corso
+Recensione ----> Professore
+
+@enduml
