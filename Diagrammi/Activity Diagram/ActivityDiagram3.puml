@@ -1,0 +1,49 @@
+@startuml
+title Activity Diagram - Interazioni Studente in UniTeam
+
+:Studente accede all'app UniTeam;
+:Mostra Elenco Corsi;
+if (Studente seleziona un Corso o Professore?) then (sì)
+  :Richiesta di Pagina del Corso o Professore;
+  if (Pagina Richiesta esiste?) then (sì)
+    :Mostra Pagina Richiesta;
+    if (Studente accede a "Le Mie Recensioni"?) then (sì)
+      :Richiesta di Recensioni Studente;
+      if (Recensioni Studente esistono?) then (sì)
+        :Mostra Recensioni Studente;
+        if (Studente Modifica o Crea Recensione?) then (sì)
+          :Invia Recensione Modificata o Creata;
+          :Salva Recensione Modificata o Creata;
+          :Conferma Salvataggio;
+        else (no)
+          :Fine Interazione;
+        endif
+      else (no)
+        :Fine Interazione;
+      endif
+    else (no)
+      if (Studente accede al Forum del Corso?) then (sì)
+        :Richiesta di Discussioni del Corso;
+        if (Discussioni del Corso esistono?) then (sì)
+          :Mostra Discussioni del Corso;
+          if (Studente Partecipa a Discussione del Corso?) then (sì)
+            :Invia Partecipazione alla Discussione;
+            :Salva Partecipazione alla Discussione;
+            :Conferma Partecipazione Salvata;
+          else (no)
+            :Fine Interazione;
+          endif
+        else (no)
+          :Fine Interazione;
+        endif
+      else (no)
+        :Fine Interazione;
+      endif
+    endif
+  else (no)
+    :Fine Interazione;
+  endif
+else (no)
+  :Fine Interazione;
+endif
+@enduml
