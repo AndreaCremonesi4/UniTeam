@@ -1,49 +1,104 @@
 @startuml
-title Activity Diagram - Interazioni Studente in UniTeam
 
-:Studente accede all'app UniTeam;
-:Mostra Elenco Corsi;
-if (Studente seleziona un Corso o Professore?) then (sì)
-  :Richiesta di Pagina del Corso o Professore;
-  if (Pagina Richiesta esiste?) then (sì)
-    :Mostra Pagina Richiesta;
-    if (Studente accede a "Le Mie Recensioni"?) then (sì)
-      :Richiesta di Recensioni Studente;
-      if (Recensioni Studente esistono?) then (sì)
-        :Mostra Recensioni Studente;
-        if (Studente Modifica o Crea Recensione?) then (sì)
-          :Invia Recensione Modificata o Creata;
-          :Salva Recensione Modificata o Creata;
-          :Conferma Salvataggio;
-        else (no)
-          :Fine Interazione;
-        endif
-      else (no)
-        :Fine Interazione;
-      endif
-    else (no)
-      if (Studente accede al Forum del Corso?) then (sì)
-        :Richiesta di Discussioni del Corso;
-        if (Discussioni del Corso esistono?) then (sì)
-          :Mostra Discussioni del Corso;
-          if (Studente Partecipa a Discussione del Corso?) then (sì)
-            :Invia Partecipazione alla Discussione;
-            :Salva Partecipazione alla Discussione;
-            :Conferma Partecipazione Salvata;
-          else (no)
-            :Fine Interazione;
-          endif
-        else (no)
-          :Fine Interazione;
-        endif
-      else (no)
-        :Fine Interazione;
-      endif
-    endif
-  else (no)
-    :Fine Interazione;
-  endif
-else (no)
-  :Fine Interazione;
+|Utente| 
+|Sistema|
+|Supabase Service|
+
+
+
+
+|Utente| 
+start
+:Utente clicca sul tasto d'accesso;
+
+|Sistema|
+:Mostra Pagina Accesso;
+
+|Utente|
+:Inserisce Credenziali;
+
+|Sistema|
+:Tentativo di Accesso;
+
+|Supabase Service|
+:Richesta Accesso con credenziali;
+
+if (Account esistente) then (No) 
+  |Sistema|
+  :Mostra messaggio di errato inserimento;
+  
+  |Utente|
+  :Preme il pulsante:\n'Non hai ancora un account? Registrati';
+
+  |Sistema|
+  :Mostra Pagina Registrazione;
+
+  repeat
+  repeat
+  |Utente|
+  :Inserisce credenziali;
+  
+  |Sistema|
+  :Controllo Credenziali;
+  repeat while (Credenziali Valide?) is (No)
+  ->Si;
+  
+  |Utente|
+  :Preme Pulsante 'Registrati';
+  
+  |Sistema|
+  :Tentativo di Registrazione;
+
+  |Supabase Service|
+  :Richesta Registrazione con email e password;
+  
+  |Sistema|
+  backward :Mostra messaggio errore;
+  repeat while (Email è gia in uso?) is (Si)
+  ->No;
+
+  |Supabase Service|
+  fork
+  :Invia email di verifica\nall'indirizzo fornito;
+  
+  fork again
+  :Aggiunge account con stato di 'waiting';
+  
+  end fork 
+
+'TODO
+  'Per quanto riguarda la verifica della mail bisogna trovare
+  'se esiste un blocco che rappresenta un 'evento temporale, 
+  'altrimenti direi di collegare direttamente il blocco in parallelo 
+  'con "Apre link di verifica". 
+  
+  |Utente|
+  :Apre link di verifica;
+  
+  |Supabase Service|
+  repeat
+  backward :Controlla Stato;
+  repeat while (Email verificata?) is (No)
+
+else(Si)
+  |Sistema|
+  :Reindirizza alla pagina precedente;
+  stop
 endif
+
+->Si;
+fork
+|Sistema|
+:Aggiornamento dati sessione utente;
+
+fork again
+|Supabase Service|
+:Account Verificato\nRimuove Stato 'waiting';
+
+|Supabase Service|
+|Sistema|
+end fork
+
+:Reindirizza alla pagina precedente;
+stop
 @enduml
