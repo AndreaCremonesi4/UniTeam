@@ -1,0 +1,76 @@
+@startuml SequenceDiagram
+
+actor Utente
+participant "Interfaccia Utente (UI)" as UI
+participant Supabase
+participant "Email Utente" as EmailService
+database "Supabase (DB)" as Database
+
+autonumber 1
+
+== Accesso ==
+Utente -> UI: Clicca sul tasto d'accesso
+
+activate UI
+UI -->> Utente: Mostra pagina di Login
+Utente -> UI: Inserisce credenziali e tenta l'accesso
+UI -> Supabase: Richiesta di accesso\ncon credenziali (email, password)
+
+alt  Credenziali Corrette
+
+    activate Supabase
+    Supabase -->> UI: Accesso eseguito
+    UI -->> Utente: Reindirizza l'utente alla pagina precedente
+
+else Credenziali Errate
+
+    
+    Supabase -->> UI: Accesso negato\nAccount non esistente
+    deactivate Supabase
+
+    UI -->> Utente: Mostra messaggio di accesso negato
+    == Registrazione ==
+    Utente -> UI: Clicca su "Non hai ancora un account? Registrati"
+    UI -->> Utente: Mostra pagina di Registrazione
+    Utente -> UI: Inserisce le credenziali
+    UI -> Supabase: Richiesta di registrazione\ncon credenziali (username, email, password)
+
+    alt Formato Credenziali Corretto
+        activate Supabase 
+
+            Supabase -->> UI: Credenziali Corrette
+            activate UI
+                UI -->> Utente: Mostra messaggio\n"Controlla l'indirizzo di posta elettronica"   
+            deactivate UI
+
+                Supabase ->> Database: Aggiungi nuovo account\nal database con stato 'waiting'
+            activate Database
+            Database -->> EmailService: Invia email di verifica\nall'indirizzo fornito
+            
+            deactivate Database
+            EmailService -->> Utente: Mostra Email di Verifica
+            Utente -> Supabase: Apri link di verifica email
+
+            Supabase -->> Supabase: Email verificata con successo
+
+        Supabase ->> Database: Aggiorna stato\nse email verificata,\nrimuovi stato 'waiting'
+        
+        activate Database
+            Database -->> Supabase: Aggiornamento completato,\nprofilo inserito con successo
+        deactivate Database
+    
+        Supabase -->> UI: Registrazione effettuata con successo
+        UI -->> Utente: Mostra messaggio  registrazione avvenuta con un successo 
+
+    else Formato Credenzili Errato
+        
+        Supabase -->> UI: Credenziali errate
+        deactivate Supabase
+        
+        UI -->> Utente: Mostra messaggio credenzili errate
+        deactivate UI
+    end
+
+    
+end
+@enduml
