@@ -1,0 +1,64 @@
+@startuml PackageDiagram
+
+'left to right direction
+
+package App {
+   package src{
+        package lib {
+            package assets{
+                folder icons
+                folder images
+            }
+            
+            package controller {
+                folder auth
+            }
+
+            package view {
+                package components{
+                    folder auth
+                    folder footer 
+                    folder form
+                    package "home-page"{
+                        folder hero 
+                        folder reviews
+                        folder services
+                        folder "study-groups"
+                    }
+                    folder navbar
+                }
+            }
+
+            package model {
+              'da infilarci qualcosa di piccolo se no diventa troppo largo 
+            }
+        }
+
+        package routes {
+            package "(auth)" {
+                folder aggiornaPassword
+                package auth{
+                    folder callback
+                }
+                folder login
+                folder recupero_Password
+                folder registrazione
+            }
+            
+            package "(private)"{
+                package account{
+                    folder profilo
+                    folder recensioni
+                }
+            }
+
+            folder corsi
+            folder gruppi
+            folder professori
+        }
+        
+        folder style
+    }
+}
+
+@enduml

@@ -1,0 +1,58 @@
+@startuml SequenceDiagram
+title Diagramma di Sequenza
+
+skinparam ParticipantPadding 100
+
+actor UTENTE as Utente
+participant SISTEMA as Sistema
+participant SUPABASE as Supabase
+
+database DATABASE as Database
+autonumber 1
+
+Utente -> Sistema: Apre pagina Corsi
+activate Sistema
+Sistema ->> Supabase: Verifica autenticazione utente
+deactivate Sistema
+activate Supabase
+Supabase -->> Sistema: Risultati verifica autenticazione 
+deactivate Supabase
+activate Sistema
+alt Utente non autenticato
+    Sistema -->> Utente: Mostra pagina di login
+    |||
+else Utente autenticato
+    Sistema -->> Utente: Mostra pagina Corsi
+
+    Sistema -->> Utente: Mostra pagina del corso
+    Utente -> Sistema: Ricerca corso con filtri
+    Sistema -> Database: Manda query al Database
+    activate Database
+    Database -->> Sistema: Risultati query
+    deactivate Database
+    Sistema -->> Utente: Mostra lista aggiornata ai corsi
+    deactivate Sistema
+    
+    Utente -> Sistema: Apre pagina Corso
+    activate Sistema
+    Sistema -->> Utente: Mostra pagina corso
+    deactivate Sistema
+
+    Utente -> Sistema: Scrive recensione
+    activate Sistema
+    Sistema -> Sistema: Controllo parole vietate\nnella recensione
+    alt Recensione valida
+        Sistema ->> Database: Inserimento recensione 
+        activate Database
+        Database -->> Sistema: Conferma inserimento 
+        deactivate Database
+        Sistema -> Sistema: Aggiorna pagina
+        Sistema -->> Utente: Mostra pagina aggiornata
+        |||
+    else Recensione invalida
+        Sistema -->> Utente: Mostra messaggio errore
+    
+    deactivate Sistema
+    end
+end
+@enduml
