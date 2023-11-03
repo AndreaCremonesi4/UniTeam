@@ -1,50 +1,106 @@
-@startuml
+@startuml ActivityDiagram
 
-'tanto per capire se un Activity può andare per spigare il processo
+|Utente| 
+|Sistema|
+|Supabase Service|
+|Database|
+
+|Utente| 
 start
-:Utente apre l'applicazione;
-if (Utente è registrato?) then (sì)
-  :Visualizza Home Page,\nRecensioni, Corsi, Professori, Gruppi;
-else (no)
-  :Mostra Pagina di Login;
-  if (Credenziali corrette?) then (sì)
-    :Visualizza Home Page,\nRecensioni, Corsi, Professori, Gruppi;
-  else (no)
-    :Mostra Messaggio di Errore;
+:Utente clicca sul tasto d'accesso;
+
+|Sistema|
+:Mostra Pagina Accesso;
+
+|Utente|
+:Inserisce Credenziali;
+
+|Sistema|
+:Tentativo di Accesso;
+
+|Supabase Service|
+:Richesta Accesso con credenziali;
+
+if (Account esistente) then (No) 
+  |Sistema|
+  :Mostra messaggio di errato inserimento;
+  
+  |Utente|
+  :Preme il pulsante:\n'Non hai ancora un account? Registrati';
+
+  |Sistema|
+  :Mostra Pagina Registrazione;
+
+  repeat
+  repeat
+  |Utente|
+  :Inserisce credenziali;
+  
+  |Sistema|
+  :Controllo Credenziali;
+  repeat while (Credenziali Valide?) is (No)
+  ->Si;
+  
+  |Utente|
+  :Preme Pulsante 'Registrati';
+  
+  |Sistema|
+  :Richesta di Registrazione;
+
+  |Supabase Service|
+  :Registrazione con email e password;
+  
+  backward :Mostra messaggio errore;
+  
+  repeat while (Email è gia in uso?) is (Si)
+  ->No;
+
+  |Supabase Service|
+  fork
+  :Invia email di verifica\nall'indirizzo fornito;
+  
+  fork again
+  |Database|
+  :Aggiunge account con stato di 'waiting';
+  |Supabase Service|
+  end fork 
+  
+  |Utente|
+  :Apre link di verifica;
+  
+  |Sistema|
+  :Richiesta di verifica;
+
+  |Supabase Service|
+  if (Richiesta Valida) then (Sì)
+    
+  else (No)
+    |Sistema|
+    :Mostra messaggio di errore;
     stop
   endif
+  
+
+else(Si)
+  |Sistema|
+  :Reindirizza alla pagina precedente;
+  stop
 endif
 
-if (Utente vuole registrarsi?) then (sì)
-  :Mostra Pagina di Registrazione;
-  :Utente inserisce credenziali;
-  if (Credenziali valide?) then (sì)
-    :Invia email di verifica all'indirizzo fornito;
-    if (Utente conferma email) then (sì)
-      :Aggiungi account al database;
-      :Visualizza Home Page,\nRecensioni, Corsi, Professori, Gruppi;
-    else (no)
-      :Mostra Messaggio di Errore;
-      stop
-    endif
-  else (no)
-    :Mostra Messaggio di Errore;
-    stop
-  endif
-else (no)
-  if (Utente vuole modificare il profilo?) then (sì)
-    :Mostra Pagina di Modifica Profilo;
-    :Utente modifica il profilo;
-    :Salva le modifiche;
-    :Visualizza Home Page,\nRecensioni, Corsi, Professori, Gruppi;
-  else (no)
-    if (Utente effettua il logout?) then (sì)
-      :Mostra Pagina di Login;
-    else (no)
-      :Mostra Home Page,\nRecensioni, Corsi, Professori, Gruppi;
-    endif
-  endif
-endif
+|Supabase Service|
+fork
+:Aggiornamento dati sessione utente;
 
+fork again
+:Account Verificato;
+|Database|
+:Rimuove Stato 'waiting';
+
+|Supabase Service|
+end fork
+
+
+|Sistema|
+:Reindirizza alla pagina precedente;
 stop
 @enduml
