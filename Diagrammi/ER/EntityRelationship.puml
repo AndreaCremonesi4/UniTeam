@@ -1,0 +1,112 @@
+' Legenda Frecce
+'------------------------
+' Zero o Uno        |o--
+' Uno               ||--
+' Zero o Più        }o--
+' Uno o Più         }|--
+'------------------------
+
+@startuml ER_Diagram
+
+skinparam linetype ortho
+
+entity Profilo {
+    * id: uuid <<generated>>
+    --
+    username: text
+    profile_photo: text
+}
+
+entity Professore {
+    * id: int4 <<generated>>
+    --
+    nome: text
+    email: text
+    telefono: text
+    ruolo: text
+    struttura: text
+    link: text
+    immagine: text
+}
+
+entity Corso {
+    * id: int4 <<generated>>
+    --
+    nome: text
+    codice: text
+    anno: int2
+    facolta: text
+    crediti: int2
+    descrizione: text
+    tipo: text
+    lingua: text
+}
+
+entity Recensione_Corso {
+    *id: int4 <<generated>>
+    --
+    valutazione: int2
+    recensione: text
+    data_modifica: date
+    --
+    id_profilo: uuid <<FK>>
+    id_corso: int4 <<FK>>
+}
+
+entity Recensione_Professore {
+    *id: int4 <<generated>>
+    --
+    valutazione: int2
+    recensione: text
+    data_modifica: date
+    --
+    id_profilo: uuid <<FK>>
+    id_professore: int4 <<FK>>
+}
+
+entity Gruppo {
+    *id: int4 <<generated>>
+    --
+    nome: text
+    descrizione: text
+    privato: boolean
+    codice_ingresso: string <<generated>>
+    --
+    proprietario: uuid <<FK>>
+}
+
+entity Iscrizione_Gruppo {
+    *id: int4 <<generated>>
+    --
+    data_iscrizione: date
+    --
+    id_profilo: uuid <<FK>>
+    id_gruppo: int4 <<FK>>
+}
+
+entity Messaggio {
+    *id: int4 <<generated>>
+    --
+    testo: text
+    data: date
+    --
+    mittente: uuid <<FK>>
+    id_gruppo: int4 <<FK>>
+}
+
+
+Profilo ||-d-o{ Recensione_Corso
+Profilo ||-d-o{ Recensione_Professore
+
+Recensione_Corso }o-d-|| Corso
+Recensione_Professore }o-d-|| Professore
+
+Profilo ||-o{ Iscrizione_Gruppo
+Iscrizione_Gruppo }o-|| Gruppo
+
+Profilo ||-d-o{ Messaggio
+Messaggio }o-u-|| Gruppo
+Gruppo -[hidden]d- Messaggio
+
+
+@enduml
