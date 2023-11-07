@@ -102,7 +102,7 @@ Recensione_Corso }o-d-|| Corso
 Recensione_Professore }o-d-|| Professore
 
 Profilo ||-o{ Iscrizione_Gruppo
-Iscrizione_Gruppo }o-|| Gruppo
+Iscrizione_Gruppo }-|| Gruppo
 
 Profilo ||-d-o{ Messaggio
 Messaggio }o-u-|| Gruppo

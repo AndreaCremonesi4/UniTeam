@@ -1,6 +1,7 @@
 <script>
 	import { logout } from '$lib/controller/auth/utilities';
 	import NavLink from './NavLink.svelte';
+	import { page } from '$app/stores';
 
 	import logo from '$lib/assets/images/logo.png';
 	import hamburger from '$lib/assets/icons/hamburger-menu.svg';
@@ -52,7 +53,7 @@
 					{#if !data.session}
 						<li class="nav-item">
 							<a
-								href="/login"
+								href="/login?redirectTo={$page.url.pathname}"
 								class="btn btn-primary sub-header"
 								style="padding: 0.7rem 3rem; margin-left:0.5rem;">Accedi</a
 							>
