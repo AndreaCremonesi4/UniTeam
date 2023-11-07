@@ -1,5 +1,12 @@
+<script>
+	export let items;
+	export let component;
+</script>
+
 <div class="grid gap-3 {$$props.class}">
-	<slot />
+	{#each items as item}
+		<svelte:component this={component} {item} />
+	{/each}
 </div>
 
 <style>
