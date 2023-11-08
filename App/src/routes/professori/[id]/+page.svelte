@@ -29,7 +29,7 @@
 				</p>
 			</div>
 			<div class="prof-information d-flex flex-column">
-				<p class="nome main-header text-dark">
+				<p class="nome text-title text-dark">
 					{professore.nome}
 				</p>
 				<p class="text-body text-dark">
@@ -57,20 +57,21 @@
 
 		<hr class="separatore" />
 
-		<div class="recensione d-flex flex-column">
-			<p class=" main-header text-dark">La tua recensione</p>
-			<p class="text-body">Visualizza o modifica la tua recensione</p>
-
-			<Rating bind:rating={rate} />
-			<p class="text-body">Neutrale</p>
-			<p class="text-body">Docente disponibile, ma non sempre chiaro durante le spiegazioni</p>
+		<div class="review d-flex flex-column">
+			<div class="review-text">
+				<p class="text-center text-title text-dark">La tua recensione</p>
+				<p class="text-body">Visualizza o modifica la tua recensione</p>
+			</div>
+			<div class="review-rating d-flex flex-column">
+				<p class="text-body rating"><Rating bind:rating={rate} /> Neutrale</p>
+				<p class="text-body">Docente disponibile, ma non sempre chiaro durante le spiegazioni</p>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
 	.container {
-		width: 1015px;
 		flex-direction: column;
 	}
 
@@ -90,37 +91,41 @@
 	}
 
 	.separatore {
-		width: min(100%, 70vw);
+		width: min(90%, 70vw);
 		height: 2px;
-		margin: 30px auto;
+		margin: 40px;
 		background-color: #ccc;
 	}
-	.recensione {
-		margin-top: 50px;
-		margin-left: 50px;
+	.rating {
+		display: flex;
 	}
 
 	@media (max-width: 992px) {
-		.text-body {
-			max-width: 80%;
-		}
-
 		.profile {
 			flex-direction: column;
 			align-items: center;
 		}
+		.nome {
+			text-align: center;
+		}
 		.prof-information {
 			max-width: min(500px, 90vw);
 		}
+		.separatore {
+			width: min(90%, 90vw);
+		}
 	}
-	@media (max-width: 768px) {
-		.profile {
-			width: 100%;
+	@media (max-width: 992px) {
+		.text-body {
+			max-width: 80%;
+			height: auto;
 		}
 	}
 	@media (max-width: 576px) {
-		.profile {
-			width: 80%;
+		.text-body {
+			max-width: 100%;
+			height: auto;
+			overflow-wrap: break-word;
 		}
 	}
 </style>
