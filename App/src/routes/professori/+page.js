@@ -7,3 +7,5 @@ export async function load({ parent }) {
         ...parent_data, professori
     }
 }
+
+
