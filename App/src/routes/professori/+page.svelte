@@ -1,69 +1,77 @@
 <script>
-	import Navbar from '$lib/components/navbar/Navbar.svelte';
-	import user from '$lib/assets/icons/User.png';
+	import { getProfessoriWithCount } from '../../lib/controller/professori';
+	import { onMount } from 'svelte';
+
+	import Navbar from '../../lib/components/navbar/Navbar.svelte';
+	import Footer from '../../lib/components/footer/Footer.svelte';
+	import GridLayout from '../../lib/components/layout/GridLayout.svelte';
+	import PageSelector from '../../lib/components/layout/PageSelector.svelte';
+	import FiltriProfessori from '../../lib/components/professori/FiltriProfessori.svelte';
+	import SchedaProfessore from '../../lib/components/professori/SchedaProfessore.svelte';
 
 	export let data;
 	let { supabase } = data;
 	$: ({ supabase } = data);
+
+	let pageSize = 21;
+	let page;
+	let pageCount;
+
+	let professoriData = {};
+	let filtri = {};
+
+	async function fetchData() {
+		return getProfessoriWithCount(
+			supabase,
+			filtri.inputNome,
+			filtri.inputRuolo,
+			filtri.inputStruttura,
+			page,
+			pageSize
+		);
+	}
+
+	async function updateData() {
+		page = 0;
+		professoriData = await fetchData();
+		pageCount = Math.round(professoriData.count / pageSize);
+	}
+
+	function changePage(e) {
+		page = e.detail.page;
+		professoriData = fetchData();
+	}
+
+	function filter(e) {
+		filtri = { ...e.detail };
+		updateData();
+	}
+
+	onMount(() => {
+		updateData();
+	});
 </script>
 
 <Navbar {data} />
 
 <section>
 	<div class="container">
-		{#each data.professori as professore (professore.id)}
-			<a href="/professori/{professore.id}">
-				<div class="professore d-flex flex-row align-items-center">
-					<div class="image mt-2">
-						{#if !professore.immagine}
-							<img src={user} class="icon user-avatar rounded-circle image-fluid" alt=" " />
-						{:else}
-							<img
-								src={professore.immagine}
-								class="icon user-avatar rounded-circle image-fluid"
-								alt=" "
-							/>
-						{/if}
-					</div>
-					<div class="prof-data text-body mt-5">
-						<p>{professore.email}</p>
-						<p>{professore.nome}</p>
-						<p>{professore.ruolo}</p>
-						<p>{professore.telefono}</p>
-						<p>
-							Pagina Ufficiale: <a href={professore.link} class="text-primary">{professore.link}</a>
-						</p>
-					</div>
-				</div>
-			</a>
-		{/each}
+		<h1 class="text-title">Professori</h1>
+
+		<FiltriProfessori on:changeFilters={filter} {supabase} />
+
+		<PageSelector {page} {pageCount} on:pageChange={changePage} />
+
+		{#await professoriData}
+			<p>Caricamento...</p>
+		{:then professori}
+			{#if professori.data && professori.data.length > 0}
+				<GridLayout items={professori.data} let:prop={item} component={SchedaProfessore} />
+			{:else}
+				<h3 class="fw-normal mt-4">Nessun Risultato</h3>
+			{/if}
+		{/await}
 	</div>
 </section>
 
-<style>
-	.professore {
-		display: flex;
-		flex-direction: row;
-		transition: background-color 0.3s ease;
-		border: 1px solid #ccc;
-		align-items: center;
-		margin-bottom: 10px;
-		max-width: 800px;
-		max-height: 250px;
-	}
-	.prof-data {
-		margin-left: auto;
-		max-width: 400px;
-	}
-	.text-body {
-		text-decoration: none;
-	}
-	.professore:hover {
-		background-color: #f2f2f2;
-		cursor: pointer;
-	}
-	.icon {
-		width: min(120px, 90vw);
-		transform: translateX(20px);
-	}
-</style>
+<Footer />

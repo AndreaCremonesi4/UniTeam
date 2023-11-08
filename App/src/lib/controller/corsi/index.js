@@ -22,9 +22,9 @@ export async function getFacolta(supabase) {
 
 export async function getCorsiWithCount(
 	supabase,
-	inputNome,
-	inputAnno,
-	inputFacolta,
+	filtroNome,
+	filtroAnno,
+	filtroFacolta,
 	page,
 	pageSize
 ) {
@@ -32,12 +32,12 @@ export async function getCorsiWithCount(
 		.from('corsi')
 		.select('*', { count: 'exact' })
 		.or(
-			`nome.ilike.${inputNome ? `%${inputNome}%` : '%*%'},codice.ilike.${
-				inputNome ? `%${inputNome}%` : '%*%'
+			`nome.ilike.${filtroNome ? `%${filtroNome}%` : '%*%'},codice.ilike.${
+				filtroNome ? `%${filtroNome}%` : '%*%'
 			}`
 		)
-		.ilike('anno_full', inputAnno ? `%${inputAnno}%` : '%*%')
-		.ilike('facolta', inputFacolta ? `%${inputFacolta}%` : '%*%')
+		.ilike('anno_full', filtroAnno ? `%${filtroAnno}%` : '%*%')
+		.ilike('facolta', filtroFacolta ? `%${filtroFacolta}%` : '%*%')
 		.range(page * pageSize, page * pageSize + pageSize - 1)
 		.order('nome', { ascending: true });
 
