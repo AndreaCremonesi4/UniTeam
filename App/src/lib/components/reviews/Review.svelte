@@ -22,7 +22,6 @@
 
 	function changeRating(event) {
 		rating = event.detail.value;
-		console.log(rating);
 	}
 </script>
 
@@ -31,15 +30,14 @@
 	<p class="fw-light opacity-50 mb-4">
 		Lascia una recensione per aiutare gli altri studenti ad apprendere di più sull'insegnante
 	</p>
-	<div
-		class="text-body-white flex-sm-row flex-column stars-rate d-flex align-items-start mt-2 mb-4"
-	>
-		<p class="mb-0">Lascia una tua valutazione:</p>
-		<StarRating class="mx-2" on:change={changeRating} />
-		<StarRating class="mx-2" rating={2} readOnly />
-	</div>
 
 	<form on:submit|preventDefault={submit}>
+		<div
+			class="text-body-white flex-sm-row flex-column stars-rate d-flex align-items-start mt-2 mb-4"
+		>
+			<p class="mb-0">Lascia una tua valutazione:</p>
+			<StarRating class="mx-2" on:change={changeRating} required={true} />
+		</div>
 		<textarea
 			class="form-control fw-normal"
 			rows="6"
@@ -47,11 +45,8 @@
 			bind:value={reviewDescription}
 			required
 		/>
-		<button
-			bind:this={submitButton}
-			disabled
-			class="btn btn-secondary sub-header mt-3 mb-4"
-			type="submit">Invia</button
+		<button bind:this={submitButton} class="btn btn-secondary sub-header mt-3 mb-4" type="submit"
+			>Invia</button
 		>
 	</form>
 </div>
