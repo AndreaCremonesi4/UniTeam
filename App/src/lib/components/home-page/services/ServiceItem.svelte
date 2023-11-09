@@ -46,8 +46,8 @@
 	}
 
 	.service-text {
-		flex:2;
-		font-size: min(16px, calc(0.85rem + .5vw));
+		flex: 2;
+		font-size: min(16px, calc(0.85rem + 0.5vw));
 		color: var(--bs-primary-dark);
 		opacity: 0.75;
 	}
