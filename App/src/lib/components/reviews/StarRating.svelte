@@ -4,6 +4,7 @@
 	export let showLabel = true;
 	export let rating;
 	export let readOnly;
+	export let required;
 
 	const rates = [
 		'Molto insoddisfatto',
@@ -34,10 +35,8 @@
 					name="rating"
 					value={nStars - i}
 					id={nStars - i}
+					{required}
 					on:click={() => {
-						changeRating(nStars - i);
-					}}
-					on:focus={() => {
 						changeRating(nStars - i);
 					}}
 				/><label for={nStars - i}>&#9734;</label>
@@ -60,10 +59,14 @@
 		display: flex;
 		flex-direction: row-reverse;
 		align-items: start;
+		position: relative;
 	}
 
 	.rating > input {
-		display: none;
+		opacity: 0;
+		left: 43%;
+		position: absolute;
+		pointer-events: none;
 	}
 
 	.rating > label,

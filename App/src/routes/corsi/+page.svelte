@@ -1,6 +1,5 @@
 <script>
 	import { getCorsiWithCount } from '$lib/controller/corsi';
-	import { onMount } from 'svelte';
 
 	import Navbar from '../../lib/components/navbar/Navbar.svelte';
 	import Footer from '../../lib/components/footer/Footer.svelte';
@@ -47,9 +46,7 @@
 		updateData();
 	}
 
-	onMount(() => {
-		updateData();
-	});
+	corsiData = updateData();
 </script>
 
 <Navbar {data} />
@@ -65,12 +62,14 @@
 		{#await corsiData}
 			<p>Caricamento...</p>
 		{:then corsi}
-			{#if corsi.data && corsi.data.length > 0}
+			{#if corsi && corsi.data && corsi.data.length > 0}
 				<GridLayout items={corsi.data} let:prop={item} component={SchedaCorso} />
 			{:else}
 				<h3 class="fw-normal mt-4">Nessun Risultato</h3>
 			{/if}
 		{/await}
+
+		<PageSelector {page} {pageCount} on:pageChange={changePage} />
 	</div>
 </section>
 
