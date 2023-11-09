@@ -11,6 +11,7 @@
     --bs-secondary: #FF6914;
     --bs-secondary-rgb: 255, 105, 20;
     --bs-secondary-hover: #d65a12;
+    --bs-btn-secondary-disabled-bg: #f88f52;
     --bs-accent: #5AECE3;
     --bs-accent-rgb: 90, 236, 227;
 
@@ -53,7 +54,7 @@ section {
 }
 
 .text-gradient-reverse,
-.btn-gradient-reverse{
+.btn-gradient-reverse {
     background: linear-gradient(-90deg, var(--bs-primary-dark) 0%, var(--bs-primary) 50.81%, var(--bs-accent) 100%);
 }
 
@@ -81,11 +82,10 @@ section {
     background: linear-gradient(135deg, #2790FF 0%, #5AECE3 100%);
 }
 
-.radial-gradient{
+.radial-gradient {
     background: radial-gradient(circle at 100% 0%, #002155 0%, #2790FF 50.52%, #5AECE3 100%);
 }
 
-.radial-gradient-reverse{
+.radial-gradient-reverse {
     background: radial-gradient(circle at 0% 0%, #002155 0%, #2790FF 60.52%, #5AECE3 100%);
 }
-

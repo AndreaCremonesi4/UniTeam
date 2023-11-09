@@ -56,7 +56,7 @@
 
 <section>
 	<div class="container">
-		<h1 class="text-title">Professori</h1>
+		<h1 class="text-title text-dark">Professori</h1>
 
 		<FiltriProfessori on:changeFilters={filter} {supabase} />
 

@@ -33,16 +33,21 @@
     color: var(--bs-primary-dark);
 }
 
-.text-body-white{
+.text-body-white {
     color: white;
 }
 
-.text-title {
+.text-title,
+.text-title-white {
     font-size: min(45px, calc(1.75rem + 0.8vw));
     font-style: normal;
     font-weight: 700;
     line-height: 140%;
     letter-spacing: -0.05rem;
+}
+
+.text-title-white {
+    color: white;
 }
 
 .text-subtitle {
