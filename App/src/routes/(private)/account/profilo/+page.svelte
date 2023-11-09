@@ -42,7 +42,6 @@
 
 	async function updateUser(newUsername) {
 		try {
-			//trovare funzione per modificare nome utente
 			const avatar = generateAvatar(newUsername.trim().charAt(0));
 
 			const newProfile = {
@@ -110,7 +109,6 @@
 		width: 100%;
 		padding-top: 0.75rem;
 		padding-bottom: 0.75rem;
-
 		border-radius: 5px;
 	}
 </style>
