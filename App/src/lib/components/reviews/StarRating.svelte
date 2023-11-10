@@ -1,8 +1,9 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 
+	export let id;
 	export let showLabel = true;
-	export let rating;
+	export let value;
 	export let readOnly;
 	export let required;
 
@@ -18,38 +19,43 @@
 
 	const dispatch = createEventDispatcher();
 
-	function changeRating(value) {
-		rating = value;
+	function changeRating(newValue) {
+		value = newValue;
 		dispatch('change', {
 			value
 		});
 	}
+
+	onMount(() => {
+		if (value) {
+			const stars = document.getElementsByTagName('input');
+			if (stars.length > 0) stars[5 - value].checked = true;
+		}
+	});
 </script>
 
 <div class="d-flex flex-wrap">
-	<div class="rating {$$props.class}">
+	<fieldset class="rating {$$props.class}">
 		{#each Array(nStars) as _, i}
 			{#if !readOnly}
 				<input
 					type="radio"
-					name="rating"
+					name={id}
 					value={nStars - i}
-					id={nStars - i}
+					id={id + (nStars - i)}
 					{required}
 					on:click={() => {
 						changeRating(nStars - i);
 					}}
-				/><label for={nStars - i}>&#9734;</label>
+				/><label for={id + (nStars - i)}>★</label>
 			{:else}
-				<span style="color: {nStars - i <= rating ? '#ffd700' : 'white'};"
-					>{nStars - i <= rating ? '★' : '☆'}</span
-				>
+				<span style="color: {nStars - i <= value ? '#ffd700' : `#fafafa`};">★</span>
 			{/if}
 		{/each}
-	</div>
-	<div>
-		{#if showLabel && rating}
-			<em class="opacity-50">{rates[rating - 1]}</em>
+	</fieldset>
+	<div class="d-flex align-items-center">
+		{#if showLabel && value}
+			<em class="opacity-50">{rates[value - 1]}</em>
 		{/if}
 	</div>
 </div>
@@ -74,7 +80,6 @@
 		position: relative;
 		width: 1.5rem;
 		font-size: 1.5rem;
-		color: white;
 		user-select: none;
 	}
 
