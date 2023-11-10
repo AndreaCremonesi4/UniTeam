@@ -27,6 +27,9 @@
 
 		<hr class="my-5" />
 
-		<Review on:submit={submitRating} />
+		<Review
+			on:submit={submitRating}
+			data={{ user: 'Pinco Pallino', rating: 3, description: 'Lorem ipsum', date: '03/12/2023' }}
+		/>
 	</div>
 </section>
