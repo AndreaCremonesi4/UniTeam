@@ -7,8 +7,8 @@
 	export let data;
 
 	let modifyMode = !data;
-	let rating = data.rating ?? undefined;
-	let reviewDescription = data.description ?? '';
+	let rating = data?.rating ?? undefined;
+	let reviewDescription = data?.description ?? '';
 	let submitButton;
 
 	$: submitButton != undefined
