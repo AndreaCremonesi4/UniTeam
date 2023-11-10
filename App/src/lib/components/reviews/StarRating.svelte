@@ -27,7 +27,7 @@
 	}
 
 	onMount(() => {
-		if (value) {
+		if (value && id) {
 			const stars = document.getElementsByTagName('input');
 			if (stars.length > 0) stars[5 - value].checked = true;
 		}
@@ -49,7 +49,7 @@
 					}}
 				/><label for={id + (nStars - i)}>★</label>
 			{:else}
-				<span style="color: {nStars - i <= value ? '#ffd700' : `#fafafa`};">★</span>
+				<span style=" {nStars - i <= value ? 'color:#ffd700' : ``};">★</span>
 			{/if}
 		{/each}
 	</fieldset>
