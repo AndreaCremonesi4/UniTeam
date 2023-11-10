@@ -4,32 +4,36 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let data;
+	export let data = {};
 
-	let modifyMode = !data;
-	let rating = data?.rating ?? undefined;
-	let reviewDescription = data?.description ?? '';
+	let modifyMode = Object.keys(data).length === 0;
 	let submitButton;
 
 	$: submitButton != undefined
-		? (submitButton.disabled = !rating || reviewDescription.trim().length === 0)
+		? (submitButton.disabled = !data?.valutazione || data?.descrizione.trim().length === 0)
 		: null;
 
 	function submit() {
-		dispatch('submit', {
-			rating,
-			reviewDescription
-		});
+		if (!modifyMode) {
+			modifyMode = true;
+		} else {
+			const today = new Date();
+			data.data_modifica = `${today.getDate()}/${today.getMonth()}/${today.getFullYear()}`;
+
+			dispatch('submit', data);
+
+			modifyMode = false;
+		}
 	}
 
 	function changeRating(event) {
-		rating = event.detail.value;
+		data.valutazione = event.detail.value;
 	}
 </script>
 
 <div class="review-container d-flex flex-column px-md-5 px-4">
 	<p class="text-title-white mt-4 mb-0">
-		{modifyMode ? 'Lascia una recensione' : 'Lascia tua recensione'}
+		{modifyMode ? 'Lascia una recensione' : 'La tua recensione'}
 	</p>
 	<p class="fw-light opacity-50 mb-4">
 		{modifyMode
@@ -41,25 +45,31 @@
 		<div
 			class="text-body-white flex-sm-row flex-column stars-rate d-flex align-items-start mt-2 mb-4"
 		>
-			<p class="mb-0 me-2">Lascia una tua valutazione:</p>
-			<StarRating
-				id="sr1"
-				on:change={changeRating}
-				value={rating}
-				required={true}
-				readOnly={!modifyMode}
-			/>
+			<p class="mb-0 me-2">
+				{modifyMode ? 'Lascia una tua valutazione: ' : 'La tua valutazione: '}
+			</p>
+			{#if modifyMode}
+				<StarRating id="sr1" on:change={changeRating} value={data.valutazione} required={true} />
+			{:else}
+				<StarRating value={data.valutazione} readOnly={true} />
+			{/if}
 		</div>
-		<textarea
-			class="form-control fw-normal"
-			rows="6"
-			placeholder="Scrivi la tua recensione..."
-			bind:value={reviewDescription}
-			required
-		/>
-		<button bind:this={submitButton} class="btn btn-secondary sub-header mt-3 mb-4" type="submit"
-			>Invia</button
-		>
+		{#if modifyMode}
+			<textarea
+				class="form-control fw-normal"
+				rows="6"
+				placeholder="Scrivi la tua recensione..."
+				bind:value={data.descrizione}
+				required
+			/>
+			<button bind:this={submitButton} class="btn btn-secondary sub-header mt-3 mb-4" type="submit"
+				>Invia</button
+			>
+		{:else}
+			<p>{data.descrizione}</p>
+			<p><em class="fw-lighter">{data.data_modifica}</em></p>
+			<button class="btn btn-secondary sub-header mt-3 mb-4" type="submit">Modifica</button>
+		{/if}
 	</form>
 </div>
 
