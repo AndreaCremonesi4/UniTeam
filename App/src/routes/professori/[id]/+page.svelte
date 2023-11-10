@@ -1,9 +1,9 @@
 <script>
 	import Navbar from '$lib/components/navbar/Navbar.svelte';
-
 	import InfoProfessore from '../../../lib/components/professori/InfoProfessore.svelte';
 	import Review from '../../../lib/components/reviews/Review.svelte';
-
+	import StarRating from '../../../lib/components/reviews/StarRating.svelte';
+	import StoryReview from '../../../lib/components/reviews/StoryReview.svelte';
 	export let data;
 	let { supabase } = data;
 	$: ({ supabase } = data);
@@ -28,5 +28,7 @@
 		<hr class="my-5" />
 
 		<Review on:submit={submitRating} />
+
+		<StoryReview />
 	</div>
 </section>

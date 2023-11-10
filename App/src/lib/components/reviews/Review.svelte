@@ -37,7 +37,7 @@
 	</p>
 	<p class="fw-light opacity-50 mb-4">
 		{modifyMode
-			? "Lascia una recensione per aiutare gli altri studenti ad apprendere di più sull'insegnante"
+			? 'Lascia una recensione per aiutare gli altri studenti ad apprendere di più sul corso'
 			: 'Visualizza e modifica la tua recensione'}
 	</p>
 

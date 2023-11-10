@@ -34,8 +34,8 @@
 	});
 </script>
 
-<div class="d-flex flex-wrap">
-	<fieldset class="rating {$$props.class}">
+<div class="d-flex flex-wrap {$$props.class}">
+	<fieldset class="rating">
 		{#each Array(nStars) as _, i}
 			{#if !readOnly}
 				<input
@@ -64,7 +64,6 @@
 	.rating {
 		display: flex;
 		flex-direction: row-reverse;
-		align-items: start;
 		position: relative;
 	}
 
