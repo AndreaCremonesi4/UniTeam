@@ -19,7 +19,7 @@
 			</p>
 			{#if item.email}
 				<p>
-					<a href="mailto:{item.email}">{item.email}</a>
+					<a class="text-break" href="mailto:{item.email}">{item.email}</a>
 				</p>
 			{/if}
 		</div>
