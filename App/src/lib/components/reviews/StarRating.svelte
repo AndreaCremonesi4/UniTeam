@@ -29,7 +29,7 @@
 	onMount(() => {
 		if (value) {
 			const stars = document.getElementsByTagName('input');
-			stars[5 - value].checked = true;
+			if (stars.length > 0) stars[5 - value].checked = true;
 		}
 	});
 </script>
