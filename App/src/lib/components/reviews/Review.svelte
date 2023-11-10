@@ -1,16 +1,9 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	import { Rating } from 'svelte-stars-hover-rating';
+	import StarRating from './StarRating.svelte';
 
 	const dispatch = createEventDispatcher();
-
-	const rates = [
-		'Molto insoddisfatto',
-		'Insoddisfatto',
-		'Neutrale',
-		'Soddisfatto',
-		'Molto soddisfatto'
-	];
 
 	let rating;
 	let reviewDescription = '';
@@ -26,50 +19,47 @@
 			reviewDescription
 		});
 	}
+
+	function changeRating(event) {
+		rating = event.detail.value;
+	}
 </script>
 
-<div class="review-container d-flex flex-column px-2">
-	<p class="text-title-white mx-4 mt-4 mb-1">Lascia una recensione</p>
-	<p class="text-body-white mx-4 mb-5">
+<div class="review-container d-flex flex-column px-md-5 px-4">
+	<p class="text-title-white mt-4 mb-0">Lascia una recensione</p>
+	<p class="fw-light opacity-50 mb-4">
 		Lascia una recensione per aiutare gli altri studenti ad apprendere di più sull'insegnante
-	</p>
-	<p class="text-body-white stars-rate d-flex align-items-baseline mx-4">
-		Lascia una tua valutazione: <Rating bind:rating />
-		{#if rating}
-			{rates[rating - 1]}
-		{/if}
 	</p>
 
 	<form on:submit|preventDefault={submit}>
+		<div
+			class="text-body-white flex-sm-row flex-column stars-rate d-flex align-items-start mt-2 mb-4"
+		>
+			<p class="mb-0">Lascia una tua valutazione:</p>
+			<StarRating class="mx-2" on:change={changeRating} required={true} />
+		</div>
 		<textarea
 			class="form-control fw-normal"
-			id="comment"
-			name="comment"
-			rows="7"
+			rows="6"
 			placeholder="Scrivi la tua recensione..."
 			bind:value={reviewDescription}
 			required
 		/>
-		<button
-			bind:this={submitButton}
-			disabled
-			class="btn btn-secondary sub-header mt-3 mb-4"
-			type="submit">Invia</button
+		<button bind:this={submitButton} class="btn btn-secondary sub-header mt-3 mb-4" type="submit"
+			>Invia</button
 		>
 	</form>
 </div>
 
 <style>
+	:global(svg) {
+		cursor: pointer;
+	}
+
 	.review-container {
 		color: white;
 		background-color: var(--bs-primary-dark);
 		border-radius: 10px;
-	}
-
-	form {
-		padding: 0 1rem;
-		text-align: left;
-		border-radius: 5px;
 	}
 
 	form > button {
@@ -77,11 +67,5 @@
 		padding-top: 0.6rem;
 		padding-bottom: 0.6rem;
 		border-radius: 5px;
-	}
-
-	@media (max-width: 454px) {
-		.stars-rate {
-			flex-direction: column;
-		}
 	}
 </style>

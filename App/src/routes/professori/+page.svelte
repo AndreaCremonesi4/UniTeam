@@ -1,6 +1,5 @@
 <script>
 	import { getProfessoriWithCount } from '../../lib/controller/professori';
-	import { onMount } from 'svelte';
 
 	import Navbar from '../../lib/components/navbar/Navbar.svelte';
 	import Footer from '../../lib/components/footer/Footer.svelte';
@@ -17,7 +16,7 @@
 	let page;
 	let pageCount;
 
-	let professoriData = {};
+	let professoriData;
 	let filtri = {};
 
 	async function fetchData() {
@@ -37,7 +36,7 @@
 		pageCount = Math.round(professoriData.count / pageSize);
 	}
 
-	function changePage(e) {
+	async function changePage(e) {
 		page = e.detail.page;
 		professoriData = fetchData();
 	}
@@ -47,9 +46,7 @@
 		updateData();
 	}
 
-	onMount(() => {
-		updateData();
-	});
+	professoriData = updateData();
 </script>
 
 <Navbar {data} />
@@ -65,12 +62,14 @@
 		{#await professoriData}
 			<p>Caricamento...</p>
 		{:then professori}
-			{#if professori.data && professori.data.length > 0}
+			{#if professori && professori.data && professori.data.length > 0}
 				<GridLayout items={professori.data} let:prop={item} component={SchedaProfessore} />
 			{:else}
 				<h3 class="fw-normal mt-4">Nessun Risultato</h3>
 			{/if}
 		{/await}
+
+		<PageSelector class="mt-3" {page} {pageCount} on:pageChange={changePage} />
 	</div>
 </section>
 
