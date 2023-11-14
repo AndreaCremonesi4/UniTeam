@@ -1,7 +1,5 @@
 @startuml PackageDiagram
 
-'left to right direction
-
 package App {
    package src{
         package lib {
@@ -60,5 +58,8 @@ package App {
         folder style
     }
 }
+
+routes -[hidden]u-- lib
+lib -[hidden]d- routes
 
 @enduml
