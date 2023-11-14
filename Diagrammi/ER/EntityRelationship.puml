@@ -27,6 +27,7 @@ entity Professore {
     struttura: text
     link: text
     immagine: text
+    valutazione_media: float4
 }
 
 entity Corso {
@@ -40,6 +41,8 @@ entity Corso {
     descrizione: text
     tipo: text
     lingua: text
+    anno_full: text
+    valutazione_media: float4
 }
 
 entity Recensione_Corso {
