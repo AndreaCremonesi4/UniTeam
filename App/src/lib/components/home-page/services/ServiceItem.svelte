@@ -31,14 +31,6 @@
 		width: min(110px, 80%);
 		aspect-ratio: 1;
 		border-radius: 10000px;
-
-		background-size: 200%;
-		background-position: left 0;
-		transition: background-position 250ms ease-in-out;
-	}
-
-	.service-image:hover {
-		background-position: right 0;
 	}
 
 	.service-image > img {

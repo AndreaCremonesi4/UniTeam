@@ -1,6 +1,6 @@
 @startuml ActivityDiagram
 
-|Utente| 
+|Utente|
 |Sistema|
 |Supabase Service|
 |Database|

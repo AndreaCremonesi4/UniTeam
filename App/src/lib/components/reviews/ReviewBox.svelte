@@ -35,10 +35,13 @@
 	<p class="text-title-white mt-4 mb-0">
 		{modifyMode ? 'Lascia una recensione' : 'La tua recensione'}
 	</p>
+
 	<p class="fw-light opacity-50 mb-4">
-		{modifyMode
-			? 'Lascia una recensione per aiutare gli altri studenti ad apprendere di più sul corso'
-			: 'Visualizza e modifica la tua recensione'}
+		{#if modifyMode}
+			<slot name="sottotitolo">Lascia una recensione per aiutare gli altri studenti</slot>
+		{:else}
+			Visualizza e modifica la tua recensione
+		{/if}
 	</p>
 
 	<form on:submit|preventDefault={submit}>

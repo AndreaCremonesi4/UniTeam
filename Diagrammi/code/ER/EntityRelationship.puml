@@ -27,6 +27,7 @@ entity Professore {
     struttura: text
     link: text
     immagine: text
+    valutazione_media: float4
 }
 
 entity Corso {
@@ -40,13 +41,15 @@ entity Corso {
     descrizione: text
     tipo: text
     lingua: text
+    anno_full: text
+    valutazione_media: float4
 }
 
 entity Recensione_Corso {
-    *id: int4 <<generated>>
+    *id: int8 <<generated>>
     --
     valutazione: int2
-    recensione: text
+    descrizione: text
     data_modifica: date
     --
     id_profilo: uuid <<FK>>
@@ -54,10 +57,10 @@ entity Recensione_Corso {
 }
 
 entity Recensione_Professore {
-    *id: int4 <<generated>>
+    *id: uuid <<generated>>
     --
     valutazione: int2
-    recensione: text
+    descrizione: text
     data_modifica: date
     --
     id_profilo: uuid <<FK>>
@@ -65,7 +68,7 @@ entity Recensione_Professore {
 }
 
 entity Gruppo {
-    *id: int4 <<generated>>
+    *id: uuid <<generated>>
     --
     nome: text
     descrizione: text
@@ -76,22 +79,23 @@ entity Gruppo {
 }
 
 entity Iscrizione_Gruppo {
-    *id: int4 <<generated>>
+    *id: uuid <<generated>>
     --
     data_iscrizione: date
     --
     id_profilo: uuid <<FK>>
-    id_gruppo: int4 <<FK>>
+    id_gruppo: uuid <<FK>>
 }
 
 entity Messaggio {
-    *id: int4 <<generated>>
+    *id: uuid <<generated>>
     --
     testo: text
+    media_link: text
     data: date
     --
     mittente: uuid <<FK>>
-    id_gruppo: int4 <<FK>>
+    id_gruppo: uuid <<FK>>
 }
 
 
