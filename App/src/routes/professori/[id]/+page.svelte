@@ -27,7 +27,11 @@
 
 		<hr class="my-5" />
 
-		<ReviewBox on:submit={submitRating} />
+		<ReviewBox on:submit={submitRating}>
+			<span slot="sottotitolo"
+				>Lascia una recensione per aiutare gli altri studenti ad apprendere di più sul professore</span
+			>
+		</ReviewBox>
 
 		<ReviewList />
 	</div>
