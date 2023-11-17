@@ -12,5 +12,10 @@
 		{item.anno_full} - {item.facolta}
 	</p>
 
-	<StarRating class="mb-3" readOnly={true} value={Math.round(item.valutazione_media)} />
+	<StarRating
+		class="mb-3"
+		showLabel={false}
+		readOnly={true}
+		value={Math.round(item.valutazione_media)}
+	/>
 </a>

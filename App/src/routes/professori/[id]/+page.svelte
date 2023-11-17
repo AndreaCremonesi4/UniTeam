@@ -8,13 +8,8 @@
 	import { page } from '$app/stores';
 
 	export let data;
-	let { supabase } = data;
-	$: ({ supabase } = data);
-
-	let { corso, recensioni, recensioneUtente } = data;
-	$: professore = data?.professore;
-	$: recensioni = data?.recensioni;
-	$: recensioneUtente = data?.recensioneUtente;
+	let { supabase, professore, recensioni, recensioneUtente } = data;
+	$: ({ supabase, professore, recensioni, recensioneUtente } = data);
 
 	async function submitRating(event) {
 		const { error } = await addRecensioneProfessore(

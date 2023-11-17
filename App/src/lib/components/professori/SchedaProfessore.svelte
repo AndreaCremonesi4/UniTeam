@@ -24,7 +24,12 @@
 				</p>
 			{/if}
 
-			<StarRating class="mb-2" readOnly={true} value={Math.round(item.valutazione_media)} />
+			<StarRating
+				class="mb-2"
+				showLabel={false}
+				readOnly={true}
+				value={Math.round(item.valutazione_media)}
+			/>
 		</div>
 	</div>
 </a>
