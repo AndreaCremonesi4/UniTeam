@@ -22,6 +22,6 @@
 			{/each}
 		</div>
 	{:else}
-		<h2 class="text-title fw-normal opacity-75">Ancora nessuna recensione. Dai la tua opinione!</h2>
+		<h2 class="fw-light opacity-50">Ancora nessuna recensione. Dai la tua opinione!</h2>
 	{/if}
 </div>
