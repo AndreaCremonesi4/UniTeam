@@ -1,11 +1,14 @@
 <script>
-	import { validateEmail } from '$lib/controller/auth/utilities';
+	import { validateEmail } from '$lib/controller/auth';
 	import { onMount } from 'svelte';
 	import InputGroup from '$lib/components/form/InputGroup.svelte';
+	import { page } from '$app/stores';
 
 	export let data;
 	let { supabase } = data;
 	$: ({ supabase } = data);
+
+	const redirectTo = $page.url.searchParams.get('redirectTo') ?? '/login';
 
 	let form, email;
 	let showSuccess;
@@ -40,7 +43,7 @@
 </script>
 
 <section>
-	<a href="/login" class="btn btn-back"><i class="bi bi-arrow-left h3" /></a>
+	<a href={redirectTo} class="btn btn-back"><i class="bi bi-arrow-left h3" /></a>
 
 	<div class="container d-flex flex-column align-items-center justify-content-center">
 		{#if showSuccess}
@@ -54,7 +57,7 @@
 		{/if}
 
 		<form bind:this={form} novalidate>
-			<h1 class="text-title mb-5 text-center">Recupero Password</h1>
+			<h1 class="text-title mb-5 text-center">Ripristino Password</h1>
 			<p class="text-body-secondary">
 				Inserire l'indirizzo email associato al tuo account e ti invieremo un link per ripristinare
 				la password

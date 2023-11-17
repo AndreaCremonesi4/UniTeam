@@ -1,4 +1,5 @@
 <script>
+	import StarRating from '../reviews/StarRating.svelte';
 	export let item;
 </script>
 
@@ -7,7 +8,9 @@
 	<h1 class="mb-3 sub-header fw-semibold">
 		{item.nome} ({item.crediti} CFU)
 	</h1>
-	<p class="mb-3">
+	<p class="mb-1">
 		{item.anno_full} - {item.facolta}
 	</p>
+
+	<StarRating class="mb-3" readOnly={true} value={Math.round(item.valutazione_media)} />
 </a>

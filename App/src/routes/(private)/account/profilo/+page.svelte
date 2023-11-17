@@ -2,7 +2,9 @@
 	import Navbar from '$lib/components/navbar/Navbar.svelte';
 	import InputGroup from '$lib/components/form/InputGroup.svelte';
 	import { onMount } from 'svelte';
-	import { generateAvatar } from '$lib/controller/auth/utilities';
+	import { page } from '$app/stores';
+	import { invalidateAll } from '$app/navigation';
+	import { updateProfileUsername } from '$lib/controller/profilo';
 
 	export let data;
 	let { supabase } = data;
@@ -23,13 +25,14 @@
 
 					form.classList.add('was-validated');
 				} else {
-					//aggiorna profilo utente
-					const newUsername = username.value;
-
 					// nuovo username - nuovo logo
-					if (await updateUser(newUsername)) {
-						window.location.reload();
-					}
+					const { error } = await updateProfileUsername(
+						supabase,
+						data.session.user.id,
+						username.value
+					);
+
+					if (!error) invalidateAll();
 				}
 			},
 			false
@@ -39,30 +42,6 @@
 			username.setCustomValidity(username.value.trim() === '' ? 'Username vuoto' : '');
 		});
 	});
-
-	async function updateUser(newUsername) {
-		try {
-			const avatar = generateAvatar(newUsername.trim().charAt(0));
-
-			const newProfile = {
-				id: data.session.user.id,
-				username: newUsername,
-				profile_photo: avatar
-			};
-
-			const { error } = await supabase.from('profiles').upsert(newProfile).select();
-
-			if (error) {
-				console.error("Errore nell'aggiornamento del profilo utente:", error.message);
-				return false;
-			}
-		} catch (error) {
-			console.error("Errore nell'aggiornamento del profilo utente:", error.message);
-			return false;
-		}
-
-		return true;
-	}
 </script>
 
 <Navbar {data} />
@@ -89,6 +68,10 @@
 			</InputGroup>
 
 			<button class="btn btn-primary" type="submit" alt="Responsive">Aggiorna</button>
+
+			<a href="/recupero-password?redirectTo={$page.url.pathname}" class="mt-2"
+				>Vuoi cambiare la password?</a
+			>
 		</form>
 	</div>
 </section>
