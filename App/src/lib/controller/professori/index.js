@@ -39,3 +39,45 @@ export async function getProfessoriWithCount(
 
 	return { data, count };
 }
+
+export function getProfessoreById(supabase, id) {
+	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+	return supabase.from('professori').select('*').eq('id', id).single();
+}
+
+export async function getRecensioniProfessore(supabase, id) {
+	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+	return supabase
+		.from('recensioni_professori')
+		.select(
+			`
+			id,
+			valutazione,
+			descrizione,
+			data_modifica,
+			profiles (
+				username
+			)
+		`
+		)
+		.eq('id_professore', id);
+}
+
+export async function getRecensioneProfessoreUtente(supabase, id_profilo, id_professore) {
+	if (!supabase || !id_profilo || !id_professore)
+		return { error: "Errore nell'inserimento dei parametri" };
+	return supabase
+		.from('recensioni_professori')
+		.select('*')
+		.match({ id_profilo, id_professore })
+		.single();
+}
+
+export function addRecensioneProfessore(supabase, dataRecensione, id_professore, id_profilo) {
+	if (!dataRecensione || !id_professore || !id_profilo)
+		return { error: "Errore nell'inserimento dei parametri" };
+
+	return supabase
+		.from('recensioni_professori')
+		.upsert({ ...dataRecensione, id_professore, id_profilo });
+}

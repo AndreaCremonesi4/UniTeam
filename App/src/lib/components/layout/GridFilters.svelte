@@ -70,5 +70,9 @@
 			color: white;
 			border-radius: 5px 5px 0 0;
 		}
+
+		.show-filters-btn:focus {
+			background-color: var(--bs-primary-dark);
+		}
 	}
 </style>

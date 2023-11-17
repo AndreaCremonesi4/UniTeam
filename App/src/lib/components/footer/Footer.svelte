@@ -1,6 +1,5 @@
 <script>
 	import ContactForm from './ContactForm.svelte';
-
 	import topFooterImage from '$lib/assets/images/reviews-illustration.png';
 	import footerImage from '$lib/assets/images/footer_image.png';
 

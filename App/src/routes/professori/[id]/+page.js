@@ -1,16 +1,28 @@
-
+import {
+	getProfessoreById,
+	getRecensioneProfessoreUtente,
+	getRecensioniProfessore
+} from '../../../lib/controller/professori/index.js';
 
 export async function load({ params, parent }) {
-    const parent_data = await parent();
+	const parentData = await parent();
 
-    const { data: professore, error } = await parent_data.supabase
-        .from('professori')
-        .select('*')
-        .eq("id", params.id);
+	const { data: professore } = await getProfessoreById(parentData.supabase, params.id);
 
-    return {
-        ...parent_data, professore
-    }
+	// ottiene la recensione dell'utente collegato
+	const { data: recensioneUtente } = await getRecensioneProfessoreUtente(
+		parentData.supabase,
+		parentData.profile?.id,
+		params.id
+	);
+
+	// ottiene le recensioni del corso
+	const { data: recensioni } = await getRecensioniProfessore(parentData.supabase, params.id);
+
+	return {
+		...parentData,
+		professore,
+		recensioneUtente,
+		recensioni
+	};
 }
-
-

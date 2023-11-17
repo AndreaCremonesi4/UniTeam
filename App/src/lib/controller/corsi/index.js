@@ -43,3 +43,39 @@ export async function getCorsiWithCount(
 
 	return { data, count };
 }
+
+export function getCorsoById(supabase, id) {
+	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+	return supabase.from('corsi').select('*').eq('id', id).single();
+}
+
+export async function getRecensioniCorso(supabase, id) {
+	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+	return supabase
+		.from('recensioni_corsi')
+		.select(
+			`
+			id,
+			valutazione,
+			descrizione,
+			data_modifica,
+			profiles (
+				username
+			)
+		`
+		)
+		.eq('id_corso', id);
+}
+
+export async function getRecensioneCorsoUtente(supabase, id_profilo, id_corso) {
+	if (!supabase || !id_profilo || !id_corso)
+		return { error: "Errore nell'inserimento dei parametri" };
+	return supabase.from('recensioni_corsi').select('*').match({ id_profilo, id_corso }).single();
+}
+
+export function addRecensioneCorso(supabase, dataRecensione, id_corso, id_profilo) {
+	if (!dataRecensione || !id_corso || !id_profilo)
+		return { error: "Errore nell'inserimento dei parametri" };
+
+	return supabase.from('recensioni_corsi').upsert({ ...dataRecensione, id_corso, id_profilo });
+}

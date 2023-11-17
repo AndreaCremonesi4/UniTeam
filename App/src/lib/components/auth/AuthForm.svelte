@@ -6,7 +6,7 @@
 	let { supabase } = data;
 	$: ({ supabase } = data);
 
-	// get page redirectTo and redirect when closing window
+	const redirectTo = $page.url.searchParams.get('redirectTo') ?? '/';
 
 	const loginWithGoogle = async () => {
 		const { error } = await supabase.auth.signInWithOAuth({
@@ -22,9 +22,7 @@
 </script>
 
 <div class="container">
-	<a data-sveltekit-reload href={$page.url.searchParams.get('redirectTo') ?? '/'}
-		><button class="btn-close" /></a
-	>
+	<a data-sveltekit-reload href={redirectTo}><button class="btn-close" /></a>
 
 	<slot />
 

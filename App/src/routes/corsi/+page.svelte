@@ -1,5 +1,5 @@
 <script>
-	import { getCorsiWithCount } from '$lib/controller/corsi';
+	import { getCorsiWithCount } from '../../lib/controller/corsi';
 
 	import Navbar from '../../lib/components/navbar/Navbar.svelte';
 	import Footer from '../../lib/components/footer/Footer.svelte';
