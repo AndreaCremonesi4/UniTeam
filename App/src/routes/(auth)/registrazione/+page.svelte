@@ -3,7 +3,7 @@
 	import InputGroup from '$lib/components/form/InputGroup.svelte';
 	import AuthForm from '$lib/components/auth/AuthForm.svelte';
 	import { page } from '$app/stores';
-	import { validateEmail, validatePassword, generateAvatar } from '$lib/controller/auth/utilities';
+	import { validateEmail, validatePassword, generateAvatar } from '$lib/controller/auth';
 
 	export let data;
 	let { supabase } = data;

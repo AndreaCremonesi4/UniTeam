@@ -1,5 +1,5 @@
 <script>
-	import { logout } from '$lib/controller/auth/utilities';
+	import { logout } from '$lib/controller/auth';
 	import NavLink from './NavLink.svelte';
 	import { page } from '$app/stores';
 

@@ -1,13 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
 	import InputGroup from '$lib/components/form/InputGroup.svelte';
-	import { validatePassword } from '$lib/controller/auth/utilities';
+	import { validatePassword } from '$lib/controller/auth';
 
 	export let data;
 	let { supabase } = data;
 	$: ({ supabase } = data);
-
-	console.log(data);
 
 	let form;
 	let password, confirmPassword;
@@ -29,7 +27,6 @@
 					const { error } = await supabase.auth.updateUser({ password: password.value });
 
 					if (!error) {
-						console.log('success');
 						showSuccess = true;
 
 						// refresh form

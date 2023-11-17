@@ -6,12 +6,13 @@
 	<div class="course-title">
 		<p class="name text-title">{corso.nome}</p>
 	</div>
+
 	<div class="course-information">
-		<p class="text-body text-dark">
+		<p class="text-body text-dark mb-0">
 			<span class="label text-dark">Codice:</span>
 			{corso.codice}
 		</p>
-		<p class="text-body text-dark">
+		<p class="text-body text-dark mb-0">
 			<span class="label text-dark">Anno:</span>
 			{corso.anno}
 		</p>

@@ -1,7 +1,8 @@
 <script>
-	export let item;
-
+	import StarRating from '../reviews/StarRating.svelte';
 	import userIcon from '$lib/assets/icons/User.png';
+
+	export let item;
 </script>
 
 <a class="px-3 scheda text-black d-flex" href="/professori/{item.id}">
@@ -18,10 +19,12 @@
 				{item.struttura}
 			</p>
 			{#if item.email}
-				<p>
+				<p class="mb-0">
 					<a class="text-break" href="mailto:{item.email}">{item.email}</a>
 				</p>
 			{/if}
+
+			<StarRating class="mb-2" readOnly={true} value={Math.round(item.valutazione_media)} />
 		</div>
 	</div>
 </a>

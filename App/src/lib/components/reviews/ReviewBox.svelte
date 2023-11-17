@@ -5,8 +5,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let data = {};
-
-	let modifyMode = Object.keys(data).length === 0;
+	let modifyMode = data ? Object.keys(data).length === 0 : false;
 	let submitButton;
 
 	$: submitButton != undefined && data.valutazione && data.descrizione
@@ -17,8 +16,7 @@
 		if (!modifyMode) {
 			modifyMode = true;
 		} else {
-			const today = new Date();
-			data.data_modifica = `${today.getDate()}/${today.getMonth()}/${today.getFullYear()}`;
+			data.data_modifica = new Date();
 
 			dispatch('submit', data);
 
@@ -57,6 +55,7 @@
 				<StarRating value={data.valutazione} readOnly={true} />
 			{/if}
 		</div>
+
 		{#if modifyMode}
 			<textarea
 				class="form-control fw-normal"
@@ -73,7 +72,7 @@
 			>
 		{:else}
 			<p>{data.descrizione}</p>
-			<p><em class="fw-lighter">{data.data_modifica}</em></p>
+			<p><em class="fw-lighter">{new Date(data.data_modifica).toLocaleDateString()}</em></p>
 			<button class="btn btn-secondary sub-header mt-3 mb-4" type="submit">Modifica</button>
 		{/if}
 	</form>

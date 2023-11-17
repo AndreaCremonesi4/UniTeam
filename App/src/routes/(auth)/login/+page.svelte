@@ -4,7 +4,7 @@
 	import AuthForm from '$lib/components/auth/AuthForm.svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { validateEmail } from '$lib/controller/auth/utilities';
+	import { validateEmail } from '$lib/controller/auth';
 
 	export let data;
 	let { supabase } = data;
