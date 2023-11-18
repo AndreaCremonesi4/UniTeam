@@ -1,3 +1,5 @@
+import { checkReviewValidity } from '../utilities';
+
 export async function getRuoli(supabase) {
 	const { data } = await supabase.rpc('get_distinct_values', {
 		column_name: 'ruolo',
@@ -75,7 +77,10 @@ export async function getRecensioneProfessoreUtente(supabase, id_profilo, id_pro
 
 export function addRecensioneProfessore(supabase, dataRecensione, id_professore, id_profilo) {
 	if (!dataRecensione || !id_professore || !id_profilo)
-		return { error: "Errore nell'inserimento dei parametri" };
+		return { error: "Errore durante l'inserimento (parametri errati)" };
+
+	if (!checkReviewValidity(dataRecensione.descrizione))
+		return { error: 'La recensione contiene parole volgari' };
 
 	return supabase
 		.from('recensioni_professori')
