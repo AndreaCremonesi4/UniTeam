@@ -1,6 +1,7 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	import StarRating from './StarRating.svelte';
+	import TextArea from '../form/TextArea.svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -52,11 +53,10 @@
 		</div>
 
 		{#if modifyMode}
-			<textarea
-				class="form-control fw-normal"
-				rows="6"
+			<TextArea
+				rows={6}
 				placeholder="Scrivi la tua recensione..."
-				bind:value={data.descrizione}
+				value={data.descrizione}
 				required
 			/>
 			<button

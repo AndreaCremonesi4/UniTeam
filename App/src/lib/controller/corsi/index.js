@@ -1,4 +1,4 @@
-import { checkReviewValidity } from '../utilities';
+import { checkTextValidity } from '../utilities';
 
 export async function getAnni(supabase) {
 	const { data } = await supabase.rpc('get_distinct_values', {
@@ -30,7 +30,18 @@ export async function getCorsiWithCount(
 	page,
 	pageSize
 ) {
-	const { data, count } = await supabase
+	if (
+		!supabase ||
+		page < 0 ||
+		page === null ||
+		page === undefined ||
+		pageSize < 1 ||
+		pageSize === null ||
+		pageSize === undefined
+	)
+		return { data: undefined, error: new Error("Errore nell'inserimento dei parametri") };
+
+	return supabase
 		.from('corsi')
 		.select('*', { count: 'exact' })
 		.or(
@@ -42,8 +53,6 @@ export async function getCorsiWithCount(
 		.ilike('facolta', filtroFacolta ? `%${filtroFacolta}%` : '%*%')
 		.range(page * pageSize, page * pageSize + pageSize - 1)
 		.order('nome', { ascending: true });
-
-	return { data, count };
 }
 
 export function getCorsoById(supabase, id) {
@@ -79,7 +88,7 @@ export function addRecensioneCorso(supabase, dataRecensione, id_corso, id_profil
 	if (!dataRecensione || !id_corso || !id_profilo)
 		return { error: "Errore durante l'inserimento (parametri errati)" };
 
-	if (!checkReviewValidity(dataRecensione.descrizione))
+	if (!checkTextValidity(dataRecensione.descrizione))
 		return { error: 'La recensione contiene parole volgari' };
 
 	return supabase.from('recensioni_corsi').upsert({ ...dataRecensione, id_corso, id_profilo });

@@ -1,10 +1,10 @@
 import blacklist from '../../data/blacklist.json';
 
-export function checkReviewValidity(testoRecensione) {
-	testoRecensione = testoRecensione.toLowerCase();
+export function checkTextValidity(testo) {
+	testo = testo.toLowerCase();
 
 	for (let i = 0; i < blacklist.length; i++) {
-		if (testoRecensione.includes(blacklist[i])) return false;
+		if (testo.includes(blacklist[i])) return false;
 	}
 
 	return true;

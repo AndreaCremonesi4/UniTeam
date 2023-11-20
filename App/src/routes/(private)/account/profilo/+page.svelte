@@ -11,7 +11,7 @@
 	$: ({ supabase } = data);
 
 	let username, email;
-	let form;
+	let form, formError;
 
 	onMount(async () => {
 		username.value = data.profile.username;
@@ -25,14 +25,24 @@
 
 					form.classList.add('was-validated');
 				} else {
-					// nuovo username - nuovo logo
 					const { error } = await updateProfileUsername(
 						supabase,
 						data.session.user.id,
 						username.value
 					);
 
-					if (!error) invalidateAll();
+					if (!error) {
+						invalidateAll();
+						formError = undefined;
+					} else {
+						switch (error.code) {
+							case '23505':
+								formError = 'Username non disponibile';
+								break;
+							default:
+								formError = error.message;
+						}
+					}
 				}
 			},
 			false
@@ -52,9 +62,16 @@
 			class="user-avatar rounded-circle image-fluid"
 			alt="Profilo"
 		/>
-		<h1 class="text-title">Il mio profilo</h1>
+		<h1 class="text-title mb-4">Il mio profilo</h1>
 
-		<form class="row d-flex flex-column align-items-center g-3 mt-2" bind:this={form} novalidate>
+		{#if formError}
+			<div class="alert alert-danger d-flex align-items-center gap-4" role="alert">
+				<i class="bi bi-exclamation-triangle-fill" />
+				{formError}
+			</div>
+		{/if}
+
+		<form class="row d-flex flex-column align-items-center g-3" bind:this={form} novalidate>
 			<InputGroup bind:input={username} placeholder="Nome Utente" required>
 				<span slot="icon" class="input-group-text gradient-light">
 					<i class="bi bi-person text-white" />
