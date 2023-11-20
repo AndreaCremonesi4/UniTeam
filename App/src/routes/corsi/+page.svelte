@@ -69,7 +69,7 @@
 			{/if}
 		{/await}
 
-		<PageSelector {page} {pageCount} on:pageChange={changePage} />
+		<PageSelector class="mt-3" {page} {pageCount} on:pageChange={changePage} />
 	</div>
 </section>
 

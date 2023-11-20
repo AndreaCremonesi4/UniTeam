@@ -5,6 +5,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let data = {};
+
 	let modifyMode = data ? Object.keys(data).length === 0 : false;
 	let submitButton;
 
@@ -13,15 +14,9 @@
 		: null;
 
 	function submit() {
-		if (!modifyMode) {
-			modifyMode = true;
-		} else {
-			data.data_modifica = new Date();
+		data.data_modifica = new Date();
 
-			dispatch('submit', data);
-
-			modifyMode = false;
-		}
+		dispatch('submit', data);
 	}
 
 	function changeRating(event) {
@@ -73,7 +68,14 @@
 		{:else}
 			<p>{data.descrizione}</p>
 			<p><em class="fw-lighter">{new Date(data.data_modifica).toLocaleDateString()}</em></p>
-			<button class="btn btn-secondary sub-header mt-3 mb-4" type="submit">Modifica</button>
+			<button
+				class="btn btn-secondary sub-header mt-3 mb-4"
+				type="button"
+				on:click={(e) => {
+					e.preventDefault();
+					modifyMode = true;
+				}}>Modifica</button
+			>
 		{/if}
 	</form>
 </div>

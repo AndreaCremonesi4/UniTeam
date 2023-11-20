@@ -8,13 +8,8 @@
 	import { page } from '$app/stores';
 
 	export let data;
-	let { supabase } = data;
-	$: ({ supabase } = data);
-
-	let { corso, recensioni, recensioneUtente } = data;
-	$: corso = data?.corso;
-	$: recensioni = data?.recensioni;
-	$: recensioneUtente = data?.recensioneUtente;
+	let { supabase, corso, recensioni, recensioneUtente } = data;
+	$: ({ supabase, corso, recensioni, recensioneUtente } = data);
 
 	async function submitRating(event) {
 		const { error } = await addRecensioneCorso(
@@ -24,7 +19,11 @@
 			data?.session?.user?.id
 		);
 
-		if (!error) invalidateAll();
+		if (!error) {
+			invalidateAll();
+		} else {
+			window.alert(error);
+		}
 	}
 </script>
 
@@ -41,11 +40,13 @@
 		<hr class="my-5" />
 
 		{#if data.profile}
-			<ReviewBox on:submit={submitRating} data={recensioneUtente ?? {}}>
-				<span slot="sottotitolo">
-					Lascia una recensione per aiutare gli altri studenti ad apprendere di più sul corso
-				</span>
-			</ReviewBox>
+			{#key recensioneUtente}
+				<ReviewBox on:submit={submitRating} data={recensioneUtente ?? {}}>
+					<span slot="sottotitolo">
+						Lascia una recensione per aiutare gli altri studenti ad apprendere di più sul corso
+					</span>
+				</ReviewBox>
+			{/key}
 		{:else}
 			<div class="bg-dark rounded-3 text-white px-4 py-4">
 				<h2 class="text-subtitle mb-0">Accedi per scrivere la tua recensione</h2>
