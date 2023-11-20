@@ -3,7 +3,11 @@
 	import InputGroup from '$lib/components/form/InputGroup.svelte';
 	import AuthForm from '$lib/components/auth/AuthForm.svelte';
 	import { page } from '$app/stores';
-	import { validateEmail, validatePassword, generateAvatar } from '$lib/controller/auth';
+	import {
+		validateEmail,
+		validatePassword,
+		signUpWithEmailAndPassword
+	} from '$lib/controller/auth';
 
 	export let data;
 	let { supabase } = data;
@@ -11,33 +15,17 @@
 
 	const redirectTo = $page.url.searchParams.get('redirectTo');
 
-	let form;
+	let form, formError;
 	let username, email, password, confirmPassword;
 	let showSuccess;
 	let passwordError = 'La password deve contenere almeno 6 caratteri!';
-
-	const handleSignUp = async () => {
-		const { error } = await supabase.auth.signUp({
-			email: email.value,
-			password: password.value,
-			options: {
-				data: {
-					username: username.value.trim(),
-					profile_photo: generateAvatar(username.value.trim().charAt(0))
-				},
-				emailRedirectTo: `${location.origin}/auth/callback${
-					redirectTo ? `?redirectTo=${redirectTo}` : ''
-				}`
-			}
-		});
-
-		return error;
-	};
 
 	onMount(async () => {
 		form.addEventListener(
 			'submit',
 			async (event) => {
+				formError = undefined;
+
 				if (!form.checkValidity()) {
 					event.preventDefault();
 					event.stopPropagation();
@@ -45,7 +33,13 @@
 					form.classList.add('was-validated');
 				} else {
 					// registra l'utente
-					const error = await handleSignUp();
+					const { error } = await signUpWithEmailAndPassword(
+						supabase,
+						email.value,
+						password.value,
+						username.value,
+						redirectTo
+					);
 
 					if (!error) {
 						showSuccess = true;
@@ -53,6 +47,8 @@
 						// refresh form
 						form.classList.remove('was-validated');
 						form.reset();
+					} else {
+						formError = error.message;
 					}
 				}
 			},
@@ -92,6 +88,13 @@
 				<p>Controlla la tua casella di posta elettronica per attivare il tuo account UniTeam.</p>
 			</div>
 			<button type="button" class="btn-close" on:click={() => (showSuccess = false)} />
+		</div>
+	{/if}
+
+	{#if formError}
+		<div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+			<i class="bi bi-exclamation-triangle-fill" />
+			{formError}
 		</div>
 	{/if}
 
