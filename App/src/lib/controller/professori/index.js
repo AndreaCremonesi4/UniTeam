@@ -1,4 +1,4 @@
-import { checkReviewValidity } from '../utilities';
+import { checkTextValidity } from '../utilities';
 
 export async function getRuoli(supabase) {
 	const { data } = await supabase.rpc('get_distinct_values', {
@@ -30,7 +30,18 @@ export async function getProfessoriWithCount(
 	page,
 	pageSize
 ) {
-	const { data, count } = await supabase
+	if (
+		!supabase ||
+		page < 0 ||
+		page === null ||
+		page === undefined ||
+		pageSize < 1 ||
+		pageSize === null ||
+		pageSize === undefined
+	)
+		return { data: undefined, error: new Error("Errore nell'inserimento dei parametri") };
+
+	return supabase
 		.from('professori')
 		.select('*', { count: 'exact' })
 		.ilike('nome', filtroNome ? `%${filtroNome}%` : '%*%')
@@ -38,8 +49,6 @@ export async function getProfessoriWithCount(
 		.ilike('struttura', filtroStruttura ? `%${filtroStruttura}%` : '%*%')
 		.range(page * pageSize, page * pageSize + pageSize - 1)
 		.order('nome', { ascending: true });
-
-	return { data, count };
 }
 
 export function getProfessoreById(supabase, id) {
@@ -79,7 +88,7 @@ export function addRecensioneProfessore(supabase, dataRecensione, id_professore,
 	if (!dataRecensione || !id_professore || !id_profilo)
 		return { error: "Errore durante l'inserimento (parametri errati)" };
 
-	if (!checkReviewValidity(dataRecensione.descrizione))
+	if (!checkTextValidity(dataRecensione.descrizione))
 		return { error: 'La recensione contiene parole volgari' };
 
 	return supabase

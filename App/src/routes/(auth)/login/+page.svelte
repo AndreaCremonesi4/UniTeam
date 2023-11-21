@@ -4,7 +4,7 @@
 	import AuthForm from '$lib/components/auth/AuthForm.svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { validateEmail } from '$lib/controller/auth';
+	import { validateEmail, signInWithEmailAndPassword } from '$lib/controller/auth';
 
 	export let data;
 	let { supabase } = data;
@@ -14,7 +14,7 @@
 
 	let form;
 	let email, password;
-	let showSignInError;
+	let formError;
 
 	onMount(async () => {
 		form.addEventListener(
@@ -24,14 +24,15 @@
 					event.preventDefault();
 					event.stopPropagation();
 				} else {
-					showSignInError = false;
-
-					const error = await signInWithEmail();
-
-					if (!error) {
-						goto(redirectTo ?? '/');
+					const { data, error } = await signInWithEmailAndPassword(
+						supabase,
+						email.value,
+						password.value
+					);
+					if (error) {
+						formError = error.status === 400 ? 'Credenziali errate' : error.message;
 					} else {
-						showSignInError = true;
+						goto(redirectTo ?? '/');
 					}
 				}
 
@@ -44,15 +45,6 @@
 			email.setCustomValidity(!validateEmail(email.value) ? 'error email' : '');
 		});
 	});
-
-	async function signInWithEmail() {
-		const { data, error } = await supabase.auth.signInWithPassword({
-			email: email.value,
-			password: password.value
-		});
-
-		return error;
-	}
 </script>
 
 <AuthForm {data}>
@@ -72,10 +64,10 @@
 			</span>
 		</InputGroup>
 
-		{#if showSignInError}
+		{#if formError}
 			<div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
 				<i class="bi bi-exclamation-triangle-fill" />
-				Credenziali errate!
+				{formError}
 			</div>
 		{/if}
 
