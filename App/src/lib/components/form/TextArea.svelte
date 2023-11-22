@@ -4,6 +4,7 @@
 	export let cols;
 	export let placeholder;
 	export let input;
+	export let value;
 	export let required;
 </script>
 
@@ -16,6 +17,7 @@
 		{rows}
 		{cols}
 		{placeholder}
+		bind:value
 		bind:this={input}
 		{required}
 	/>
