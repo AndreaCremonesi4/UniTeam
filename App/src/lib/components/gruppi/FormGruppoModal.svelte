@@ -5,9 +5,10 @@
 	import { addGruppo } from '../../controller/gruppi';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import ConfirmModal from '../modal/ConfirmModal.svelte';
 
-	export let supabase;
 	export let id;
+	export let supabase;
 
 	let modal;
 	let form;
@@ -18,10 +19,14 @@
 	let errorNome;
 	let errorDescrizione;
 
-	let bootstrapModal;
-
 	onMount(() => {
-		bootstrapModal = new bootstrap.Modal(modal);
+		nome.addEventListener('input', (event) => {
+			nome.setCustomValidity(nome.value.trim() === '' ? 'Nome vuoto' : '');
+		});
+
+		descrizione.addEventListener('input', (event) => {
+			descrizione.setCustomValidity(descrizione.value.trim() === '' ? 'Descrizione vuota' : '');
+		});
 	});
 
 	async function submit() {
@@ -37,12 +42,17 @@
 			if (errorNome) nome.setCustomValidity(errorNome);
 			if (errorDescrizione) descrizione.setCustomValidity(errorDescrizione);
 		} else {
-			const { error, data } = await addGruppo(supabase, nome.value, descrizione.value, privato);
+			const { error, data } = await addGruppo(
+				supabase,
+				nome.value.trim(),
+				descrizione.value.trim(),
+				privato
+			);
 
 			if (error) {
 				window.alert(error.message);
 			} else {
-				bootstrapModal.hide();
+				modal.hide();
 				goto(`/gruppi/${data.id}`);
 			}
 		}
@@ -51,63 +61,40 @@
 	}
 </script>
 
-<div
-	bind:this={modal}
-	{id}
-	class="modal fade"
-	data-bs-backdrop="static"
-	data-bs-keyboard="false"
-	tabindex="-1"
-	aria-labelledby="staticBackdropLabel"
-	aria-hidden="true"
->
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="staticBackdropLabel">Creazione Gruppo</h1>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-			</div>
-			<div class="modal-body">
-				<form bind:this={form} novalidate>
-					<span>Nome</span>
-					<InputGroup class="mb-2" placeholder="Nome del gruppo" bind:input={nome} required>
-						<span slot="invalid">{errorNome ?? 'Compila questo campo'}</span>
-					</InputGroup>
+<ConfirmModal bind:modal {id} onConfirm={submit}>
+	<span slot="title">Creazione Gruppo</span>
 
-					<span>Descrizione</span>
-					<TextArea
-						class="mb-2"
-						id="descrizioneGruppo"
-						placeholder="Scrivi una descrizione per questo gruppo"
-						rows={5}
-						bind:input={descrizione}
-						required
-					/>
+	<form slot="body" bind:this={form} novalidate>
+		<span>Nome</span>
+		<InputGroup class="mb-2" placeholder="Nome del gruppo" bind:input={nome} required>
+			<span slot="invalid">{errorNome ?? 'Compila questo campo'}</span>
+		</InputGroup>
 
-					<span>Visibilità</span>
-					<div class="form-check form-switch">
-						<input
-							class="form-check-input"
-							type="checkbox"
-							role="switch"
-							id="flexSwitchCheckDefault"
-							bind:checked={privato}
-						/>
-						<label class="form-check-label text-body-tertiary" for="flexSwitchCheckDefault">
-							<i class="bi {privato ? 'bi-lock-fill' : 'bi-unlock-fill'}" />
-							{privato ? 'Privato (Accesso tramite chiave)' : 'Pubblico (Accesso libero)'}
-						</label>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button
-					type="button"
-					class="btn bg-black opacity-50 text-white rounded-1 py-2"
-					data-bs-dismiss="modal">Annulla</button
-				>
-				<button type="button" class="btn btn-primary rounded-1 py-2" on:click={submit}>Crea</button>
-			</div>
+		<span>Descrizione</span>
+		<TextArea
+			class="mb-2"
+			id="descrizioneGruppo"
+			placeholder="Scrivi una descrizione per questo gruppo"
+			rows={5}
+			bind:input={descrizione}
+			required
+		/>
+
+		<span>Visibilità</span>
+		<div class="form-check form-switch">
+			<input
+				class="form-check-input"
+				type="checkbox"
+				role="switch"
+				id="flexSwitchCheckDefault"
+				bind:checked={privato}
+			/>
+			<label class="form-check-label text-body-tertiary" for="flexSwitchCheckDefault">
+				<i class="bi {privato ? 'bi-lock-fill' : 'bi-unlock-fill'}" />
+				{privato ? 'Privato (Accesso tramite chiave)' : 'Pubblico (Accesso libero)'}
+			</label>
 		</div>
-	</div>
-</div>
+	</form>
+
+	<span slot="confirm-text">Crea</span>
+</ConfirmModal>
