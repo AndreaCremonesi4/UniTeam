@@ -1,5 +1,6 @@
 <script>
 	import Navbar from '$lib/components/navbar/Navbar.svelte';
+	import Footer from '$lib/components/footer/Footer.svelte';
 	import InfoProfessore from '../../../lib/components/professori/InfoProfessore.svelte';
 	import ReviewBox from '../../../lib/components/reviews/ReviewBox.svelte';
 	import ReviewList from '../../../lib/components/reviews/ReviewList.svelte';
@@ -62,3 +63,5 @@
 		<ReviewList data={recensioni} valutazioneMedia={Math.round(professore.valutazione_media)} />
 	</div>
 </section>
+
+<Footer />

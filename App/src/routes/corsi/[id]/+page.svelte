@@ -1,5 +1,6 @@
 <script>
 	import Navbar from '../../../lib/components/navbar/Navbar.svelte';
+	import Footer from '../../../lib/components/footer/Footer.svelte';
 	import InfoCorsi from '../../../lib/components/corsi/InfoCorsi.svelte';
 	import ReviewBox from '../../../lib/components/reviews/ReviewBox.svelte';
 	import ReviewList from '../../../lib/components/reviews/ReviewList.svelte';
@@ -62,6 +63,8 @@
 		<ReviewList data={recensioni} valutazioneMedia={Math.round(corso.valutazione_media)} />
 	</div>
 </section>
+
+<Footer />
 
 <style>
 	.container {
