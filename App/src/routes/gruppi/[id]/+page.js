@@ -1,23 +1,31 @@
-import { getGruppoById, getIscrittiGruppo } from '../../../lib/controller/gruppi';
+import { getGruppoById, getIscrittiGruppo, getMessaggi } from '../../../lib/controller/gruppi';
 
 export async function load({ params, parent }) {
 	const parentData = await parent();
 
-	const { data: gruppo } = await getGruppoById(parentData.supabase, params.id);
+	const { supabase, session } = parentData;
 
-	const { data: iscritti } = await getIscrittiGruppo(parentData.supabase, params.id);
+	const { data: gruppo } = await getGruppoById(supabase, params.id);
 
-	const { data: idIscrizioneUtente } = parentData?.session?.user?.id
-		? await parentData.supabase.rpc('is_subscribed', {
+	const { data: iscritti } = await getIscrittiGruppo(supabase, params.id);
+
+	const { data: idIscrizioneUtente } = session?.user?.id
+		? await supabase.rpc('is_subscribed', {
 				id_gruppo: gruppo.id,
-				id_profilo: parentData.session.user.id
+				id_profilo: session.user.id
 		  })
 		: { data: undefined };
+
+	const pageSize = 10;
+
+	const { data: messaggi } = await getMessaggi(supabase, params.id, { min: 0, max: pageSize });
 
 	return {
 		...parentData,
 		gruppo,
 		iscritti,
-		idIscrizioneUtente
+		idIscrizioneUtente,
+		messaggi,
+		pageSize
 	};
 }

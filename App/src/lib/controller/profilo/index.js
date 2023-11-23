@@ -1,6 +1,17 @@
 import { generateAvatar } from '$lib/controller/auth';
 
+export function getInfoProfilo(supabase, id) {
+	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+
+	return supabase.from('profiles').select('*').eq('id', id).single();
+}
+
 export async function updateProfileUsername(supabase, id, username) {
+	if (!supabase || !id || !username.trim())
+		return { error: "Errore nell'inserimento dei parametri" };
+
+	username = username.trim();
+
 	const avatar = generateAvatar(username.trim().charAt(0));
 
 	const newProfile = {
