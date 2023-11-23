@@ -9,3 +9,45 @@ export function checkTextValidity(testo) {
 
 	return true;
 }
+
+// Viewport observer
+
+let intersectionObserver;
+
+function ensureIntersectionObserver() {
+	if (intersectionObserver) return;
+
+	intersectionObserver = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			const eventName = entry.isIntersecting ? 'enterViewport' : 'exitViewport';
+			entry.target.dispatchEvent(new CustomEvent(eventName));
+		});
+	});
+}
+
+export default function viewport(element) {
+	ensureIntersectionObserver();
+
+	intersectionObserver.observe(element);
+
+	return {
+		destroy() {
+			intersectionObserver.unobserve(element);
+		}
+	};
+}
+
+//
+export function convertiDataMessaggio(dataString) {
+	const data = new Date(dataString);
+
+	const minuti = data.getMinutes().toString().padStart(2, '0');
+	const ore = data.getHours().toString().padStart(2, '0');
+	const giorno = data.getDate().toString().padStart(2, '0');
+	const mese = (data.getMonth() + 1).toString().padStart(2, '0');
+	const anno = data.getFullYear();
+
+	const dataFormattata = `${giorno}/${mese}/${anno} - ${ore}:${minuti}`;
+
+	return dataFormattata;
+}

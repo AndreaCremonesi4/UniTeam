@@ -1,7 +1,5 @@
 export function getGruppoById(supabase, id) {
-	if (!supabase || !id?.trim()) return { error: "Errore nell'inserimento dei parametri" };
-
-	id = id.trim();
+	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
 
 	return supabase.from('gruppi').select('*, profiles(*)').eq('id', id).single();
 }
@@ -41,9 +39,7 @@ export function addGruppo(supabase, nome, descrizione, privato) {
 }
 
 export function getIscrittiGruppo(supabase, id_gruppo) {
-	if (!supabase || !id_gruppo?.trim()) return { error: "Errore nell'inserimento dei parametri" };
-
-	id_gruppo = id_gruppo.trim();
+	if (!supabase || !id_gruppo) return { error: "Errore nell'inserimento dei parametri" };
 
 	return supabase
 		.from('iscrizioni_gruppi')
@@ -53,18 +49,15 @@ export function getIscrittiGruppo(supabase, id_gruppo) {
 }
 
 export function joinGruppo(supabase, id_gruppo) {
-	if (!supabase || !id_gruppo?.trim()) return { error: "Errore nell'inserimento dei parametri" };
-
-	id_gruppo = id_gruppo.trim();
+	if (!supabase || !id_gruppo) return { error: "Errore nell'inserimento dei parametri" };
 
 	return supabase.from('iscrizioni_gruppi').insert({ id_gruppo });
 }
 
 export async function joinGruppoWithCode(supabase, id_gruppo, codice_ingresso) {
-	if (!supabase || !id_gruppo?.trim() || !codice_ingresso?.trim())
+	if (!supabase || !id_gruppo || !codice_ingresso?.trim())
 		return { error: "Errore nell'inserimento dei parametri" };
 
-	id_gruppo = id_gruppo.trim();
 	codice_ingresso = codice_ingresso.trim();
 
 	// verifica se il codice di ingresso è corretto
@@ -73,8 +66,6 @@ export async function joinGruppoWithCode(supabase, id_gruppo, codice_ingresso) {
 		id_gruppo
 	});
 
-	console.log(codeMatch);
-
 	if (!codeMatch) return { error: 'Il codice di ingresso è errato' };
 	else if (error) return { error };
 
@@ -82,10 +73,25 @@ export async function joinGruppoWithCode(supabase, id_gruppo, codice_ingresso) {
 }
 
 export function leaveGruppo(supabase, id_iscrizione) {
-	if (!supabase || !id_iscrizione?.trim())
-		return { error: "Errore nell'inserimento dei parametri" };
-
-	id_iscrizione = id_iscrizione.trim();
+	if (!supabase || !id_iscrizione) return { error: "Errore nell'inserimento dei parametri" };
 
 	return supabase.from('iscrizioni_gruppi').delete().eq('id', id_iscrizione);
+}
+
+export function getMessaggi(supabase, id_gruppo, range = { min: 0, max: 10 }) {
+	if (!supabase || !id_gruppo) return { error: "Errore nell'inserimento dei parametri" };
+
+	return supabase
+		.from('messaggi')
+		.select('*, profiles(*)')
+		.order('data', { ascending: false })
+		.range(range.min, range.max)
+		.eq('id_gruppo', id_gruppo);
+}
+
+// TODO aggiungere la possibilità di inviare file multimediali dopo averli inseritit nel DB
+export function sendMessage(supabase, testo, id_gruppo) {
+	if (!supabase || !id_gruppo) return { error: "Errore nell'inserimento dei parametri" };
+
+	return supabase.from('messaggi').insert({ testo, id_gruppo });
 }
