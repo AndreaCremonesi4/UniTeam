@@ -90,8 +90,36 @@ export function getMessaggi(supabase, id_gruppo, range = { min: 0, max: 10 }) {
 }
 
 // TODO aggiungere la possibilità di inviare file multimediali dopo averli inseritit nel DB
-export function sendMessage(supabase, testo, id_gruppo) {
-	if (!supabase || !id_gruppo) return { error: "Errore nell'inserimento dei parametri" };
+export async function sendMessage(supabase, testo, file, id_gruppo) {
+	if (!supabase || !id_gruppo || (!testo.trim() && !file))
+		return { error: "Errore nell'inserimento dei parametri" };
 
-	return supabase.from('messaggi').insert({ testo, id_gruppo });
+	if (testo) testo = testo.trim();
+
+	var media;
+
+	if (file) {
+		let filename = `${crypto.randomUUID()}.${file.name.split('.').pop()}`;
+
+		const { error: uploadError } = await supabase.storage
+			.from('Uploads')
+			.upload(`public/${filename}`, file);
+
+		if (uploadError) return { error: uploadError.error };
+
+		const { data, error } = await supabase.storage
+			.from('Uploads')
+			.getPublicUrl(`public/${filename}`);
+
+		if (error) return error.error;
+
+		media = {
+			filename: file.name,
+			publicUrl: data.publicUrl
+		};
+
+		media = JSON.stringify(media);
+	}
+
+	return supabase.from('messaggi').insert({ testo, media, id_gruppo });
 }
