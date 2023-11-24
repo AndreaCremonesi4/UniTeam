@@ -1,8 +1,13 @@
 <script>
 	export let item;
+	export let openInNewPage = false;
 </script>
 
-<a class="px-3 scheda text-black d-flex" href="/gruppi/{item.id}">
+<a
+	class="px-3 scheda text-black d-flex"
+	href="/gruppi/{item.id}"
+	target={openInNewPage ? '_blank' : ''}
+>
 	<div class="col py-3">
 		<h1 class="mb-1 sub-header fw-semibold">
 			<i class="bi {item.privato ? 'bi-lock-fill' : 'bi-unlock-fill'} text-body-tertiary" />

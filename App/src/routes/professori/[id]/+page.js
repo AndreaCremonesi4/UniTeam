@@ -16,13 +16,19 @@ export async function load({ params, parent }) {
 		params.id
 	);
 
+	const pageSize = 10;
+
 	// ottiene le recensioni del corso
-	const { data: recensioni } = await getRecensioniProfessore(parentData.supabase, params.id);
+	const { data: recensioni } = await getRecensioniProfessore(parentData.supabase, params.id, {
+		min: 0,
+		max: pageSize
+	});
 
 	return {
 		...parentData,
 		professore,
 		recensioneUtente,
-		recensioni
+		recensioni,
+		pageSize
 	};
 }

@@ -2,11 +2,14 @@
 	import { joinGruppo, leaveGruppo } from '$lib/controller/gruppi';
 	import { invalidateAll, goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	export let data;
 
 	let { supabase, session, gruppo, idIscrizioneUtente } = data;
 	$: ({ supabase, session, gruppo, idIscrizioneUtente } = data);
+
+	let codeCopied;
 
 	async function unisciti() {
 		if (!session || !session?.user) return goto(`/login?redirectTo=${$page.url.pathname}`);
@@ -22,6 +25,12 @@
 
 		if (error) window.alert(error);
 		else invalidateAll();
+	}
+
+	function copiaCodice() {
+		navigator.clipboard.writeText(gruppo.codice_ingresso);
+
+		codeCopied = true;
 	}
 </script>
 
@@ -39,7 +48,13 @@
 	{#if session?.user && gruppo.proprietario === session.user.id}
 		{#if gruppo.privato}
 			<div class="d-flex justify-content-center">
-				<p>Codice ingresso: {gruppo.codice_ingresso}</p>
+				<p id="codice-ingresso" class="mb-0">Codice ingresso: {gruppo.codice_ingresso}</p>
+				<button
+					class="btn py-0 lh-base"
+					title={codeCopied ? 'Codice copiato!' : 'Copia il codice'}
+					on:click={copiaCodice}
+					><i class="bi {codeCopied ? 'bi-clipboard-check' : 'bi-clipboard-fill'}" /></button
+				>
 			</div>
 		{/if}
 	{:else}

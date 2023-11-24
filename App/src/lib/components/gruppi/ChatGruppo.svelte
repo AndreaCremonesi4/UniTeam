@@ -3,8 +3,8 @@
 	import { sendMessage, getMessaggi } from '../../controller/gruppi';
 	import { getInfoProfilo } from '../../controller/profilo';
 	import { onMount } from 'svelte';
-	import viewport from '../../controller/utilities';
 	import Messaggio from './Messaggio.svelte';
+	import CaricaAltro from '../utilities/CaricaAltro.svelte';
 
 	export let data;
 	let containerMessaggi;
@@ -60,7 +60,7 @@
 		}
 	}
 
-	async function caricaAltri(event) {
+	async function caricaAltro(event) {
 		if (isLoading) return;
 
 		isLoading = true;
@@ -95,11 +95,7 @@
 				/>
 			{/each}
 
-			<div class="d-flex w-100 justify-content-center" use:viewport on:enterViewport={caricaAltri}>
-				<div class="spinner-border text-primary" role="status">
-					<span class="visually-hidden">Loading...</span>
-				</div>
-			</div>
+			<CaricaAltro {caricaAltro} />
 		{:else}
 			<div class="h-100 d-flex justify-content-center align-items-center">
 				<p class="text-subtitle fw-normal opacity-50">Ancora nessun messaggio!</p>

@@ -42,3 +42,23 @@ export async function getRecensioniProfessori(supabase, id_profilo, range) {
 		.eq('id_profilo', id_profilo)
 		.range(range.min, range.max);
 }
+
+export function getGruppiUtenteProprietario(supabase, id_profilo, range) {
+	if (!supabase || !id_profilo) return { error: "Errore nell'inserimento dei parametri" };
+
+	return supabase
+		.from('gruppi')
+		.select('*')
+		.eq('proprietario', id_profilo)
+		.range(range.min, range.max);
+}
+
+export function getGruppiUtenteIscritto(supabase, id_profilo, range) {
+	if (!supabase || !id_profilo) return { error: "Errore nell'inserimento dei parametri" };
+
+	return supabase
+		.from('iscrizioni_gruppi')
+		.select('gruppi(*)')
+		.eq('id_profilo', id_profilo)
+		.range(range.min, range.max);
+}

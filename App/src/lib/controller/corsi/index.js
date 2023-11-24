@@ -60,22 +60,14 @@ export function getCorsoById(supabase, id) {
 	return supabase.from('corsi').select('*').eq('id', id).single();
 }
 
-export async function getRecensioniCorso(supabase, id) {
-	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+export async function getRecensioniCorso(supabase, id, range) {
+	if (!supabase || !id || !range) return { error: "Errore nell'inserimento dei parametri" };
+
 	return supabase
 		.from('recensioni_corsi')
-		.select(
-			`
-			id,
-			valutazione,
-			descrizione,
-			data_modifica,
-			profiles (
-				username
-			)
-		`
-		)
-		.eq('id_corso', id);
+		.select('*,profiles (username)')
+		.eq('id_corso', id)
+		.range(range.min, range.max);
 }
 
 export async function getRecensioneCorsoUtente(supabase, id_profilo, id_corso) {
