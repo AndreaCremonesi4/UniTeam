@@ -56,22 +56,13 @@ export function getProfessoreById(supabase, id) {
 	return supabase.from('professori').select('*').eq('id', id).single();
 }
 
-export async function getRecensioniProfessore(supabase, id) {
-	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+export async function getRecensioniProfessore(supabase, id, range) {
+	if (!supabase || !id || !range) return { error: "Errore nell'inserimento dei parametri" };
 	return supabase
 		.from('recensioni_professori')
-		.select(
-			`
-			id,
-			valutazione,
-			descrizione,
-			data_modifica,
-			profiles (
-				username
-			)
-		`
-		)
-		.eq('id_professore', id);
+		.select('*, profiles (username)')
+		.eq('id_professore', id)
+		.range(range.min, range.max);
 }
 
 export async function getRecensioneProfessoreUtente(supabase, id_profilo, id_professore) {

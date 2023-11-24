@@ -1,9 +1,11 @@
 <script>
 	import Review from './Review.svelte';
 	import StarRating from './StarRating.svelte';
+	import CaricaAltro from '../utilities/CaricaAltro.svelte';
 
 	export let valutazioneMedia;
 	export let data;
+	export let caricaAltro;
 </script>
 
 <div class="mt-5">
@@ -21,6 +23,8 @@
 				<Review data={recensione} />
 			{/each}
 		</div>
+
+		<CaricaAltro class="mt-2" {caricaAltro} />
 	{:else}
 		<h2 class="fw-light opacity-50">Ancora nessuna recensione. Dai la tua opinione!</h2>
 	{/if}

@@ -4,13 +4,13 @@
 	import InfoProfessore from '../../../lib/components/professori/InfoProfessore.svelte';
 	import ReviewBox from '../../../lib/components/reviews/ReviewBox.svelte';
 	import ReviewList from '../../../lib/components/reviews/ReviewList.svelte';
-	import { addRecensioneProfessore } from '$lib/controller/professori';
+	import { addRecensioneProfessore, getRecensioniProfessore } from '$lib/controller/professori';
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 
 	export let data;
-	let { supabase, professore, recensioni, recensioneUtente } = data;
-	$: ({ supabase, professore, recensioni, recensioneUtente } = data);
+	let { supabase, professore, recensioneUtente, recensioni, pageSize } = data;
+	$: ({ supabase, professore, recensioneUtente, recensioni, pageSize } = data);
 
 	async function submitRating(event) {
 		const { error } = await addRecensioneProfessore(
@@ -24,6 +24,25 @@
 			invalidateAll();
 		} else {
 			window.alert(error);
+		}
+	}
+
+	async function caricaAltro(event) {
+		const { data: altreRecensioni, error } = await getRecensioniProfessore(
+			supabase,
+			professore.id,
+			{
+				min: recensioni.length,
+				max: recensioni.length + pageSize
+			}
+		);
+
+		if (error) return window.alert(error);
+
+		if (altreRecensioni.length === 0) {
+			event.target.setAttribute('style', 'display:none !important;');
+		} else {
+			recensioni = [...recensioni, ...altreRecensioni];
 		}
 	}
 </script>
@@ -60,7 +79,11 @@
 			</div>
 		{/if}
 
-		<ReviewList data={recensioni} valutazioneMedia={Math.round(professore.valutazione_media)} />
+		<ReviewList
+			data={recensioni}
+			valutazioneMedia={Math.round(professore.valutazione_media)}
+			{caricaAltro}
+		/>
 	</div>
 </section>
 
