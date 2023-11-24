@@ -10,8 +10,39 @@
 	let { supabase, recensioniCorsi, recensioniProfessori, pageSize } = data;
 	$: ({ supabase, recensioniCorsi, recensioniProfessori, pageSize } = data);
 
-	let rangeRecensioniCorsi;
-	let rangeRecensioniProfessori;
+	async function mostraAltreRecensioniCorsi(event) {
+		const { data: altreRecensioni, error } = await getRecensioniCorsi(supabase, data.profile.id, {
+			min: recensioniCorsi.length,
+			max: recensioniCorsi.length + pageSize
+		});
+
+		if (error) return window.alert(error);
+
+		if (altreRecensioni.length === 0) {
+			event.target.setAttribute('style', 'display:none !important;');
+		} else {
+			recensioniCorsi = [...recensioniCorsi, ...altreRecensioni];
+		}
+	}
+
+	async function mostraAltreRecensioniProfessori(event) {
+		const { data: altreRecensioni, error } = await getRecensioniProfessori(
+			supabase,
+			data.profile.id,
+			{
+				min: recensioniProfessori.length,
+				max: recensioniProfessori.length + pageSize
+			}
+		);
+
+		if (error) return window.alert(error);
+
+		if (altreRecensioni.length === 0) {
+			event.target.setAttribute('style', 'display:none !important;');
+		} else {
+			recensioniProfessori = [...recensioniProfessori, ...altreRecensioni];
+		}
+	}
 </script>
 
 <Navbar {data} />
@@ -22,22 +53,14 @@
 
 		<Tabs labels={['Corsi', 'Professori']}>
 			<ListaRecensioni
-				bind:range={rangeRecensioniCorsi}
 				recensioni={recensioniCorsi}
 				component={RecensioneCorsoUtente}
-				{pageSize}
-				showMore={() => {
-					return getRecensioniCorsi(supabase, data.profile.id, rangeRecensioniCorsi);
-				}}
+				showMore={mostraAltreRecensioniCorsi}
 			/>
 			<ListaRecensioni
-				bind:range={rangeRecensioniProfessori}
 				recensioni={recensioniProfessori}
 				component={RecensioneProfessoreUtente}
-				{pageSize}
-				showMore={() => {
-					return getRecensioniProfessori(supabase, data.profile.id, rangeRecensioniProfessori);
-				}}
+				showMore={mostraAltreRecensioniProfessori}
 			/>
 		</Tabs>
 	</div>
