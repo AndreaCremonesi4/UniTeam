@@ -1,7 +1,9 @@
 <script>
-	export let session;
+	export let data;
 	export let profilo;
-	export let gruppo;
+
+	let { session, gruppo } = data;
+	$: ({ session, gruppo } = data);
 </script>
 
 <div class="d-flex align-items-center mb-2 {$$props.class}">

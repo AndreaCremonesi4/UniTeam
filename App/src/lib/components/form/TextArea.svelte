@@ -6,13 +6,14 @@
 	export let input;
 	export let value;
 	export let required;
+	export let resizable = true;
 </script>
 
 <div class="input-group has-validation {$$props.class}">
 	<slot name="icon" />
 
 	<textarea
-		class="form-control fw-normal"
+		class="form-control fw-normal {resizable === false ? 'not-resizable' : ''}"
 		{id}
 		{rows}
 		{cols}
@@ -28,3 +29,9 @@
 
 	<slot />
 </div>
+
+<style>
+	.not-resizable {
+		resize: none;
+	}
+</style>
