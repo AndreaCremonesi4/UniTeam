@@ -1,6 +1,7 @@
 <script>
 	import { joinGruppo, leaveGruppo } from '$lib/controller/gruppi';
-	import { invalidateAll } from '$app/navigation';
+	import { invalidateAll, goto } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	export let data;
 
@@ -8,6 +9,8 @@
 	$: ({ supabase, session, gruppo, idIscrizioneUtente } = data);
 
 	async function unisciti() {
+		if (!session || !session?.user) return goto(`/login?redirectTo=${$page.url.pathname}`);
+
 		const { error } = await joinGruppo(supabase, gruppo.id);
 
 		if (error) window.alert(error);

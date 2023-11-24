@@ -108,7 +108,7 @@
 	</div>
 </div>
 
-{#if idIscrizioneUtente}
+{#if idIscrizioneUtente || gruppo.proprietario === session?.user?.id}
 	<form
 		bind:this={form}
 		on:submit|preventDefault={inviaMessaggio}
