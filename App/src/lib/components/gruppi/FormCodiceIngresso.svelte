@@ -1,15 +1,18 @@
 <script>
 	import { joinGruppoWithCode } from '$lib/controller/gruppi';
-	import { invalidateAll } from '$app/navigation';
+	import { invalidateAll, goto } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	export let data;
 
-	let { supabase, gruppo } = data;
-	$: ({ supabase, gruppo } = data);
+	let { supabase, session, gruppo } = data;
+	$: ({ supabase, session, gruppo } = data);
 
 	let codice_ingresso;
 
 	async function uniscitiConCodice() {
+		if (!session || !session?.user) return goto(`/login?redirectTo=${$page.url.pathname}`);
+
 		const { error } = await joinGruppoWithCode(supabase, gruppo.id, codice_ingresso);
 
 		if (error) window.alert(error);
