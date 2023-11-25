@@ -55,12 +55,14 @@
 	<div class="container">
 		<h1 class="text-title text-dark">Professori</h1>
 
-		<FiltriProfessori on:changeFilters={filter} {supabase} />
+		<FiltriProfessori on:changeFilters={filter} {data} />
 
 		<PageSelector {page} {pageCount} on:pageChange={changePage} />
 
 		{#await professoriData}
-			<p>Caricamento...</p>
+			<div class="spinner-border text-primary" role="status">
+				<span class="visually-hidden">Caricamento...</span>
+			</div>
 		{:then professori}
 			{#if professori && professori.data && professori.data.length > 0}
 				<GridLayout items={professori.data} let:prop={item} component={SchedaProfessore} />

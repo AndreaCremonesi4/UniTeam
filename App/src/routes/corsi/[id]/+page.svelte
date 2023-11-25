@@ -12,18 +12,28 @@
 	let { supabase, corso, recensioneUtente, recensioni, pageSize } = data;
 	$: ({ supabase, corso, recensioneUtente, recensioni, pageSize } = data);
 
-	async function submitRating(event) {
-		const { error } = await addRecensioneCorso(
-			supabase,
-			event?.detail,
-			corso?.id,
-			data?.session?.user?.id
-		);
+	let isLoading;
 
-		if (!error) {
-			invalidateAll();
-		} else {
-			window.alert(error);
+	async function submitRating(event) {
+		isLoading = true;
+
+		try {
+			const { error } = await addRecensioneCorso(
+				supabase,
+				event?.detail,
+				corso?.id,
+				data?.session?.user?.id
+			);
+
+			if (!error) {
+				await invalidateAll();
+			} else {
+				window.alert(error);
+			}
+		} catch (ex) {
+			window.alert(ex);
+		} finally {
+			isLoading = false;
 		}
 	}
 
@@ -57,7 +67,7 @@
 
 		{#if data.profile}
 			{#key recensioneUtente}
-				<ReviewBox on:submit={submitRating} data={recensioneUtente ?? {}}>
+				<ReviewBox on:submit={submitRating} data={recensioneUtente ?? {}} {isLoading}>
 					<span slot="sottotitolo">
 						Lascia una recensione per aiutare gli altri studenti ad apprendere di più sul corso
 					</span>
