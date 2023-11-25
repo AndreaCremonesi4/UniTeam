@@ -8,11 +8,11 @@
 <section class="container">
 	<div class="col d-flex flex-column justify-content-center align-items-center text-center">
 		<div class="row mb-5 pb-5">
-			<h2 class="text-title text-dark">Recensioni</h2>
-			<p class="text-body">
-				Hai mai desiderato un luogo dove poter condividere le tue esperienze sugli insegnanti e i
-				corsi universitari? UniTeam è qui per te! Scrivi recensioni dettagliate sui corsi e i
-				professori per aiutare i tuoi compagni di corso a prendere decisioni informate.
+			<h2 id="review-title" class="text-title text-dark">Recensioni</h2>
+			<p id="review-body" class="text-body">
+				Hai mai desiderato un luogo dove poter condividere le tue esperienze sugli insegnanti e i<br
+				/>corsi universitari? UniTeam è qui per te! Scrivi recensioni dettagliate sui corsi e i<br
+				/>professori per aiutare i tuoi compagni di corso a prendere decisioni informate.
 			</p>
 		</div>
 

@@ -23,14 +23,12 @@ alt Utente non autenticato
     |||
 else Utente autenticato
     Sistema -->> Utente: Mostra pagina Corsi
-
-    Sistema -->> Utente: Mostra pagina del corso
     Utente -> Sistema: Ricerca corso con filtri
     Sistema -> Database: Manda query al Database
     activate Database
     Database -->> Sistema: Risultati query
     deactivate Database
-    Sistema -->> Utente: Mostra lista aggiornata ai corsi
+    Sistema -->> Utente: Mostra lista aggiornata dei corsi
     deactivate Sistema
     
     Utente -> Sistema: Apre pagina Corso
