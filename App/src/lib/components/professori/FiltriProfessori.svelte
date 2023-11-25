@@ -2,11 +2,13 @@
 	import { createEventDispatcher } from 'svelte';
 	import GridFilters from '../layout/GridFilters.svelte';
 	import SelectInput from '../form/SelectInput.svelte';
-	import { getRuoli, getStrutture } from '$lib/controller/professori';
 
 	const dispatch = createEventDispatcher();
 
-	export let supabase;
+	export let data;
+
+	let { ruoli, strutture } = data;
+	$: ({ ruoli, strutture } = data);
 
 	let inputNome = '';
 	let inputRuolo = '';
@@ -29,12 +31,7 @@
 
 	<div>
 		<span>Ruolo</span>
-		<SelectInput
-			class="w-100"
-			options={getRuoli(supabase)}
-			bind:input={inputRuolo}
-			onChange={changeFilters}
-		/>
+		<SelectInput class="w-100" options={ruoli} bind:input={inputRuolo} onChange={changeFilters} />
 	</div>
 
 	<div style="max-width: 500px">
@@ -42,7 +39,7 @@
 
 		<SelectInput
 			class="w-100"
-			options={getStrutture(supabase)}
+			options={strutture}
 			bind:input={inputStruttura}
 			onChange={changeFilters}
 		/>

@@ -2,11 +2,13 @@
 	import { createEventDispatcher } from 'svelte';
 	import GridFilters from '../layout/GridFilters.svelte';
 	import SelectInput from '../form/SelectInput.svelte';
-	import { getAnni, getFacolta } from '$lib/controller/corsi';
 
 	const dispatch = createEventDispatcher();
 
-	export let supabase;
+	export let data;
+
+	let { anni, facolta } = data;
+	$: ({ anni, facolta } = data);
 
 	let inputNome = '';
 	let inputAnno = '';
@@ -29,12 +31,7 @@
 
 	<div>
 		<span>Anno</span>
-		<SelectInput
-			class="w-100"
-			options={getAnni(supabase)}
-			bind:input={inputAnno}
-			onChange={changeFilters}
-		/>
+		<SelectInput class="w-100" options={anni} bind:input={inputAnno} onChange={changeFilters} />
 	</div>
 
 	<div style="max-width: 500px">
@@ -42,7 +39,7 @@
 
 		<SelectInput
 			class="w-100"
-			options={getFacolta(supabase)}
+			options={facolta}
 			bind:input={inputFacolta}
 			onChange={changeFilters}
 		/>

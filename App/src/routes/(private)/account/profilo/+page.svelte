@@ -12,6 +12,7 @@
 
 	let username, email;
 	let form, formError;
+	let isLoading;
 
 	onMount(async () => {
 		username.value = data.profile.username;
@@ -19,30 +20,14 @@
 		form.addEventListener(
 			'submit',
 			async (event) => {
-				if (!form.checkValidity()) {
-					event.preventDefault();
-					event.stopPropagation();
+				isLoading = true;
 
-					form.classList.add('was-validated');
-				} else {
-					const { error } = await updateProfileUsername(
-						supabase,
-						data.session.user.id,
-						username.value
-					);
-
-					if (!error) {
-						invalidateAll();
-						formError = undefined;
-					} else {
-						switch (error.code) {
-							case '23505':
-								formError = 'Username non disponibile';
-								break;
-							default:
-								formError = error.message;
-						}
-					}
+				try {
+					await changeUsername(event);
+				} catch (ex) {
+					window.alert(ex);
+				} finally {
+					isLoading = false;
 				}
 			},
 			false
@@ -52,6 +37,30 @@
 			username.setCustomValidity(username.value.trim() === '' ? 'Username vuoto' : '');
 		});
 	});
+
+	async function changeUsername(event) {
+		if (!form.checkValidity()) {
+			event.preventDefault();
+			event.stopPropagation();
+
+			form.classList.add('was-validated');
+		} else {
+			const { error } = await updateProfileUsername(supabase, data.session.user.id, username.value);
+
+			if (!error) {
+				await invalidateAll();
+				formError = undefined;
+			} else {
+				switch (error.code) {
+					case '23505':
+						formError = 'Username non disponibile';
+						break;
+					default:
+						formError = error.message;
+				}
+			}
+		}
+	}
 </script>
 
 <Navbar {data} />
@@ -72,7 +81,7 @@
 		{/if}
 
 		<form class="row d-flex flex-column align-items-center g-3" bind:this={form} novalidate>
-			<InputGroup bind:input={username} placeholder="Nome Utente" required>
+			<InputGroup bind:input={username} placeholder="Nome Utente" required disabled={isLoading}>
 				<span slot="icon" class="input-group-text gradient-light">
 					<i class="bi bi-person text-white" />
 				</span>
@@ -84,7 +93,15 @@
 				</span>
 			</InputGroup>
 
-			<button class="btn btn-primary" type="submit" alt="Responsive">Aggiorna</button>
+			<button class="btn btn-primary" type="submit" alt="Responsive" disabled={isLoading}>
+				{#if isLoading}
+					<div class="spinner-border spinner-border-sm" role="status">
+						<span class="visually-hidden">Loading...</span>
+					</div>
+				{:else}
+					Aggiorna
+				{/if}
+			</button>
 
 			<a href="/recupero-password?redirectTo={$page.url.pathname}" class="mt-2"
 				>Vuoi cambiare la password?</a

@@ -6,6 +6,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let data = {};
+	export let isLoading;
 
 	let modifyMode = data ? Object.keys(data).length === 0 : false;
 	let form;
@@ -57,7 +58,16 @@
 				placeholder="Scrivi la tua recensione..."
 				required
 			/>
-			<button class="btn btn-secondary sub-header mt-3 mb-4" type="submit">Invia</button>
+
+			<button class="btn btn-secondary sub-header mt-3 mb-4" type="submit" disabled={isLoading}>
+				{#if isLoading}
+					<div class="spinner-border spinner-border-sm" role="status">
+						<span class="visually-hidden">Caricamento...</span>
+					</div>
+				{:else}
+					Invia
+				{/if}
+			</button>
 		{:else}
 			<p>{data.descrizione}</p>
 			<p><em class="fw-lighter">{new Date(data.data_modifica).toLocaleDateString()}</em></p>
