@@ -14,8 +14,6 @@
 	let { supabase, session, gruppo, iscritti, idIscrizioneUtente } = data;
 	$: ({ supabase, session, gruppo, iscritti, idIscrizioneUtente } = data);
 
-	console.log(iscritti);
-
 	async function rimuoviIscrizione(iscrizione) {
 		iscritti = iscritti.filter((iscritto) => {
 			return iscritto.profiles.id !== iscrizione.profiles.id;

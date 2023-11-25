@@ -1,6 +1,4 @@
 <script>
-	import ConfirmModal from '../modal/ConfirmModal.svelte';
-
 	export let data;
 	export let profilo;
 	export let rimuoviIscritto;
