@@ -2,19 +2,19 @@
 	import InputGroup from '../form/InputGroup.svelte';
 	import TextArea from '../form/TextArea.svelte';
 	import { checkTextValidity } from '$lib/controller/utilities';
-	import { addGruppo } from '../../controller/gruppi';
-	import { goto } from '$app/navigation';
+	import { upsertGruppo } from '../../controller/gruppi';
+	import { goto, invalidateAll } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import ConfirmModal from '../modal/ConfirmModal.svelte';
 
 	export let id;
 	export let supabase;
+	export let gruppo = {};
 
 	let modal;
 	let form;
 	let nome;
 	let descrizione;
-	let privato;
 
 	let errorNome;
 	let errorDescrizione;
@@ -42,18 +42,20 @@
 			if (errorNome) nome.setCustomValidity(errorNome);
 			if (errorDescrizione) descrizione.setCustomValidity(errorDescrizione);
 		} else {
-			const { error, data } = await addGruppo(
+			const { error, data } = await upsertGruppo(
 				supabase,
+				gruppo?.id,
 				nome.value.trim(),
 				descrizione.value.trim(),
-				privato
+				gruppo?.privato ?? false
 			);
 
 			if (error) {
 				window.alert(error.message);
 			} else {
 				modal.hide();
-				goto(`/gruppi/${data.id}`);
+				await goto(`/gruppi/${data.id}`);
+				invalidateAll();
 			}
 		}
 
@@ -62,11 +64,17 @@
 </script>
 
 <ConfirmModal bind:modal {id} onConfirm={submit}>
-	<span slot="title">Creazione Gruppo</span>
+	<span slot="title"><slot name="title">Creazione Gruppo</slot></span>
 
 	<form slot="body" bind:this={form} novalidate>
 		<span>Nome</span>
-		<InputGroup class="mb-2" placeholder="Nome del gruppo" bind:input={nome} required>
+		<InputGroup
+			class="mb-2"
+			placeholder="Nome del gruppo"
+			bind:input={nome}
+			value={gruppo?.nome ?? ''}
+			required
+		>
 			<span slot="invalid">{errorNome ?? 'Compila questo campo'}</span>
 		</InputGroup>
 
@@ -77,6 +85,7 @@
 			placeholder="Scrivi una descrizione per questo gruppo"
 			rows={5}
 			bind:input={descrizione}
+			bind:value={gruppo.descrizione}
 			required
 		/>
 
@@ -87,14 +96,14 @@
 				type="checkbox"
 				role="switch"
 				id="flexSwitchCheckDefault"
-				bind:checked={privato}
+				bind:checked={gruppo.privato}
 			/>
 			<label class="form-check-label text-body-tertiary" for="flexSwitchCheckDefault">
-				<i class="bi {privato ? 'bi-lock-fill' : 'bi-unlock-fill'}" />
-				{privato ? 'Privato (Accesso tramite chiave)' : 'Pubblico (Accesso libero)'}
+				<i class="bi {gruppo.privato ? 'bi-lock-fill' : 'bi-unlock-fill'}" />
+				{gruppo.privato ? 'Privato (Accesso tramite chiave)' : 'Pubblico (Accesso libero)'}
 			</label>
 		</div>
 	</form>
 
-	<span slot="confirm-text">Crea</span>
+	<span slot="confirm-text"><slot name="confirm-text">Crea</slot></span>
 </ConfirmModal>

@@ -28,14 +28,14 @@ export async function getGruppiWithCount(supabase, filtroNome, filtroVisibilita,
 	return query;
 }
 
-export function addGruppo(supabase, nome, descrizione, privato) {
+export function upsertGruppo(supabase, id, nome, descrizione, privato) {
 	if (!supabase || !nome?.trim() || !descrizione?.trim())
 		return { error: "Errore nell'inserimento dei parametri" };
 
 	nome = nome.trim();
 	descrizione = descrizione.trim();
 
-	return supabase.from('gruppi').insert({ nome, descrizione, privato }).select().single();
+	return supabase.from('gruppi').upsert({ id, nome, descrizione, privato }).select().single();
 }
 
 export function getIscrittiGruppo(supabase, id_gruppo) {
@@ -89,7 +89,6 @@ export function getMessaggi(supabase, id_gruppo, range = { min: 0, max: 10 }) {
 		.eq('id_gruppo', id_gruppo);
 }
 
-// TODO aggiungere la possibilità di inviare file multimediali dopo averli inseritit nel DB
 export async function sendMessage(supabase, testo, file, id_gruppo) {
 	if (!supabase || !id_gruppo || (!testo.trim() && !file))
 		return { error: "Errore nell'inserimento dei parametri" };
