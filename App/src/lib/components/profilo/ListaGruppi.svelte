@@ -16,6 +16,8 @@
 			<CaricaAltro {caricaAltro} />
 		</div>
 	{:else}
-		<h2 class="mt-3 fw-light text-body-tertiary">Non sei iscritto a nessun gruppo</h2>
+		<h2 class="mt-3 fw-light text-body-tertiary">
+			<slot name="noResults">Non sei iscritto a nessun gruppo</slot>
+		</h2>
 	{/if}
 </div>

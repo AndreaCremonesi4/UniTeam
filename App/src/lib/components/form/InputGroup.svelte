@@ -3,6 +3,7 @@
 
 	export let id = '';
 	export let input;
+	export let value;
 	export let required = true;
 	export let disabled;
 	export let type = 'text';
@@ -28,6 +29,7 @@
 	<input
 		{id}
 		bind:this={input}
+		{value}
 		{type}
 		class="form-control"
 		{minlength}
