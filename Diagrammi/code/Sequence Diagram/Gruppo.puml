@@ -1,0 +1,60 @@
+@startuml SequenceDiagram
+title Unione a gruppo Pubblici / Privati
+
+skinparam ParticipantPadding 100
+
+actor UTENTE as Utente
+participant SISTEMA as Sistema
+participant SUPABASE as Supabase
+
+database DATABASE as Database
+autonumber 1
+
+Utente -> Sistema: Apre pagina gruppi
+activate Sistema
+Sistema ->> Supabase: Verifica autenticazione utente
+deactivate Sistema
+activate Supabase
+Supabase -->> Sistema: Risultati verifica autenticazione 
+deactivate Supabase
+activate Sistema
+
+
+alt Utente non autenticato
+    Sistema -->> Utente: Mostra pagina di login
+    |||
+else Utente autenticato
+    Sistema -->> Utente: Mostra pagina gruppi
+    Utente -> Sistema: Ricerca gruppo con filtri
+     Sistema -> Database: Manda query al Database
+    activate Database
+    Database -->> Sistema: Risultati query
+    deactivate Database
+    Sistema -->> Utente: Mostra lista aggiornata dei gruppi
+    deactivate Sistema
+    Utente -> Sistema: Apre pagina gruppo
+    alt Gruppo Privato
+        activate Sistema
+        Sistema -->> Utente: Mostra finestra accesso con chiave
+        Utente -> Sistema: Inserisce chiave per unirsi al gruppo
+       
+        Sistema -> Database: Controllo chiave gruppo 
+        activate Database
+        Database -->> Sistema: Risultati controllo
+        deactivate Database
+        alt chiave valida            
+            Utente -> Sistema: Si unisce al gruppo
+            Sistema -->> Utente: Mostra pagina gruppo
+        else chiave invalida
+            Sistema -->> Utente: Mostra messaggio errore
+
+        end
+    else Gruppo Pubblico
+        Sistema -->> Utente: Mostra pagina gruppo
+        Utente -> Sistema: Si unisce al gruppo
+        deactivate Sistema
+    end
+
+
+end
+@enduml

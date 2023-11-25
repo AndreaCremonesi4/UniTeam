@@ -6,7 +6,7 @@
 	}
 </script>
 
-<div class="filter-wrapper {isFilterOpen ? 'open' : ''} ">
+<div id="wrapper-filter" class="filter-wrapper {isFilterOpen ? 'open' : ''} ">
 	<button class="show-filters-btn btn" on:click={toggleFilters}
 		><i class="bi bi-funnel" />
 		<i class="bi {isFilterOpen ? 'bi-chevron-down' : 'bi-chevron-up'}" /></button
