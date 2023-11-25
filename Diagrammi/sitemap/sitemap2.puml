@@ -1,0 +1,97 @@
+@startuml Sitemap
+
+
+'skinparam linetype polyline
+skinparam linetype ortho
+
+
+rectangle HomePage
+
+
+rectangle Login
+rectangle Registrazione
+rectangle Ripristino_password_registrazione as "Ripristino Password"
+
+
+
+
+rectangle Account
+together {
+rectangle Il_mio_profilo as "Il mio profilo"
+rectangle Le_mie_recensioni as "Le mie recensioni"
+rectangle I_miei_gruppi as "I miei gruppi"
+rectangle Ripristino_password_account as "Ripristino Password"
+}
+
+
+rectangle Gruppi
+rectangle Gruppo
+
+
+rectangle Corsi
+rectangle Corso
+
+
+rectangle Professori
+rectangle Professore
+
+
+HomePage -d- Login
+Login -[hidden]u- HomePage
+
+
+HomePage -d- Registrazione
+Registrazione -[hidden]u- HomePage
+
+
+HomePage -d- Gruppi
+Gruppi -[hidden]u- HomePage
+
+
+HomePage -d- Corsi
+Corsi -[hidden]u- HomePage
+
+
+HomePage -d- Professori
+Professori -[hidden]u- HomePage
+
+
+HomePage -d- Account
+Account -[hidden]u- HomePage
+
+Account -d- Il_mio_profilo
+Account -d- Le_mie_recensioni
+Account -d- I_miei_gruppi
+
+
+Il_mio_profilo -d- Ripristino_password_account
+Ripristino_password_account -[hidden]u- Il_mio_profilo
+ 
+Le_mie_recensioni -[hidden]u- Account
+I_miei_gruppi -[hidden]r- Account
+Il_mio_profilo -[hidden]l- Account
+
+
+Le_mie_recensioni -[hidden]- I_miei_gruppi
+I_miei_gruppi -[hidden]u- Le_mie_recensioni
+
+
+I_miei_gruppi -[hidden]d- Il_mio_profilo
+Il_mio_profilo -[hidden]u- I_miei_gruppi
+
+
+
+
+Registrazione -- Ripristino_password_registrazione
+
+
+Gruppi -- Gruppo
+
+
+Corsi -- Corso
+
+
+Professori -- Professore
+
+
+@enduml
