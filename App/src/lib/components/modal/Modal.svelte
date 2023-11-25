@@ -3,7 +3,6 @@
 
 	export let modal;
 	export let id;
-	export let onConfirm = () => {};
 
 	let thisModal;
 

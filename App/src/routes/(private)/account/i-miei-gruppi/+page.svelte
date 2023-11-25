@@ -60,7 +60,9 @@
 		<h1 class="mb-4">I miei Gruppi</h1>
 
 		<Tabs labels={['I Miei Gruppi', 'Altri Gruppi']}>
-			<ListaGruppi gruppi={gruppiProprietario} caricaAltro={caricaAltriGruppiProprietario} />
+			<ListaGruppi gruppi={gruppiProprietario} caricaAltro={caricaAltriGruppiProprietario}>
+				<span slot="noResults">Non hai creato nessun gruppo</span>
+			</ListaGruppi>
 			<ListaGruppi
 				gruppi={gruppiIscritto.map((gruppo) => {
 					return gruppo.gruppi;

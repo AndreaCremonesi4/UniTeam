@@ -3,6 +3,7 @@
 	import { invalidateAll, goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	import FormGruppoModal from './FormGruppoModal.svelte';
 
 	export let data;
 
@@ -47,7 +48,7 @@
 
 	{#if session?.user && gruppo.proprietario === session.user.id}
 		{#if gruppo.privato}
-			<div class="d-flex justify-content-center">
+			<div class="d-flex justify-content-center flex-wrap text-center">
 				<p id="codice-ingresso" class="mb-0">Codice ingresso: {gruppo.codice_ingresso}</p>
 				<button
 					class="btn py-0 lh-base"
@@ -57,6 +58,21 @@
 				>
 			</div>
 		{/if}
+
+		<div class="d-flex justify-content-center">
+			<button
+				class="btn btn-secondary rounded-1 lh-1 py-2 px-4 d-flex align-items-center justify-content-center mt-2 mb-4"
+				data-bs-toggle="modal"
+				data-bs-target="#groupFormModal"
+			>
+				Modifica <i class="bi bi-pencil-square py-1 ms-2" />
+			</button>
+		</div>
+
+		<FormGruppoModal {supabase} id="groupFormModal" {gruppo}>
+			<span slot="title">Modifica Gruppo</span>
+			<span slot="confirm-text">Modifica</span>
+		</FormGruppoModal>
 	{:else}
 		<div class="d-flex justify-content-center">
 			{#if !idIscrizioneUtente}
