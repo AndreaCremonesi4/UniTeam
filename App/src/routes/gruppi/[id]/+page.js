@@ -1,4 +1,9 @@
-import { getGruppoById, getIscrittiGruppo, getMessaggi } from '../../../lib/controller/gruppi';
+import {
+	getGruppoById,
+	getIscrittiGruppo,
+	getMessaggi,
+	getIscrizione
+} from '../../../lib/controller/gruppi';
 
 export async function load({ params, parent }) {
 	const parentData = await parent();
@@ -10,10 +15,7 @@ export async function load({ params, parent }) {
 	const { data: iscritti } = await getIscrittiGruppo(supabase, params.id);
 
 	const { data: idIscrizioneUtente } = session?.user?.id
-		? await supabase.rpc('is_subscribed', {
-				id_gruppo: gruppo.id,
-				id_profilo: session.user.id
-		  })
+		? await getIscrizione(supabase, gruppo.id, session?.user?.id)
 		: { data: undefined };
 
 	const pageSize = 10;

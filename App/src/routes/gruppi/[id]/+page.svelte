@@ -7,7 +7,8 @@
 	import FormCodiceIngresso from '../../../lib/components/gruppi/FormCodiceIngresso.svelte';
 	import ChatGruppo from '../../../lib/components/gruppi/ChatGruppo.svelte';
 	import { invalidateAll } from '$app/navigation';
-	import { leaveGruppo } from '../../../lib/controller/gruppi';
+	import { leaveGruppo, getIscrizioneUtente } from '../../../lib/controller/gruppi';
+	import { onMount } from 'svelte';
 
 	export let data;
 
@@ -15,15 +16,73 @@
 	$: ({ supabase, session, gruppo, iscritti, idIscrizioneUtente } = data);
 
 	async function rimuoviIscrizione(iscrizione) {
-		iscritti = iscritti.filter((iscritto) => {
-			return iscritto.profiles.id !== iscrizione.profiles.id;
-		});
-
 		const { error } = await leaveGruppo(supabase, iscrizione.id);
 
 		if (error) return window.alert(error.message);
+	}
 
-		invalidateAll();
+	onMount(() => {
+		const subscription = supabase
+			.channel('iscrizioni_gruppi')
+			.on(
+				'postgres_changes',
+				{
+					event: 'INSERT',
+					schema: 'public',
+					table: 'iscrizioni_gruppi',
+					filter: `id_gruppo=eq.${gruppo.id}`
+				},
+				handleInserimentoIscritto
+			)
+			.on(
+				'postgres_changes',
+				{
+					event: 'DELETE',
+					schema: 'public',
+					table: 'iscrizioni_gruppi'
+				},
+				handleRimozioneIscritto
+			)
+			.subscribe();
+
+		return () => {
+			// smette di ascoltare il database
+			subscription.unsubscribe();
+		};
+	});
+
+	async function handleInserimentoIscritto(payload) {
+		const dataIscrizione = payload.new;
+
+		const { data: iscrizione, error } = await getIscrizioneUtente(
+			supabase,
+			gruppo.id,
+			dataIscrizione?.id_profilo
+		);
+
+		if (error) return window.alert(error.message);
+
+		// aggiorna la lista di iscritti
+		iscritti = [...iscritti, iscrizione];
+	}
+
+	async function handleRimozioneIscritto(payload) {
+		const dataIscrizione = payload.old;
+
+		const idsIscrizioni = iscritti.map((el) => {
+			return el.id;
+		});
+
+		if (!idsIscrizioni.includes(dataIscrizione.id)) return;
+
+		if (dataIscrizione.id === idIscrizioneUtente) {
+			idIscrizioneUtente = undefined;
+			return await invalidateAll();
+		}
+
+		iscritti = await iscritti.filter((iscrizione) => {
+			return iscrizione.id !== dataIscrizione.id;
+		});
 	}
 </script>
 
