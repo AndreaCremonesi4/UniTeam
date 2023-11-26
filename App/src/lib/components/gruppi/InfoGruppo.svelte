@@ -2,7 +2,6 @@
 	import { joinGruppo, leaveGruppo } from '$lib/controller/gruppi';
 	import { invalidateAll, goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 	import FormGruppoModal from './FormGruppoModal.svelte';
 
 	export let data;
@@ -10,22 +9,37 @@
 	let { supabase, session, gruppo, idIscrizioneUtente } = data;
 	$: ({ supabase, session, gruppo, idIscrizioneUtente } = data);
 
+	let isLoading;
 	let codeCopied;
 
 	async function unisciti() {
-		if (!session || !session?.user) return goto(`/login?redirectTo=${$page.url.pathname}`);
+		isLoading = true;
+		try {
+			if (!session || !session?.user) return goto(`/login?redirectTo=${$page.url.pathname}`);
 
-		const { error } = await joinGruppo(supabase, gruppo.id);
+			const { error } = await joinGruppo(supabase, gruppo.id);
 
-		if (error) window.alert(error);
-		else invalidateAll();
+			if (error) window.alert(error);
+			else await invalidateAll();
+		} catch (ex) {
+			window.alert(ex);
+		} finally {
+			isLoading = false;
+		}
 	}
 
 	async function abbandona() {
-		const { error } = await leaveGruppo(supabase, idIscrizioneUtente);
+		isLoading = true;
+		try {
+			const { error } = await leaveGruppo(supabase, idIscrizioneUtente);
 
-		if (error) window.alert(error);
-		else invalidateAll();
+			if (error) window.alert(error);
+			else await invalidateAll();
+		} catch (ex) {
+			window.alert(ex);
+		} finally {
+			isLoading = false;
+		}
 	}
 
 	function copiaCodice() {
@@ -76,12 +90,32 @@
 	{:else}
 		<div class="d-flex justify-content-center">
 			{#if !idIscrizioneUtente}
-				<button class="btn btn-secondary rounded-1 lh-1 px-4" on:click={unisciti}>
-					Unisciti <i class="bi bi-box-arrow-in-right" />
+				<button
+					class="btn btn-secondary rounded-1 lh-1 px-4"
+					on:click={unisciti}
+					disabled={isLoading}
+				>
+					{#if isLoading}
+						<div class="spinner-border spinner-border-sm" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+					{:else}
+						Unisciti <i class="bi bi-box-arrow-in-right" />
+					{/if}
 				</button>
 			{:else}
-				<button class="btn btn-primary rounded-1 lh-1 py-3 px-4" on:click={abbandona}>
-					Abbandona <i class="bi bi-box-arrow-in-left" />
+				<button
+					class="btn btn-primary rounded-1 lh-1 py-3 px-4"
+					on:click={abbandona}
+					disabled={isLoading}
+				>
+					{#if isLoading}
+						<div class="spinner-border spinner-border-sm" role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+					{:else}
+						Abbandona <i class="bi bi-box-arrow-in-left" />
+					{/if}
 				</button>
 			{/if}
 		</div>

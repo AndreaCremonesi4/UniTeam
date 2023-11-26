@@ -18,6 +18,7 @@
 
 	let errorNome;
 	let errorDescrizione;
+	let isLoading;
 
 	onMount(() => {
 		nome.addEventListener('input', (event) => {
@@ -30,6 +31,17 @@
 	});
 
 	async function submit() {
+		isLoading = true;
+		try {
+			await creaGruppo();
+		} catch (ex) {
+			window.alert(ex);
+		} finally {
+			isLoading = false;
+		}
+	}
+
+	async function creaGruppo() {
 		// verifico che il nome e la descrizione non contengano parole inappropriate
 		let nomeValidity = checkTextValidity(nome.value);
 		let descrizioneValidity = checkTextValidity(descrizione.value);
@@ -55,15 +67,15 @@
 			} else {
 				modal.hide();
 				await goto(`/gruppi/${data.id}`);
-				invalidateAll();
+				await invalidateAll();
 			}
 		}
 
-		form.classList.add('was-validated');
+		form?.classList?.add('was-validated');
 	}
 </script>
 
-<ConfirmModal bind:modal {id} onConfirm={submit}>
+<ConfirmModal bind:modal {id} onConfirm={submit} disabled={isLoading}>
 	<span slot="title"><slot name="title">Creazione Gruppo</slot></span>
 
 	<form slot="body" bind:this={form} novalidate>

@@ -5,31 +5,34 @@
 
 	export let data;
 	export let onSend;
+
 	let form;
 	let inputMessaggio;
 	let fileInput;
 	let files;
 	let isSending;
 
-	let { supabase, gruppo } = data;
-	$: ({ supabase, gruppo } = data);
+	let { supabase, session, gruppo } = data;
+	$: ({ supabase, session, gruppo } = data);
 
 	async function inviaMessaggio(event) {
 		// verifico che almeno il messaggio o il file allegato non sia vuoto
 		if (isSending || (!inputMessaggio.value.trim() && fileInput.files.length <= 0)) return;
 
-		let messaggioValidity = checkTextValidity(inputMessaggio.value.trim());
-
-		if (!messaggioValidity)
-			return window.alert('Il messaggio contiene delle parole inappropriate!');
-
 		isSending = true;
+
 		try {
+			let messaggioValidity = checkTextValidity(inputMessaggio.value.trim());
+
+			if (!messaggioValidity)
+				return window.alert('Il messaggio contiene delle parole inappropriate!');
+
 			const { error } = await sendMessage(
 				supabase,
 				inputMessaggio.value.trim(),
 				fileInput?.files[0],
-				gruppo.id
+				gruppo,
+				session?.user?.id
 			);
 
 			if (error) {

@@ -19,7 +19,12 @@
 			.channel('messaggi')
 			.on(
 				'postgres_changes',
-				{ event: 'INSERT', schema: 'public', table: 'messaggi' },
+				{
+					event: 'INSERT',
+					schema: 'public',
+					table: 'messaggi',
+					filter: `id_gruppo=eq.${gruppo.id}`
+				},
 				handleNewMessage
 			)
 			.subscribe();
@@ -31,12 +36,14 @@
 	});
 
 	async function handleNewMessage(payload) {
-		const { data: profiles, error } = await getInfoProfilo(supabase, payload.new.mittente);
+		const messageData = payload.new;
+
+		const { data: profiles, error } = await getInfoProfilo(supabase, messageData.mittente);
 
 		if (error) {
 			window.alert(error);
 		} else {
-			const messaggio = { ...payload.new, profiles };
+			const messaggio = { ...messageData, profiles };
 			messaggi = [messaggio, ...messaggi];
 		}
 	}
