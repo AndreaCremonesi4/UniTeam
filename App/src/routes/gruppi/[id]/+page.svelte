@@ -7,7 +7,11 @@
 	import FormCodiceIngresso from '../../../lib/components/gruppi/FormCodiceIngresso.svelte';
 	import ChatGruppo from '../../../lib/components/gruppi/ChatGruppo.svelte';
 	import { invalidateAll } from '$app/navigation';
-	import { leaveGruppo, getIscrizioneUtente } from '../../../lib/controller/gruppi';
+	import {
+		leaveGruppo,
+		getIscrizioneUtente,
+		listenChannelIscrizioni
+	} from '../../../lib/controller/gruppi';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -22,28 +26,12 @@
 	}
 
 	onMount(() => {
-		const subscription = supabase
-			.channel('iscrizioni_gruppi')
-			.on(
-				'postgres_changes',
-				{
-					event: 'INSERT',
-					schema: 'public',
-					table: 'iscrizioni_gruppi',
-					filter: `id_gruppo=eq.${gruppo.id}`
-				},
-				handleInserimentoIscritto
-			)
-			.on(
-				'postgres_changes',
-				{
-					event: 'DELETE',
-					schema: 'public',
-					table: 'iscrizioni_gruppi'
-				},
-				handleRimozioneIscritto
-			)
-			.subscribe();
+		const subscription = listenChannelIscrizioni(
+			supabase,
+			gruppo.id,
+			handleInserimentoIscritto,
+			handleRimozioneIscritto
+		);
 
 		return () => {
 			// smette di ascoltare il database
