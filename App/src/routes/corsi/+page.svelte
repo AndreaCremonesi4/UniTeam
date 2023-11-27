@@ -16,7 +16,7 @@
 	let page;
 	let pageCount;
 
-	let corsiData = {};
+	let corsi = {};
 	let filtri = {};
 
 	async function fetchData() {
@@ -32,13 +32,13 @@
 
 	async function updateData() {
 		page = 0;
-		corsiData = await fetchData();
-		pageCount = Math.round(corsiData.count / pageSize);
+		corsi = await fetchData();
+		pageCount = Math.round(corsi.count / pageSize);
 	}
 
 	function changePage(e) {
 		page = e.detail.page;
-		corsiData = fetchData();
+		corsi = fetchData();
 	}
 
 	function filter(e) {
@@ -46,7 +46,7 @@
 		updateData();
 	}
 
-	corsiData = updateData();
+	corsi = updateData();
 </script>
 
 <Navbar {data} />
@@ -55,15 +55,17 @@
 	<div class="container">
 		<h1 class="text-title">Corsi</h1>
 
-		<FiltriCorsi on:changeFilters={filter} {supabase} />
+		<FiltriCorsi on:changeFilters={filter} {data} />
 
 		<PageSelector {page} {pageCount} on:pageChange={changePage} />
 
-		{#await corsiData}
-			<p>Caricamento...</p>
-		{:then corsi}
-			{#if corsi && corsi.data && corsi.data.length > 0}
-				<GridLayout items={corsi.data} let:prop={item} component={SchedaCorso} />
+		{#await corsi}
+			<div class="spinner-border text-primary" role="status">
+				<span class="visually-hidden">Caricamento...</span>
+			</div>
+		{:then corsiData}
+			{#if corsiData && corsiData.data && corsiData.data.length > 0}
+				<GridLayout items={corsiData.data} let:prop={item} component={SchedaCorso} />
 			{:else}
 				<h3 class="fw-normal mt-4">Nessun Risultato</h3>
 			{/if}

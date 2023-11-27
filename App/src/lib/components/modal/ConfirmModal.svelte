@@ -4,6 +4,7 @@
 	export let modal;
 	export let id;
 	export let onConfirm = () => {};
+	export let disabled;
 
 	let thisModal;
 
@@ -27,10 +28,16 @@
 					type="button"
 					class="btn bg-black opacity-50 text-white rounded-1 py-2"
 					data-bs-dismiss="modal"
+					{disabled}
 				>
 					<slot name="reject-text">Annulla</slot>
 				</button>
-				<button type="button" class="btn btn-primary rounded-1 py-2" on:click={onConfirm}>
+				<button
+					type="button"
+					class="btn btn-primary rounded-1 py-2"
+					on:click={onConfirm}
+					{disabled}
+				>
 					<slot name="confirm-text">Conferma</slot>
 				</button>
 			</div>

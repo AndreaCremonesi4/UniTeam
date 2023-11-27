@@ -48,6 +48,36 @@ export function getIscrittiGruppo(supabase, id_gruppo) {
 		.order('profiles(username)', { ascending: true });
 }
 
+export function getIscrizione(supabase, id_gruppo, id_profilo) {
+	if (!supabase || !id_gruppo || !id_profilo)
+		return { error: "Errore nell'inserimento dei parametri" };
+
+	return supabase.rpc('is_subscribed', {
+		id_gruppo,
+		id_profilo
+	});
+}
+
+export function getIscrizioneUtente(supabase, id_gruppo, id_profilo) {
+	if (!supabase || !id_gruppo || !id_profilo)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
+
+	return supabase
+		.from('iscrizioni_gruppi')
+		.select('*, profiles(*)')
+		.match({ id_gruppo, id_profilo })
+		.single();
+}
+
+export async function isIscritto(supabase, id_gruppo, id_profilo) {
+	if (!supabase || !id_gruppo || !id_profilo)
+		return { error: "Errore nell'inserimento dei parametri" };
+
+	const { error, data } = await getIscrizione(supabase, id_gruppo, id_profilo);
+
+	return !error && data;
+}
+
 export function joinGruppo(supabase, id_gruppo) {
 	if (!supabase || !id_gruppo) return { error: "Errore nell'inserimento dei parametri" };
 
@@ -89,9 +119,19 @@ export function getMessaggi(supabase, id_gruppo, range = { min: 0, max: 10 }) {
 		.eq('id_gruppo', id_gruppo);
 }
 
-export async function sendMessage(supabase, testo, file, id_gruppo) {
-	if (!supabase || !id_gruppo || (!testo.trim() && !file))
-		return { error: "Errore nell'inserimento dei parametri" };
+export async function sendMessage(supabase, testo, file, gruppo, id_profilo) {
+	if (
+		!supabase ||
+		!gruppo ||
+		!gruppo.id ||
+		!gruppo.proprietario ||
+		!id_profilo ||
+		(!testo.trim() && !file)
+	)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
+
+	if (gruppo.proprietario !== id_profilo && !(await isIscritto(supabase, gruppo.id, id_profilo)))
+		return { error: new Error('Non puoi inviare messaggi perchè non sei iscritto al gruppo') };
 
 	if (testo) testo = testo.trim();
 
@@ -120,5 +160,56 @@ export async function sendMessage(supabase, testo, file, id_gruppo) {
 		media = JSON.stringify(media);
 	}
 
-	return supabase.from('messaggi').insert({ testo, media, id_gruppo });
+	return supabase.from('messaggi').insert({ testo, media, id_gruppo: gruppo.id });
+}
+
+export function listenChannelMessaggi(supabase, id_gruppo, handleNewMessage) {
+	if (!supabase || !id_gruppo || !handleNewMessage) return undefined;
+
+	return supabase
+		.channel('messaggi')
+		.on(
+			'postgres_changes',
+			{
+				event: 'INSERT',
+				schema: 'public',
+				table: 'messaggi',
+				filter: `id_gruppo=eq.${id_gruppo}`
+			},
+			handleNewMessage
+		)
+		.subscribe();
+}
+
+export function listenChannelIscrizioni(
+	supabase,
+	id_gruppo,
+	handleInsertIscrizione,
+	handleDeleteIscrizione
+) {
+	if (!supabase || !id_gruppo || !handleDeleteIscrizione || !handleInsertIscrizione)
+		return undefined;
+
+	return supabase
+		.channel('iscrizioni_gruppi')
+		.on(
+			'postgres_changes',
+			{
+				event: 'INSERT',
+				schema: 'public',
+				table: 'iscrizioni_gruppi',
+				filter: `id_gruppo=eq.${id_gruppo}`
+			},
+			handleInsertIscrizione
+		)
+		.on(
+			'postgres_changes',
+			{
+				event: 'DELETE',
+				schema: 'public',
+				table: 'iscrizioni_gruppi'
+			},
+			handleDeleteIscrizione
+		)
+		.subscribe();
 }

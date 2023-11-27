@@ -3,63 +3,82 @@
 package App {
    package src{
         package lib {
-            package assets{
-                folder icons
-                folder images
+            package assets_lib as "assets" {
+                folder icons_asset as "icons"
+                folder images_asset as "images"
             }
             
-            package controller {
-                folder auth
+            package controller_lib as "controller" {
+                folder auth_controller as "auth"
+                folder corsi_controller as "corsi"
+                folder gruppi_controller as "gruppi"
+                folder professori_controller as "professori"
+                folder profilo_controller as "profilo"
+                folder utilities_controller as "utilities"
             }
 
-            package view {
-                package components{
-                    folder auth
-                    folder footer 
-                    folder form
-                    package "home-page"{
-                        folder hero 
-                        folder reviews
-                        folder services
-                        folder "study-groups"
-                    }
-                    folder navbar
+            package components_lib as "components" {
+                folder auth_component as "auth"
+                folder corsi_component as "corsi"
+                folder footer_component as "footer"
+                folder form_component as "form"
+                folder gruppi_component as "gruppi"
+                folder layout_component as "layout"
+                folder modal_component as "modal"
+                folder navbar_component as "navbar"
+                folder professori_component as "professori"
+                folder profilo_component as "profilo"
+                folder reviews_component as "reviews"
+                folder tabs_component as "tabs"
+                folder utilities_component as "utilities"
+                package home_page_component as "home-page"{
+                    folder hero_hp as "hero"
+                    folder reviews_hp as "reviews"
+                    folder services_hp as "services"
+                    folder study_groups_hp as "study-groups"
                 }
             }
 
-            package model {
-              'da infilarci qualcosa di piccolo se no diventa troppo largo 
-            }
+            folder data_lib as "data"
         }
 
         package routes {
-            package "(auth)" {
-                folder aggiornaPassword
-                package auth{
+            package auth_route as "(auth)" {
+                folder aggiorna_password_auth as "aggiorna-password"
+                package auth_auth as "auth"{
                     folder callback
                 }
-                folder login
-                folder recupero_Password
-                folder registrazione
+                folder login_auth as "login"
+                folder recupero_password_auth as "recupero-password"
+                folder registrazione_auth as "registrazione"
             }
             
-            package "(private)"{
-                package account{
-                    folder profilo
-                    folder recensioni
+            package private_route as "(private)"{
+                package account_private as "account"{
+                    folder i_miei_gruppi_private as "i-miei-gruppi"
+                    folder profilo_private as "profilo"
+                    folder recensioni_private as "recensioni"
                 }
             }
 
-            folder corsi
-            folder gruppi
-            folder professori
+            package corsi_route as "corsi" {
+                folder id_corsi as "[id]"
+            }
+
+            package gruppi_route as "gruppi" {
+                folder id_gruppi as "[id]"
+            }
+
+            package professori_route as "professori" {
+                folder id_professori as "[id]"
+            }
         }
         
         folder style
     }
 }
 
-routes -[hidden]u-- lib
+routes -[hidden]u---- lib
 lib -[hidden]d- routes
 
 @enduml
