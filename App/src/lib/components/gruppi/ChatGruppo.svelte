@@ -1,5 +1,5 @@
 <script>
-	import { getMessaggi } from '../../controller/gruppi';
+	import { getMessaggi, listenChannelMessaggi } from '../../controller/gruppi';
 	import { getInfoProfilo } from '../../controller/profilo';
 	import { onMount } from 'svelte';
 	import Messaggio from './Messaggio.svelte';
@@ -15,19 +15,7 @@
 
 	onMount(() => {
 		// ascolta il database in attesa di nuovi messaggi
-		const subscritpion = supabase
-			.channel('messaggi')
-			.on(
-				'postgres_changes',
-				{
-					event: 'INSERT',
-					schema: 'public',
-					table: 'messaggi',
-					filter: `id_gruppo=eq.${gruppo.id}`
-				},
-				handleNewMessage
-			)
-			.subscribe();
+		const subscritpion = listenChannelMessaggi(supabase, gruppo.id, handleNewMessage);
 
 		return () => {
 			// smette di ascoltare il database

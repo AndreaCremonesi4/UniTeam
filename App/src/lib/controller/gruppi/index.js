@@ -162,3 +162,54 @@ export async function sendMessage(supabase, testo, file, gruppo, id_profilo) {
 
 	return supabase.from('messaggi').insert({ testo, media, id_gruppo: gruppo.id });
 }
+
+export function listenChannelMessaggi(supabase, id_gruppo, handleNewMessage) {
+	if (!supabase || !id_gruppo || !handleNewMessage) return undefined;
+
+	return supabase
+		.channel('messaggi')
+		.on(
+			'postgres_changes',
+			{
+				event: 'INSERT',
+				schema: 'public',
+				table: 'messaggi',
+				filter: `id_gruppo=eq.${id_gruppo}`
+			},
+			handleNewMessage
+		)
+		.subscribe();
+}
+
+export function listenChannelIscrizioni(
+	supabase,
+	id_gruppo,
+	handleInsertIscrizione,
+	handleDeleteIscrizione
+) {
+	if (!supabase || !id_gruppo || !handleDeleteIscrizione || !handleInsertIscrizione)
+		return undefined;
+
+	return supabase
+		.channel('iscrizioni_gruppi')
+		.on(
+			'postgres_changes',
+			{
+				event: 'INSERT',
+				schema: 'public',
+				table: 'iscrizioni_gruppi',
+				filter: `id_gruppo=eq.${id_gruppo}`
+			},
+			handleInsertIscrizione
+		)
+		.on(
+			'postgres_changes',
+			{
+				event: 'DELETE',
+				schema: 'public',
+				table: 'iscrizioni_gruppi'
+			},
+			handleDeleteIscrizione
+		)
+		.subscribe();
+}
