@@ -68,6 +68,20 @@ export async function signUpWithEmailAndPassword(supabase, email, password, user
 	});
 }
 
+export function signInWithGoogle(supabase) {
+	if (!supabase) return { error: new Error('Errore nel passaggio dei parametri') };
+
+	return supabase.auth.signInWithOAuth({
+		provider: 'google',
+		options: {
+			queryParams: {
+				access_type: 'offline',
+				prompt: 'consent'
+			}
+		}
+	});
+}
+
 async function checkIfUsernameExists(supabase, username) {
 	const { data, error } = await supabase.rpc('check_username_exists', { p_username: username });
 

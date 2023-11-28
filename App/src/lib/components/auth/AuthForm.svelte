@@ -1,6 +1,8 @@
 <script>
 	import googleLogo from '$lib/assets/images/google_logo.webp';
+	import { signInWithGoogle } from '$lib/controller/auth';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	export let data;
 	let { supabase } = data;
@@ -9,15 +11,11 @@
 	const redirectTo = $page.url.searchParams.get('redirectTo') ?? '/';
 
 	const loginWithGoogle = async () => {
-		const { error } = await supabase.auth.signInWithOAuth({
-			provider: 'google',
-			options: {
-				queryParams: {
-					access_type: 'offline',
-					prompt: 'consent'
-				}
-			}
-		});
+		const { error } = await signInWithGoogle(supabase);
+
+		if (error) return window.alert(error.message);
+
+		await goto('/');
 	};
 </script>
 
