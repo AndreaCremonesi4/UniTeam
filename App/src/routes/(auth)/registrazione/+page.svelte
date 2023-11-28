@@ -6,7 +6,8 @@
 	import {
 		validateEmail,
 		validatePassword,
-		signUpWithEmailAndPassword
+		signUpWithEmailAndPassword,
+		checkIfUsernameExists
 	} from '$lib/controller/auth';
 
 	export let data;
@@ -18,12 +19,14 @@
 	let form, formError;
 	let username, email, password, confirmPassword;
 	let showSuccess;
+	let usernameError;
 	let passwordError = 'La password deve contenere almeno 6 caratteri!';
 
 	onMount(async () => {
 		form.addEventListener(
 			'submit',
 			async (event) => {
+				usernameError = undefined;
 				formError = undefined;
 
 				if (!form.checkValidity()) {
@@ -32,6 +35,12 @@
 
 					form.classList.add('was-validated');
 				} else {
+					if (checkIfUsernameExists(supabase, username.value)) {
+						username.setCustomValidity(username.value.trim() === '' ? 'Username già in uso' : '');
+						usernameError = 'Lo username è già in uso';
+						return;
+					}
+
 					// registra l'utente
 					const { error } = await signUpWithEmailAndPassword(
 						supabase,
@@ -105,6 +114,7 @@
 			<span slot="icon" class="input-group-text gradient-light">
 				<i class="bi bi-person text-white" />
 			</span>
+			<span slot="invalid">{usernameError ?? 'Compila questo campo'}</span>
 		</InputGroup>
 
 		<InputGroup bind:input={email} placeholder="Email" type="email" required>
