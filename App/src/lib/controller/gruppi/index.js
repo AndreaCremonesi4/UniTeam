@@ -1,5 +1,5 @@
 export function getGruppoById(supabase, id) {
-	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id) return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase.from('gruppi').select('*, profiles(*)').eq('id', id).single();
 }
@@ -30,7 +30,7 @@ export async function getGruppiWithCount(supabase, filtroNome, filtroVisibilita,
 
 export function upsertGruppo(supabase, id, nome, descrizione, privato) {
 	if (!supabase || !nome?.trim() || !descrizione?.trim())
-		return { error: "Errore nell'inserimento dei parametri" };
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	nome = nome.trim();
 	descrizione = descrizione.trim();
@@ -39,7 +39,7 @@ export function upsertGruppo(supabase, id, nome, descrizione, privato) {
 }
 
 export function getIscrittiGruppo(supabase, id_gruppo) {
-	if (!supabase || !id_gruppo) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id_gruppo) return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase
 		.from('iscrizioni_gruppi')
@@ -50,7 +50,7 @@ export function getIscrittiGruppo(supabase, id_gruppo) {
 
 export function getIscrizione(supabase, id_gruppo, id_profilo) {
 	if (!supabase || !id_gruppo || !id_profilo)
-		return { error: "Errore nell'inserimento dei parametri" };
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase.rpc('is_subscribed', {
 		id_gruppo,
@@ -71,7 +71,7 @@ export function getIscrizioneUtente(supabase, id_gruppo, id_profilo) {
 
 export async function isIscritto(supabase, id_gruppo, id_profilo) {
 	if (!supabase || !id_gruppo || !id_profilo)
-		return { error: "Errore nell'inserimento dei parametri" };
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	const { error, data } = await getIscrizione(supabase, id_gruppo, id_profilo);
 
@@ -79,14 +79,14 @@ export async function isIscritto(supabase, id_gruppo, id_profilo) {
 }
 
 export function joinGruppo(supabase, id_gruppo) {
-	if (!supabase || !id_gruppo) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id_gruppo) return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase.from('iscrizioni_gruppi').insert({ id_gruppo });
 }
 
 export async function joinGruppoWithCode(supabase, id_gruppo, codice_ingresso) {
 	if (!supabase || !id_gruppo || !codice_ingresso?.trim())
-		return { error: "Errore nell'inserimento dei parametri" };
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	codice_ingresso = codice_ingresso.trim();
 
@@ -96,20 +96,22 @@ export async function joinGruppoWithCode(supabase, id_gruppo, codice_ingresso) {
 		id_gruppo
 	});
 
-	if (!codeMatch) return { error: 'Il codice di ingresso è errato' };
-	else if (error) return { error };
+	if (error) return { error };
+	if (!codeMatch) return { error: new Error('Il codice di ingresso è errato') };
 
 	return supabase.from('iscrizioni_gruppi').insert({ id_gruppo });
 }
 
 export function leaveGruppo(supabase, id_iscrizione) {
-	if (!supabase || !id_iscrizione) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id_iscrizione)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase.from('iscrizioni_gruppi').delete().eq('id', id_iscrizione);
 }
 
 export function getMessaggi(supabase, id_gruppo, range = { min: 0, max: 10 }) {
-	if (!supabase || !id_gruppo) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id_gruppo || !range || range?.min < 0 || range?.max < range.min)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase
 		.from('messaggi')
@@ -138,19 +140,19 @@ export async function sendMessage(supabase, testo, file, gruppo, id_profilo) {
 	var media;
 
 	if (file) {
-		let filename = `${crypto.randomUUID()}.${file.name.split('.').pop()}`;
+		let filename = `${crypto?.randomUUID()}.${file.name.split('.').pop()}`;
 
 		const { error: uploadError } = await supabase.storage
 			.from('Uploads')
 			.upload(`public/${filename}`, file);
 
-		if (uploadError) return { error: uploadError.error };
+		if (uploadError) return { error: uploadError };
 
 		const { data, error } = await supabase.storage
 			.from('Uploads')
 			.getPublicUrl(`public/${filename}`);
 
-		if (error) return error.error;
+		if (error) return { error: error };
 
 		media = {
 			filename: file.name,

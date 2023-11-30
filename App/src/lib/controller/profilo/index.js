@@ -1,14 +1,14 @@
 import { generateAvatar } from '$lib/controller/auth';
 
 export function getInfoProfilo(supabase, id) {
-	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id) return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase.from('profiles').select('*').eq('id', id).single();
 }
 
-export async function updateProfileUsername(supabase, id, username) {
+export function updateProfileUsername(supabase, id, username) {
 	if (!supabase || !id || !username.trim())
-		return { error: "Errore nell'inserimento dei parametri" };
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	username = username.trim();
 
@@ -23,8 +23,9 @@ export async function updateProfileUsername(supabase, id, username) {
 	return supabase.from('profiles').upsert(newProfile);
 }
 
-export async function getRecensioniCorsi(supabase, id_profilo, range) {
-	if (!supabase || !id_profilo || !range) return { error: "Errore nell'inserimento dei parametri" };
+export function getRecensioniCorsi(supabase, id_profilo, range) {
+	if (!supabase || !id_profilo || !range || range?.min < 0 || range?.max < range?.min)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase
 		.from('recensioni_corsi')
@@ -33,8 +34,9 @@ export async function getRecensioniCorsi(supabase, id_profilo, range) {
 		.range(range.min, range.max);
 }
 
-export async function getRecensioniProfessori(supabase, id_profilo, range) {
-	if (!supabase || !id_profilo || !range) return { error: "Errore nell'inserimento dei parametri" };
+export function getRecensioniProfessori(supabase, id_profilo, range) {
+	if (!supabase || !id_profilo || !range || range?.min < 0 || range?.max < range?.min)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase
 		.from('recensioni_professori')
@@ -44,7 +46,8 @@ export async function getRecensioniProfessori(supabase, id_profilo, range) {
 }
 
 export function getGruppiUtenteProprietario(supabase, id_profilo, range) {
-	if (!supabase || !id_profilo) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id_profilo || !range || range?.min < 0 || range?.max < range?.min)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase
 		.from('gruppi')
@@ -54,7 +57,8 @@ export function getGruppiUtenteProprietario(supabase, id_profilo, range) {
 }
 
 export function getGruppiUtenteIscritto(supabase, id_profilo, range) {
-	if (!supabase || !id_profilo) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id_profilo || !range || range?.min < 0 || range?.max < range?.min)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase
 		.from('iscrizioni_gruppi')
