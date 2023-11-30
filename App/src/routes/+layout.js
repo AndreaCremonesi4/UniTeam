@@ -17,7 +17,7 @@ export const load = async ({ fetch, data, depends }) => {
 
 	var profile;
 	if (session) {
-		const { data: profileData } = await supabase //aggiungi errore
+		const { data: profileData } = await supabase
 			.from('profiles')
 			.select('id, username, profile_photo')
 			.eq('id', session?.user?.id)

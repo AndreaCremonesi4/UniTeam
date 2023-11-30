@@ -1,6 +1,7 @@
 import { checkTextValidity } from '../utilities';
 
 export async function getRuoli(supabase) {
+	if (!supabase) return { error: new Error("Errore nell'inserimento dei parametri") };
 	const { data } = await supabase.rpc('get_distinct_values', {
 		column_name: 'ruolo',
 		table_name: 'professori'
@@ -12,6 +13,8 @@ export async function getRuoli(supabase) {
 }
 
 export async function getStrutture(supabase) {
+	if (!supabase) return { error: new Error("Errore nell'inserimento dei parametri") };
+
 	const { data } = await supabase.rpc('get_distinct_values', {
 		column_name: 'struttura',
 		table_name: 'professori'
@@ -52,12 +55,13 @@ export async function getProfessoriWithCount(
 }
 
 export function getProfessoreById(supabase, id) {
-	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id) return { error: new Error("Errore nell'inserimento dei parametri") };
 	return supabase.from('professori').select('*').eq('id', id).single();
 }
 
 export async function getRecensioniProfessore(supabase, id, range) {
-	if (!supabase || !id || !range) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id || !range)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 	return supabase
 		.from('recensioni_professori')
 		.select('*, profiles (username)')
@@ -67,7 +71,7 @@ export async function getRecensioniProfessore(supabase, id, range) {
 
 export async function getRecensioneProfessoreUtente(supabase, id_profilo, id_professore) {
 	if (!supabase || !id_profilo || !id_professore)
-		return { error: "Errore nell'inserimento dei parametri" };
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 	return supabase
 		.from('recensioni_professori')
 		.select('*')
@@ -77,10 +81,10 @@ export async function getRecensioneProfessoreUtente(supabase, id_profilo, id_pro
 
 export function addRecensioneProfessore(supabase, dataRecensione, id_professore, id_profilo) {
 	if (!dataRecensione || !id_professore || !id_profilo)
-		return { error: "Errore durante l'inserimento (parametri errati)" };
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	if (!checkTextValidity(dataRecensione.descrizione))
-		return { error: 'La recensione contiene parole volgari' };
+		return { error: new Error('La recensione contiene parole volgari') };
 
 	return supabase
 		.from('recensioni_professori')
