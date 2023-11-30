@@ -55,7 +55,7 @@
 			<i
 				class="bi {gruppo.privato ? 'bi-lock-fill' : 'bi-unlock-fill'} text-body-tertiary me-2 fs-2"
 			/>
-			<h1 class="text-title text-primary-emphasis mb-0">{gruppo.nome}</h1>
+			<h1 class="name text-title text-primary-emphasis mb-0">{gruppo.nome}</h1>
 		</div>
 		<p class="opacity-75">{gruppo.descrizione}</p>
 	</div>

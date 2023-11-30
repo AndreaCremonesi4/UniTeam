@@ -18,6 +18,7 @@
 		</a>
 
 		<button
+			id="btn"
 			class="navbar-toggler"
 			type="button"
 			data-bs-toggle="offcanvas"

@@ -19,7 +19,7 @@
 <GridFilters>
 	<div style="max-width:400px">
 		<span>Nome</span>
-		<input type="text" bind:value={inputNome} on:input={changeFilters} class="form-control" />
+		<input type="text" bind:value={inputNome} on:input={changeFilters} class="input form-control" />
 	</div>
 
 	<div>

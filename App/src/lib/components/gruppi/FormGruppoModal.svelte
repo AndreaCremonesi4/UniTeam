@@ -81,7 +81,7 @@
 	<form slot="body" bind:this={form} novalidate>
 		<span>Nome</span>
 		<InputGroup
-			class="mb-2"
+			class="text mb-2"
 			placeholder="Nome del gruppo"
 			bind:input={nome}
 			value={gruppo?.nome ?? ''}
