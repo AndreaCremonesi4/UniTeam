@@ -15,7 +15,7 @@
 
 		const { error } = await joinGruppoWithCode(supabase, gruppo.id, codice_ingresso);
 
-		if (error) window.alert(error);
+		if (error) window.alert(error.message);
 		else invalidateAll();
 	}
 </script>
