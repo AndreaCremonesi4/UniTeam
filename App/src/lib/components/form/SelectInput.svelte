@@ -8,7 +8,7 @@
 <div class="input-group has-validation {$$props.class}">
 	<slot name="icon" />
 
-	<select class="form-select {$$props.class}" bind:value={input} on:change={onChange}>
+	<select class="dropdown form-select {$$props.class}" bind:value={input} on:change={onChange}>
 		{#if showDefaultValue}
 			<slot name="default-value"><option value="">-</option></slot>
 		{/if}

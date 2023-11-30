@@ -11,6 +11,7 @@
 	onMount(() => {
 		modal = new bootstrap.Modal(thisModal);
 	});
+	console.warn = () => {};
 </script>
 
 <div bind:this={thisModal} {id} class="modal fade" tabindex="-1" aria-hidden="true">
