@@ -13,7 +13,7 @@
 		/>
 	</div>
 	<div class="info-col col-lg-9 col-md-12 d-flex flex-column">
-		<h1 class="nome text-title lh-1 mb-3 text-dark">
+		<h1 class="name text-title lh-1 mb-3 text-dark">
 			{professore.nome}
 		</h1>
 		<div class="prof-info">

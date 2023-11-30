@@ -35,7 +35,6 @@ test('ReviewCard Component Test', async ({ page }) => {
     const reviewCards = await page.$$('.card');
     expect(reviewCards.length).toBe(2);
 
-
     const firstReviewCard = await page.$('.card:nth-child(1)');
     const firstTitleText = await firstReviewCard.evaluate((card) => card.querySelector('.text-subtitle').textContent);
     expect(firstTitleText).toBe('Corsi');
@@ -43,21 +42,35 @@ test('ReviewCard Component Test', async ({ page }) => {
     const firstDescriptionText = await firstReviewCard.evaluate((card) => card.querySelector('.text-body').textContent);
     expect(firstDescriptionText).toBe('Leggi le recensioni scritte dagli studenti stessi e scopri quali corsi si adattano meglio ai tuoi interessi e obiettivi accademici');
 
+    const unionButton = await page.locator('.container-cta .btn-secondary');
+    const unionButtonHref = await unionButton.getAttribute('href');
+    expect(unionButtonHref).toBe('/registrazione');
+
+    const discoverButtons = await page.$$('.card .btn-secondary');
+    const hrefArray = [];
+    for (const button of discoverButtons) {
+        const href = await button.getAttribute('href');
+        hrefArray.push(href);
+    }
+    expect(hrefArray).toContain('/corsi');
+    expect(hrefArray).toContain('/professori');
+
+    const entryButtom = await page.locator('.s-IlSqvCQrsrwV .btn-secondary')
+    const entryButtomHref = await entryButtom.getAttribute('href');
+    expect(entryButtomHref).toBe('/gruppi');
+
+
     for (let i = 0; i < reviewCards.length; i++) {
         const currentCard = reviewCards[i];
-
 
         const iconExists = await currentCard.$('.icon img');
         expect(iconExists).toBeTruthy();
 
-
         const scopriLink = await currentCard.$('a');
         expect(scopriLink).toBeTruthy();
 
-
         const hrefAttribute = await scopriLink.getAttribute('href');
         expect(hrefAttribute).toBeTruthy();
-
 
         const scopriLinkText = await scopriLink.textContent();
         expect(scopriLinkText).toBe('Scopri');

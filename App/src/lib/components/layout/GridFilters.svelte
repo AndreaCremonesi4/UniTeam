@@ -4,10 +4,12 @@
 	function toggleFilters() {
 		isFilterOpen = !isFilterOpen;
 	}
+
+	console.warn = () => {};
 </script>
 
 <div id="wrapper-filter" class="filter-wrapper {isFilterOpen ? 'open' : ''} ">
-	<button class="show-filters-btn btn" on:click={toggleFilters}
+	<button id="btn-show-filter" class="show-filters-btn btn" on:click={toggleFilters}
 		><i class="bi bi-funnel" />
 		<i class="bi {isFilterOpen ? 'bi-chevron-down' : 'bi-chevron-up'}" /></button
 	>
