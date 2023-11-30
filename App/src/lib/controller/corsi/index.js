@@ -1,6 +1,8 @@
 import { checkTextValidity } from '../utilities';
 
 export async function getAnni(supabase) {
+	if (!supabase) return { error: new Error("Errore nell'inserimento dei parametri") };
+
 	const { data } = await supabase.rpc('get_distinct_values', {
 		column_name: 'anno_full',
 		table_name: 'corsi'
@@ -12,6 +14,8 @@ export async function getAnni(supabase) {
 }
 
 export async function getFacolta(supabase) {
+	if (!supabase) return { error: new Error("Errore nell'inserimento dei parametri") };
+
 	const { data } = await supabase.rpc('get_distinct_values', {
 		column_name: 'facolta',
 		table_name: 'corsi'
@@ -56,12 +60,13 @@ export async function getCorsiWithCount(
 }
 
 export function getCorsoById(supabase, id) {
-	if (!supabase || !id) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id) return { error: new Error("Errore nell'inserimento dei parametri") };
 	return supabase.from('corsi').select('*').eq('id', id).single();
 }
 
 export async function getRecensioniCorso(supabase, id, range) {
-	if (!supabase || !id || !range) return { error: "Errore nell'inserimento dei parametri" };
+	if (!supabase || !id || !range || range.min < 0 || range.max < range.min)
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	return supabase
 		.from('recensioni_corsi')
@@ -72,16 +77,17 @@ export async function getRecensioniCorso(supabase, id, range) {
 
 export async function getRecensioneCorsoUtente(supabase, id_profilo, id_corso) {
 	if (!supabase || !id_profilo || !id_corso)
-		return { error: "Errore nell'inserimento dei parametri" };
+		return { error: new Error("Errore nell'inserimento dei parametri") };
+
 	return supabase.from('recensioni_corsi').select('*').match({ id_profilo, id_corso }).single();
 }
 
 export function addRecensioneCorso(supabase, dataRecensione, id_corso, id_profilo) {
 	if (!dataRecensione || !id_corso || !id_profilo)
-		return { error: "Errore durante l'inserimento (parametri errati)" };
+		return { error: new Error("Errore nell'inserimento dei parametri") };
 
 	if (!checkTextValidity(dataRecensione.descrizione))
-		return { error: 'La recensione contiene parole volgari' };
+		return { error: new Error('La recensione contiene parole volgari') };
 
 	return supabase.from('recensioni_corsi').upsert({ ...dataRecensione, id_corso, id_profilo });
 }

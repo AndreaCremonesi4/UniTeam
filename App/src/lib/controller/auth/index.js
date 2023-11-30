@@ -61,14 +61,30 @@ export async function signUpWithEmailAndPassword(supabase, email, password, user
 				username: username.trim(),
 				profile_photo: generateAvatar(username.trim().charAt(0))
 			},
-			emailRedirectTo: `${location.origin}/auth/callback${
+			emailRedirectTo: `${location?.origin}/auth/callback${
 				redirectTo ? `?redirectTo=${redirectTo}` : ''
 			}`
 		}
 	});
 }
 
-async function checkIfUsernameExists(supabase, username) {
+export function signInWithGoogle(supabase) {
+	if (!supabase) return { error: new Error('Errore nel passaggio dei parametri') };
+
+	return supabase.auth.signInWithOAuth({
+		provider: 'google',
+		options: {
+			queryParams: {
+				access_type: 'offline',
+				prompt: 'consent'
+			}
+		}
+	});
+}
+
+export async function checkIfUsernameExists(supabase, username) {
+	if (!supabase || !username.trim()) return false;
+
 	const { data, error } = await supabase.rpc('check_username_exists', { p_username: username });
 
 	return error ? true : data;

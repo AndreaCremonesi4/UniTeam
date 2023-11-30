@@ -37,9 +37,12 @@ export default function viewport(element) {
 	};
 }
 
-//
 export function convertiDataMessaggio(dataString) {
+	if (!dataString?.trim()) return undefined;
+
 	const data = new Date(dataString);
+
+	if (!isValidDate(data)) return undefined;
 
 	const minuti = data.getMinutes().toString().padStart(2, '0');
 	const ore = data.getHours().toString().padStart(2, '0');
@@ -50,4 +53,8 @@ export function convertiDataMessaggio(dataString) {
 	const dataFormattata = `${giorno}/${mese}/${anno} - ${ore}:${minuti}`;
 
 	return dataFormattata;
+}
+
+function isValidDate(date) {
+	return date instanceof Date && !isNaN(date);
 }
