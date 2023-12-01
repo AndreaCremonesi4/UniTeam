@@ -26,14 +26,7 @@ export async function getFacolta(supabase) {
 	});
 }
 
-export async function getCorsiWithCount(
-	supabase,
-	filtroNome,
-	filtroAnno,
-	filtroFacolta,
-	page,
-	pageSize
-) {
+export function getCorsiWithCount(supabase, filtroNome, filtroAnno, filtroFacolta, page, pageSize) {
 	if (
 		!supabase ||
 		page < 0 ||
@@ -64,7 +57,7 @@ export function getCorsoById(supabase, id) {
 	return supabase.from('corsi').select('*').eq('id', id).single();
 }
 
-export async function getRecensioniCorso(supabase, id, range) {
+export function getRecensioniCorso(supabase, id, range) {
 	if (!supabase || !id || !range || range.min < 0 || range.max < range.min)
 		return { error: new Error("Errore nell'inserimento dei parametri") };
 
@@ -75,7 +68,7 @@ export async function getRecensioniCorso(supabase, id, range) {
 		.range(range.min, range.max);
 }
 
-export async function getRecensioneCorsoUtente(supabase, id_profilo, id_corso) {
+export function getRecensioneCorsoUtente(supabase, id_profilo, id_corso) {
 	if (!supabase || !id_profilo || !id_corso)
 		return { error: new Error("Errore nell'inserimento dei parametri") };
 
