@@ -25,7 +25,7 @@ export async function getStrutture(supabase) {
 	});
 }
 
-export async function getProfessoriWithCount(
+export function getProfessoriWithCount(
 	supabase,
 	filtroNome,
 	filtroRuolo,
@@ -59,7 +59,7 @@ export function getProfessoreById(supabase, id) {
 	return supabase.from('professori').select('*').eq('id', id).single();
 }
 
-export async function getRecensioniProfessore(supabase, id, range) {
+export function getRecensioniProfessore(supabase, id, range) {
 	if (!supabase || !id || !range)
 		return { error: new Error("Errore nell'inserimento dei parametri") };
 	return supabase
@@ -69,7 +69,7 @@ export async function getRecensioniProfessore(supabase, id, range) {
 		.range(range.min, range.max);
 }
 
-export async function getRecensioneProfessoreUtente(supabase, id_profilo, id_professore) {
+export function getRecensioneProfessoreUtente(supabase, id_profilo, id_professore) {
 	if (!supabase || !id_profilo || !id_professore)
 		return { error: new Error("Errore nell'inserimento dei parametri") };
 	return supabase
