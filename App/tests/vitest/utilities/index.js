@@ -10,55 +10,11 @@ import {
 	messaggi
 } from './data';
 
-// ============== MOCK DI SUPABASE ============== //
-
-/*function generaRecensioniCorsi() {
-	let recensioni = [];
-	for (let i = 0; i < 20; i++) {
-		recensioni.push({
-			id: i,
-			descrizione: `Recensione ${i}`,
-			valutazione: (i % 5) + 1,
-			data_modifica: new Date().toISOString(),
-			id_profilo: i,
-			profiles: { username: `user${i}` },
-			id_corso: 1
-		});
-	}
-
-	return recensioni;
-}
-
-function generaRecensioniProfessori() {
-	let recensioni = [];
-	for (let i = 0; i < 20; i++) {
-		recensioni.push({
-			id: i,
-			descrizione: `Recensione ${i}`,
-			valutazione: (i % 5) + 1,
-			data_modifica: new Date().toISOString(),
-			id_profilo: i,
-			profiles: { username: `user${i}` },
-			id_professore: 1
-		});
-	}
-
-	return recensioni;
-}
-
-// generazione dei corsi
-let recensioniCorsi = generaRecensioniCorsi();
-let recensioniProfessori = generaRecensioniProfessori();*/
-
 // Mock di Supabase per simulare il comportamento delle chiamate a funzioni
 export const mockSupabase = {
 	rpc: vi.fn(),
 	auth: {
-		signInWithPassword: vi.fn().mockImplementation((data) => {
-			if (data.email == 'test@example.com' && data.password == 'StrongPass123!') return { data };
-
-			return { error: new Error('Credenziali Invalide!') };
-		}),
+		signInWithPassword: vi.fn(),
 		signUp: vi.fn()
 	},
 	storage: {

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="540px" preserveAspectRatio="none" style="width:872px;height:540px;background:#FFFFFF;" version="1.1" viewBox="0 0 872 540" width="872px" zoomAndPan="magnify"><defs/><g><!--MD5=[ec8d33996c4670276499be0e683a1983]
+entity Il_mio_profilo--><g id="elem_Il_mio_profilo"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="95" x="31.5" y="399"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="75" x="41.5" y="423.5332">Il mio profilo</text></g><!--MD5=[518ae923858856e2c5165b355a099b3f]
+entity Le_mie_recensioni--><g id="elem_Le_mie_recensioni"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="131" x="10.5" y="203"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111" x="20.5" y="227.5332">Le mie recensioni</text></g><!--MD5=[3c23c9500c4763092d18c671f304cc2c]
+entity I_miei_gruppi--><g id="elem_I_miei_gruppi"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="96" x="30" y="301"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="40" y="325.5332">I miei gruppi</text></g><!--MD5=[107fc6b384790e7f36d02fe2a8d3837b]
+entity Ripristino_password_account--><g id="elem_Ripristino_password_account"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="144" x="7" y="497"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124" x="17" y="521.5332">Ripristino Password</text></g><!--MD5=[e8586ec783828e7ddd1a1a3b19fc3380]
+entity HomePage--><g id="elem_HomePage"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="89" x="512.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="522.5" y="31.5332">HomePage</text></g><!--MD5=[23689a62b5e80204d759960f89ec0344]
+entity Login--><g id="elem_Login"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="55" x="353.5" y="105"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35" x="363.5" y="129.5332">Login</text></g><!--MD5=[895c94e1de32ab058fa19768057850c5]
+entity Registrazione--><g id="elem_Registrazione"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="106" x="444" y="105"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="454" y="129.5332">Registrazione</text></g><!--MD5=[e50509d1d36ee25f2bfe4a409d0220ac]
+entity Ripristino_password_registrazione--><g id="elem_Ripristino_password_registrazione"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="144" x="402" y="203"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124" x="412" y="227.5332">Ripristino Password</text></g><!--MD5=[419da27f43248fe6d43e05946cbd5f56]
+entity Account--><g id="elem_Account"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="71" x="247.5" y="105"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="51" x="257.5" y="129.5332">Account</text></g><!--MD5=[fc06ba1c40fa5ec95b366cf0bd2d45fc]
+entity Gruppi--><g id="elem_Gruppi"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="63" x="585.5" y="105"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43" x="595.5" y="129.5332">Gruppi</text></g><!--MD5=[a1cb8bba01c6e83b13af6f23e8cd648c]
+entity Gruppo--><g id="elem_Gruppo"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="68" x="581" y="203"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="48" x="591" y="227.5332">Gruppo</text></g><!--MD5=[178e9b7b6d9d69e61ba780340fee9dda]
+entity Corsi--><g id="elem_Corsi"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="53" x="683.5" y="105"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="693.5" y="129.5332">Corsi</text></g><!--MD5=[8959e15b92dd4671f18ec02b89714bbe]
+entity Corso--><g id="elem_Corso"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="58" x="684" y="203"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="694" y="227.5332">Corso</text></g><!--MD5=[e1177bfc600f9133d9a9cafafe2d0c8e]
+entity Professori--><g id="elem_Professori"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84" x="772" y="105"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="64" x="782" y="129.5332">Professori</text></g><!--MD5=[dc85a804e7261e653ac0cd60db7afe41]
+entity Professore--><g id="elem_Professore"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="89" x="777.5" y="203"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="787.5" y="227.5332">Professore</text></g><!--MD5=[3fe5e20f3775a6bab87f696e25846be7]
+link HomePage to Login--><g id="link_HomePage_Login"><path d="M512.18,30 C457.38,30 371.83,30 371.83,30 C371.83,30 371.83,77.51 371.83,104.98 " fill="none" id="HomePage-Login" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[3fe5e20f3775a6bab87f696e25846be7]
+link HomePage to Login--><!--MD5=[ccf3b4480e84aef9bd7ffbb30ae770cb]
+link HomePage to Registrazione--><g id="link_HomePage_Registrazione"><path d="M525,45.36 C525,62.54 525,87.51 525,104.68 " fill="none" id="HomePage-Registrazione" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[ccf3b4480e84aef9bd7ffbb30ae770cb]
+link HomePage to Registrazione--><!--MD5=[813596ec2ad5e1c8530731a512ffec21]
+link HomePage to Gruppi--><g id="link_HomePage_Gruppi"><path d="M590.83,45.36 C590.83,62.54 590.83,87.51 590.83,104.68 " fill="none" id="HomePage-Gruppi" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[813596ec2ad5e1c8530731a512ffec21]
+link HomePage to Gruppi--><!--MD5=[cd4bc3e794a48c4b42a01b0436b0356e]
+link HomePage to Corsi--><g id="link_HomePage_Corsi"><path d="M601.82,38 C644.15,38 701.17,38 701.17,38 C701.17,38 701.17,79.58 701.17,104.91 " fill="none" id="HomePage-Corsi" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[cd4bc3e794a48c4b42a01b0436b0356e]
+link HomePage to Corsi--><!--MD5=[8b44bd4fefa6cdfd725b087e5e3f4e11]
+link HomePage to Professori--><g id="link_HomePage_Professori"><path d="M601.75,15 C678.72,15 828,15 828,15 C828,15 828,73.47 828,104.76 " fill="none" id="HomePage-Professori" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[8b44bd4fefa6cdfd725b087e5e3f4e11]
+link HomePage to Professori--><!--MD5=[db301795c17ad9d46b1cb03e3bb09f32]
+link HomePage to Account--><g id="link_HomePage_Account"><path d="M512.23,23 C437.35,23 294.83,23 294.83,23 C294.83,23 294.83,75.18 294.83,104.53 " fill="none" id="HomePage-Account" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[db301795c17ad9d46b1cb03e3bb09f32]
+link HomePage to Account--><!--MD5=[b973ef7c3da9e2ad71097fd1351b7a4b]
+link Account to Il_mio_profilo--><g id="link_Account_Il_mio_profilo"><path d="M308.36,143.29 C308.36,209.72 308.36,425 308.36,425 C308.36,425 193.7,425 126.52,425 " fill="none" id="Account-Il_mio_profilo" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[b973ef7c3da9e2ad71097fd1351b7a4b]
+link Account to Il_mio_profilo--><!--MD5=[5ec7d036804ca22e4736d9b3f27db421]
+link Account to Le_mie_recensioni--><g id="link_Account_Le_mie_recensioni"><path d="M267.79,143.26 C267.79,173.57 267.79,229 267.79,229 C267.79,229 197.25,229 141.73,229 " fill="none" id="Account-Le_mie_recensioni" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[5ec7d036804ca22e4736d9b3f27db421]
+link Account to Le_mie_recensioni--><!--MD5=[994eb89b3bea89fe036c336447408c87]
+link Account to I_miei_gruppi--><g id="link_Account_I_miei_gruppi"><path d="M277.93,143.26 C277.93,191.57 277.93,314 277.93,314 C277.93,314 185.3,314 126.14,314 " fill="none" id="Account-I_miei_gruppi" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[11304d22b67873fdb550db59265925f6]
+link I_miei_gruppi to Account--><!--MD5=[c55b8fe61f9d4228f63eba3b3376e58c]
+link Il_mio_profilo to Ripristino_password_account--><g id="link_Il_mio_profilo_Ripristino_password_account"><path d="M94.83,437.36 C94.83,454.54 94.83,479.51 94.83,496.68 " fill="none" id="Il_mio_profilo-Ripristino_password_account" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[c55b8fe61f9d4228f63eba3b3376e58c]
+link Il_mio_profilo to Ripristino_password_account--><!--MD5=[aa30b94ec9148ce08431193c93a35570]
+link Le_mie_recensioni to I_miei_gruppi--><!--MD5=[aa30b94ec9148ce08431193c93a35570]
+link Le_mie_recensioni to I_miei_gruppi--><!--MD5=[17e51a03f0b76b927f53b26941d28c67]
+link I_miei_gruppi to Il_mio_profilo--><!--MD5=[17e51a03f0b76b927f53b26941d28c67]
+link I_miei_gruppi to Il_mio_profilo--><!--MD5=[64d8b39f7d5e8466d422459060ef5cec]
+link Registrazione to Ripristino_password_registrazione--><g id="link_Registrazione_Ripristino_password_registrazione"><path d="M495,143.36 C495,160.54 495,185.51 495,202.68 " fill="none" id="Registrazione-Ripristino_password_registrazione" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[a419b6a3c571f47230ba7ef8f9cb8f5a]
+link Gruppi to Gruppo--><g id="link_Gruppi_Gruppo"><path d="M617,143.36 C617,160.54 617,185.51 617,202.68 " fill="none" id="Gruppi-Gruppo" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[a494cc2b103c186a43902ebe69842ae9]
+link Corsi to Corso--><g id="link_Corsi_Corso"><path d="M710.25,143.36 C710.25,160.54 710.25,185.51 710.25,202.68 " fill="none" id="Corsi-Corso" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[b32cd9958163336202653f60d5571a41]
+link Professori to Professore--><g id="link_Professori_Professore"><path d="M816.75,143.36 C816.75,160.54 816.75,185.51 816.75,202.68 " fill="none" id="Professori-Professore" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[3f0d48918107aa30bf915cbec0f09016]
+@startuml Sitemap
+
+
+'skinparam linetype polyline
+skinparam linetype ortho
+
+
+rectangle HomePage
+
+
+rectangle Login
+rectangle Registrazione
+rectangle Ripristino_password_registrazione as "Ripristino Password"
+
+
+
+
+rectangle Account
+together {
+rectangle Il_mio_profilo as "Il mio profilo"
+rectangle Le_mie_recensioni as "Le mie recensioni"
+rectangle I_miei_gruppi as "I miei gruppi"
+rectangle Ripristino_password_account as "Ripristino Password"
+}
+
+
+rectangle Gruppi
+rectangle Gruppo
+
+
+rectangle Corsi
+rectangle Corso
+
+
+rectangle Professori
+rectangle Professore
+
+
+HomePage -d- Login
+Login -[hidden]u- HomePage
+
+
+HomePage -d- Registrazione
+Registrazione -[hidden]u- HomePage
+
+
+HomePage -d- Gruppi
+Gruppi -[hidden]u- HomePage
+
+
+HomePage -d- Corsi
+Corsi -[hidden]u- HomePage
+
+
+HomePage -d- Professori
+Professori -[hidden]u- HomePage
+
+
+HomePage -d- Account
+Account -[hidden]u- HomePage
+
+Account -d- Il_mio_profilo
+Account -d- Le_mie_recensioni
+Account -d- I_miei_gruppi
+
+
+Il_mio_profilo -d- Ripristino_password_account
+Ripristino_password_account -[hidden]u- Il_mio_profilo
+ 
+Le_mie_recensioni -[hidden]u- Account
+I_miei_gruppi -[hidden]r- Account
+Il_mio_profilo -[hidden]l- Account
+
+
+Le_mie_recensioni -[hidden]- I_miei_gruppi
+I_miei_gruppi -[hidden]u- Le_mie_recensioni
+
+
+I_miei_gruppi -[hidden]d- Il_mio_profilo
+Il_mio_profilo -[hidden]u- I_miei_gruppi
+
+
+
+
+Registrazione - - Ripristino_password_registrazione
+
+
+Gruppi - - Gruppo
+
+
+Corsi - - Corso
+
+
+Professori - - Professore
+
+
+@enduml
+
+@startuml Sitemap
+
+
+skinparam linetype ortho
+
+
+rectangle HomePage
+
+
+rectangle Login
+rectangle Registrazione
+rectangle Ripristino_password_registrazione as "Ripristino Password"
+
+
+
+
+rectangle Account
+together {
+rectangle Il_mio_profilo as "Il mio profilo"
+rectangle Le_mie_recensioni as "Le mie recensioni"
+rectangle I_miei_gruppi as "I miei gruppi"
+rectangle Ripristino_password_account as "Ripristino Password"
+}
+
+
+rectangle Gruppi
+rectangle Gruppo
+
+
+rectangle Corsi
+rectangle Corso
+
+
+rectangle Professori
+rectangle Professore
+
+
+HomePage -d- Login
+Login -[hidden]u- HomePage
+
+
+HomePage -d- Registrazione
+Registrazione -[hidden]u- HomePage
+
+
+HomePage -d- Gruppi
+Gruppi -[hidden]u- HomePage
+
+
+HomePage -d- Corsi
+Corsi -[hidden]u- HomePage
+
+
+HomePage -d- Professori
+Professori -[hidden]u- HomePage
+
+
+HomePage -d- Account
+Account -[hidden]u- HomePage
+
+Account -d- Il_mio_profilo
+Account -d- Le_mie_recensioni
+Account -d- I_miei_gruppi
+
+
+Il_mio_profilo -d- Ripristino_password_account
+Ripristino_password_account -[hidden]u- Il_mio_profilo
+ 
+Le_mie_recensioni -[hidden]u- Account
+I_miei_gruppi -[hidden]r- Account
+Il_mio_profilo -[hidden]l- Account
+
+
+Le_mie_recensioni -[hidden]- I_miei_gruppi
+I_miei_gruppi -[hidden]u- Le_mie_recensioni
+
+
+I_miei_gruppi -[hidden]d- Il_mio_profilo
+Il_mio_profilo -[hidden]u- I_miei_gruppi
+
+
+
+
+Registrazione - - Ripristino_password_registrazione
+
+
+Gruppi - - Gruppo
+
+
+Corsi - - Corso
+
+
+Professori - - Professore
+
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: it
+Country: IT
+--></g></svg>

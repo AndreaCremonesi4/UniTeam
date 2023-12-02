@@ -116,6 +116,12 @@ describe('Test Login con Email e Password', () => {
 	});
 
 	test('Credenziali Errate', async () => {
+		mockSupabase.auth.signInWithPassword.mockImplementationOnce((data) => {
+			if (data.email == 'test@example.com' && data.password == 'StrongPass123!') return { data };
+
+			return { error: new Error('Credenziali Invalide!') };
+		});
+
 		const { error } = await signInWithEmailAndPassword(
 			mockSupabase,
 			'wrongmail@mail.com',
