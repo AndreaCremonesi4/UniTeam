@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1051px" preserveAspectRatio="none" style="width:1736px;height:1051px;background:#FFFFFF;" version="1.1" viewBox="0 0 1736 1051" width="1736px" zoomAndPan="magnify"><defs/><g><!--MD5=[c4e891cfbcba4e056d203b158b283bb5]
+cluster UniTeam--><g id="cluster_UniTeam"><rect fill="none" height="897" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;" width="1412" x="318" y="55.08"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="60" x="994" y="71.6132">UniTeam</text></g><!--MD5=[51dc34f6dea4a16405cfeb18503da005]
+entity Utente--><g id="elem_Utente"><ellipse cx="39.5" cy="239.6894" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M39.5,247.6894 L39.5,274.6894 M26.5,255.6894 L52.5,255.6894 M39.5,274.6894 L26.5,289.6894 M39.5,274.6894 L52.5,289.6894 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="41" x="19" y="305.7226">Utente</text><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="67" x="6" y="228.1132">«abstract»</text></g><!--MD5=[daa83ea981515ceb3b6126ada24d7df6]
+entity Utente_Autenticato--><g id="elem_Utente_Autenticato"><ellipse cx="196.5" cy="131.58" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M196.5,139.58 L196.5,166.58 M183.5,147.58 L209.5,147.58 M196.5,166.58 L183.5,181.58 M196.5,166.58 L209.5,181.58 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="138.5" y="197.6132">Utente Autenticato</text></g><!--MD5=[9639e0c88c78cb14c61791839119314f]
+entity Utente_Non_Autenticato--><g id="elem_Utente_Non_Autenticato"><ellipse cx="196.5" cy="239.58" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M196.5,247.58 L196.5,274.58 M183.5,255.58 L209.5,255.58 M196.5,274.58 L183.5,289.58 M196.5,274.58 L209.5,289.58 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="124" y="305.6132">Utente Non Autenticato</text></g><g id="elem_Autenticazione"><ellipse cx="1106.0677" cy="826.2935" fill="#F1F1F1" rx="71.5677" ry="16.7135" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="1057.0677" y="830.8101">Autenticazione</text></g><g id="elem_Crea_Account"><ellipse cx="1105.957" cy="762.8714" fill="#F1F1F1" rx="69.457" ry="16.2914" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="1059.957" y="767.388">Crea Account</text></g><g id="elem_Invia_Email_Verifica"><ellipse cx="1585.468" cy="762.9834" fill="#F1F1F1" rx="69.468" ry="27.9034" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82" x="1544.468" y="757.9072">Invia Email di</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="1561.968" y="775.5166">Verifica</text></g><g id="elem_Recupero_Password"><ellipse cx="1105.7698" cy="892.034" fill="#F1F1F1" rx="85.2698" ry="19.454" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="127" x="1042.2698" y="895.7625">Recupero Password</text></g><g id="elem_Gestione_Gruppi"><ellipse cx="1105.9763" cy="699.1753" fill="#F1F1F1" rx="75.9763" ry="17.5953" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="1051.0467" y="703.6757">Gestione Gruppi</text></g><g id="elem_Gestione_Recensioni"><ellipse cx="1105.9661" cy="630.8732" fill="#F1F1F1" rx="86.9661" ry="19.7932" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="1040.4661" y="634.6017">Gestione Recensioni</text></g><g id="elem_Legge_Recensione"><ellipse cx="481.9202" cy="566.864" fill="#F1F1F1" rx="81.9202" ry="18.784" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119" x="422.2512" y="570.6429">Legge Recensione</text></g><g id="elem_Ricerca_Gruppo"><ellipse cx="481.981" cy="633.8762" fill="#F1F1F1" rx="74.481" ry="17.2962" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="100" x="428.981" y="638.3928">Ricerca Gruppo</text></g><g id="elem_Visualizza_Info_Corso"><ellipse cx="482.0226" cy="705.8845" fill="#F1F1F1" rx="109.5226" ry="24.3045" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="391.0226" y="709.613">Visualizza informazioni Corso</text></g><g id="elem_Visualizza_Info_Professore"><ellipse cx="481.8069" cy="788.2414" fill="#F1F1F1" rx="123.8069" ry="27.1614" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="213" x="375.3069" y="791.9699">Visualizza informazioni Professore</text></g><g id="elem_Accesso"><ellipse cx="482.0928" cy="476.0672" fill="#F1F1F1" rx="49.0928" ry="15.4872" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="53" x="453.1382" y="480.4607">Accesso</text></g><g id="elem_Registrazione"><ellipse cx="481.957" cy="350.8714" fill="#F1F1F1" rx="69.457" ry="16.2914" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="435.957" y="355.388">Registrazione</text></g><g id="elem_Verifica_Email"><ellipse cx="482.1119" cy="414.3024" fill="#F1F1F1" rx="69.1119" ry="16.2224" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="85" x="436.6119" y="418.819">Verifica Email</text></g><g id="elem_Modifica_Profilo"><ellipse cx="1340.5109" cy="132.0822" fill="#F1F1F1" rx="73.0109" ry="17.0022" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96" x="1289.5109" y="136.5988">Modifica Profilo</text></g><g id="elem_Crea_Gruppo"><ellipse cx="1585.4277" cy="539.1655" fill="#F1F1F1" rx="68.4277" ry="16.0855" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83" x="1540.9277" y="543.6821">Crea Gruppo</text></g><g id="elem_Accesso_Gruppo"><ellipse cx="1340.535" cy="199.887" fill="#F1F1F1" rx="89.535" ry="20.307" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="1272.035" y="203.6155">Accesso a un Gruppo</text></g><g id="elem_Elimina_Gruppo"><ellipse cx="1585.376" cy="476.1552" fill="#F1F1F1" rx="73.376" ry="17.0752" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="97" x="1533.876" y="480.6718">Elimina Gruppo</text></g><g id="elem_Gestione_Gruppo"><ellipse cx="1340.396" cy="520.0592" fill="#F1F1F1" rx="77.896" ry="17.9792" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="1283.9355" y="524.3266">Gestione Gruppo</text></g><g id="elem_Scrive_Recensione"><ellipse cx="1340.5075" cy="368.2815" fill="#F1F1F1" rx="81.5075" ry="18.7015" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="1281.1675" y="372.1104">Scrive Recensione</text></g><g id="elem_Scrive_Recensione_Corso"><ellipse cx="1585.4654" cy="400.9947" fill="#F1F1F1" rx="94.9654" ry="27.9147" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="1524.5113" y="396.4479">Scrive Recensione</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="1564.5113" y="414.0573">Corso</text></g><g id="elem_Scrive_Recensione_Professore"><ellipse cx="1585.4654" cy="314.9947" fill="#F1F1F1" rx="94.9654" ry="27.9147" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="1524.5113" y="310.4479">Scrive Recensione</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="1549.0113" y="328.0573">Professore</text></g><g id="elem_Modifica_Recensione"><ellipse cx="1340.4661" cy="270.8732" fill="#F1F1F1" rx="86.9661" ry="19.7932" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="1274.9661" y="274.6017">Modifica Recensione</text></g><g id="elem_Modifica_Recensione_Corso"><ellipse cx="1585.3525" cy="229.0416" fill="#F1F1F1" rx="104.3525" ry="27.9616" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="1516.8525" y="224.7535">Modifica Recensione</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="1563.3525" y="242.3629">Corso</text></g><g id="elem_Modifica_Recensione_Professore"><ellipse cx="1585.3525" cy="143.0416" fill="#F1F1F1" rx="104.3525" ry="27.9616" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="1516.8525" y="138.7535">Modifica Recensione</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="1547.8525" y="156.3629">Professore</text></g><!--MD5=[52ec6a8b74b13041fc2aa09119826c6e]
+entity Sistema--><g id="elem_Sistema"><ellipse cx="1340.5" cy="976.58" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M1340.5,984.58 L1340.5,1011.58 M1327.5,992.58 L1353.5,992.58 M1340.5,1011.58 L1327.5,1026.58 M1340.5,1011.58 L1353.5,1026.58 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="1315.5" y="1042.6132">Sistema</text></g><!--MD5=[0fb77a73aa418154b17187a6f745822c]
+reverse link Utente to Utente_Autenticato--><g id="link_Utente_Utente_Autenticato"><path d="M90.36,229.23 C105.63,219.48 122.54,208.68 138.25,198.65 " fill="none" id="Utente-backto-Utente_Autenticato" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="93.99,235.22,73.37,240.08,86.46,223.42,93.99,235.22" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[01da02a851031703e3465d0c971c7e0c]
+reverse link Utente to Utente_Non_Autenticato--><g id="link_Utente_Utente_Non_Autenticato"><path d="M93.51,264.16 C103.26,264.72 113.58,265.32 123.77,265.92 " fill="none" id="Utente-backto-Utente_Non_Autenticato" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="92.93,271.14,73.37,262.99,93.74,257.16,92.93,271.14" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[f98b3154651d6f5b7fb36a459613f7bf]
+reverse link Scrive_Recensione to Scrive_Recensione_Corso--><g id="link_Scrive_Recensione_Scrive_Recensione_Corso"><path d="M1430.67,380.19 C1452.87,383.2 1476.62,386.43 1498.66,389.42 " fill="none" id="Scrive_Recensione-backto-Scrive_Recensione_Corso" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="1429.68,387.12,1410.81,377.49,1431.57,373.25,1429.68,387.12" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[570157b270f48a971361570ab259b258]
+reverse link Scrive_Recensione to Scrive_Recensione_Professore--><g id="link_Scrive_Recensione_Scrive_Recensione_Professore"><path d="M1419.95,350.97 C1448.36,344.77 1480.37,337.79 1508.56,331.64 " fill="none" id="Scrive_Recensione-backto-Scrive_Recensione_Professore" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="1421.05,357.89,1400.01,355.32,1418.06,344.22,1421.05,357.89" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[569fed9abda9dee6b6f3a27b6215a28e]
+reverse link Modifica_Recensione to Modifica_Recensione_Corso--><g id="link_Modifica_Recensione_Modifica_Recensione_Corso"><path d="M1430.37,255.72 C1452.14,251.96 1475.42,247.93 1497.11,244.18 " fill="none" id="Modifica_Recensione-backto-Modifica_Recensione_Corso" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="1431.38,262.65,1410.48,259.16,1429,248.85,1431.38,262.65" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[9ba1ab977aea301feef299bc1ee12975]
+reverse link Modifica_Recensione to Modifica_Recensione_Professore--><g id="link_Modifica_Recensione_Modifica_Recensione_Professore"><path d="M1409.93,246.35 C1416.9,242.92 1423.72,239.16 1430,235.08 C1456.36,217.96 1454.7,203.3 1481,186.08 C1493.21,178.09 1507.15,171.09 1520.76,165.18 " fill="none" id="Modifica_Recensione-backto-Modifica_Recensione_Professore" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="1412.5,252.86,1391.38,254.63,1406.79,240.08,1412.5,252.86" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[8e572c95077fe36c6d9ef4a60ad167bb]
+reverse link Gestione_Gruppo to Crea_Gruppo--><g id="link_Gestione_Gruppo_Crea_Gruppo"><path d="M1434.96,527.39 C1463.4,529.61 1494,532 1520.07,534.04 " fill="none" id="Gestione_Gruppo-backto-Crea_Gruppo" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="1434.13,534.34,1414.74,525.81,1435.22,520.39,1434.13,534.34" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[5a67c10f1d0a92bcb875e84cbc67d421]
+reverse link Gestione_Gruppo to Elimina_Gruppo--><g id="link_Gestione_Gruppo_Elimina_Gruppo"><path d="M1422.58,505.4 C1456.87,499.19 1496.02,492.1 1527.23,486.45 " fill="none" id="Gestione_Gruppo-backto-Elimina_Gruppo" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="1423.43,512.36,1402.51,509.03,1420.94,498.58,1423.43,512.36" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[a10cb00c81c90acb1c9aa69cd971c7a8]
+link Gestione_Gruppi to Gestione_Gruppo--><g id="link_Gestione_Gruppi_Gestione_Gruppo"><path d="M1158.79,686.36 C1171.04,681.52 1183.34,674.95 1193,666.08 C1218.48,642.69 1204.34,622.21 1227,596.08 C1249.16,570.53 1281.83,549.74 1306.26,536.41 " fill="none" id="Gestione_Gruppi-Gestione_Gruppo" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[6d4c7f9e7a566dc699a5a87c5df972f8]
+link Gestione_Recensioni to Scrive_Recensione--><g id="link_Gestione_Recensioni_Scrive_Recensione"><path d="M1122.92,611.19 C1145.55,583.1 1188.54,530.4 1227,487.08 C1259.47,450.51 1299.09,409.36 1321.6,386.3 " fill="none" id="Gestione_Recensioni-Scrive_Recensione" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[5ff65820b36915d863ce8afe62d26d8c]
+link Gestione_Recensioni to Modifica_Recensione--><g id="link_Gestione_Recensioni_Modifica_Recensione"><path d="M1110.35,610.98 C1119.87,559.3 1151.46,419.84 1227,334.08 C1244.98,313.67 1271.23,298.44 1293.86,288.08 " fill="none" id="Gestione_Recensioni-Modifica_Recensione" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[bb275a4b424c3edb4d1816a73843e052]
+link Crea_Account to Invia_Email_Verifica--><g id="link_Crea_Account_Invia_Email_Verifica"><path d="M1175.67,763.08 C1264.7,763.08 1419.36,763.08 1510.79,763.08 " fill="none" id="Crea_Account-to-Invia_Email_Verifica" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="1515.91,763.08,1506.91,759.08,1510.91,763.08,1506.91,767.08,1515.91,763.08" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="1313" y="759.5751">«include»</text></g><!--MD5=[c963d92b6606fe84d79d42afd856ac38]
+link Crea_Account to Verifica_Email--><g id="link_Crea_Account_Verifica_Email"><path d="M1041.36,756.92 C1024.16,752.26 1007,744.36 995,731.08 C966.98,700.06 1002.8,546.08 961,546.08 C664,546.08 664,546.08 664,546.08 C630.81,546.08 647.94,507.75 638,476.08 C633.74,462.5 640.28,454.91 630,445.08 C610.47,426.41 582.68,417.77 556.5,414.1 " fill="none" id="Crea_Account-to-Verifica_Email" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="551.29,413.44,559.7008,418.5642,556.2485,414.083,560.7297,410.6307,551.29,413.44" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="785" y="542.5751">«include»</text></g><!--MD5=[6a51564f78ef6dfc6fdb88099d11c054]
+reverse link Registrazione to Crea_Account--><g id="link_Registrazione_Crea_Account"><path d="M556.72,353.24 C582.35,357.34 609.72,365.92 630,383.08 C661.06,409.36 623.31,468.08 664,468.08 C664,468.08 664,468.08 961,468.08 C990.47,468.08 975.84,708.7 995,731.08 C1006.58,744.6 1023.51,752.58 1040.63,757.24 " fill="none" id="Registrazione-backto-Crea_Account" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="551.62,352.48,559.9278,357.7696,556.5648,353.221,561.1134,349.858,551.62,352.48" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53" x="786" y="346.5751">«extend»</text><path d="M721,355.4316 L721,463.4316 L904,463.4316 L904,365.4316 L894,355.4316 L721,355.4316 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M894,355.4316 L894,365.4316 L904,365.4316 L894,355.4316 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68" x="727" y="373.9267">Condizione:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98" x="727" y="390.2782">Email disponibile</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="162" x="727" y="406.6298">Formato credenziali corretto</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="727" y="422.9814"> </text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="94" x="727" y="439.3329">Extension point:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="79" x="727" y="455.6845">Crea Account</text></g><!--MD5=[140faf49ee328e81d7b736f6119338b7]
+reverse link Accesso to Autenticazione--><g id="link_Accesso_Autenticazione"><path d="M533.22,482.77 C565.68,489.78 606.17,504.07 630,533.08 C657.64,566.73 620.45,726.08 664,726.08 C664,726.08 664,726.08 961,726.08 C994.79,726.08 969.05,772.44 995,794.08 C1008.9,805.67 1026.82,813.07 1044.14,817.78 " fill="none" id="Accesso-backto-Autenticazione" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="528.08,481.71,536.079,487.4559,532.9756,482.7263,537.7052,479.6229,528.08,481.71" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53" x="786" y="620.5751">«extend»</text><path d="M746,629.4316 L746,720.4316 L879,720.4316 L879,639.4316 L869,629.4316 L746,629.4316 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M869,629.4316 L869,639.4316 L879,639.4316 L869,629.4316 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68" x="752" y="647.9267">Condizione:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112" x="752" y="664.2782">Credenziali corrette</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="752" y="680.6298"> </text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="94" x="752" y="696.9814">Extension point:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="86" x="752" y="713.3329">Autenticazione</text></g><!--MD5=[4dbdc2f94647cb122e1a24adbe52c8e2]
+reverse link Accesso to Recupero_Password--><g id="link_Accesso_Recupero_Password"><path d="M533.67,482.07 C566.54,488.78 607.32,502.99 630,533.08 C655.05,566.31 622.38,906.08 664,906.08 C664,906.08 664,906.08 961,906.08 C984.11,906.08 1009.21,904.27 1031.88,901.96 " fill="none" id="Accesso-backto-Recupero_Password" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="528.47,481.06,536.5362,486.7112,533.3773,482.0186,538.0699,478.8596,528.47,481.06" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53" x="786" y="800.5751">«extend»</text><path d="M734,809.4316 L734,900.4316 L891,900.4316 L891,819.4316 L881,809.4316 L734,809.4316 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M881,809.4316 L881,819.4316 L891,819.4316 L881,809.4316 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68" x="740" y="827.9267">Condizione:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136" x="740" y="844.2782">Nuova Password Valida</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="740" y="860.6298"> </text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="94" x="740" y="876.9814">Extension point:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="116" x="740" y="893.3329">Recupero Password</text></g><!--MD5=[ca8cd4c4679c2d9cbb31b3a1dbeee731]
+link Utente to Legge_Recensione--><g id="link_Utente_Legge_Recensione"><path d="M73.35,299.57 C120.72,352.9 213.21,449.24 310,507.08 C345.65,528.38 390,543.67 424.6,553.48 " fill="none" id="Utente-Legge_Recensione" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[911d74072a932ba04c59cc7e71c730a8]
+link Utente to Ricerca_Gruppo--><g id="link_Utente_Ricerca_Gruppo"><path d="M46.22,308.77 C54.81,361.92 75.56,447.78 124,504.08 C196.82,588.7 329.39,618.25 410.88,628.57 " fill="none" id="Utente-Ricerca_Gruppo" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[4435a000a924f4cfae3e0fb1ffd540a2]
+link Utente to Visualizza_Info_Corso--><g id="link_Utente_Visualizza_Info_Corso"><path d="M45.94,308.61 C56.61,393.81 82.9,567.73 124,611.08 C187.54,678.1 292.56,699.78 372.28,705.93 " fill="none" id="Utente-Visualizza_Info_Corso" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[305d0a6f140f643d63b7630f34478a1a]
+link Utente to Visualizza_Info_Professore--><g id="link_Utente_Visualizza_Info_Professore"><path d="M43.08,308.62 C49.61,410.71 70.26,646.2 124,702.08 C183.99,764.46 280.74,784.86 358.4,790.27 " fill="none" id="Utente-Visualizza_Info_Professore" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[fc949257a06f8ad49fd981d21d1eccc5]
+link Autenticazione to Sistema--><g id="link_Autenticazione_Sistema"><path d="M1158.32,837.35 C1170.72,841.92 1183.2,848.27 1193,857.08 C1218.72,880.2 1204.66,900.68 1227,927.08 C1252.08,956.71 1290.47,980.88 1315.28,994.63 " fill="none" id="Autenticazione-Sistema" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[507845a666da2239421106bd683cf741]
+link Crea_Account to Sistema--><g id="link_Crea_Account_Sistema"><path d="M1160.49,773.41 C1172.56,777.98 1184.35,784.57 1193,794.08 C1224.2,828.36 1207.6,850.15 1219,895.08 C1222.61,909.29 1218.74,914.97 1227,927.08 C1249.29,959.74 1289.58,983.54 1315.41,996.32 " fill="none" id="Crea_Account-Sistema" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[46be853815495b12a9725ddf1ebda2dc]
+link Gestione_Gruppi to Sistema--><g id="link_Gestione_Gruppi_Sistema"><path d="M1163.65,710.73 C1174.75,715.4 1185.31,721.93 1193,731.08 C1233.73,779.52 1208.74,808.63 1219,871.08 C1223.07,895.89 1213.92,905.61 1227,927.08 C1247.7,961.05 1288.86,984.61 1315.24,996.97 " fill="none" id="Gestione_Gruppi-Sistema" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[ab87b8a9ba72b14aa838962c74e106e2]
+link Gestione_Recensioni to Sistema--><g id="link_Gestione_Recensioni_Sistema"><path d="M1166.22,645.58 C1176.47,650.54 1186.05,657.19 1193,666.08 C1243.05,730.11 1209.18,766.41 1219,847.08 C1221.16,864.82 1218.03,911.63 1227,927.08 C1247.1,961.69 1288.85,985.19 1315.45,997.34 " fill="none" id="Gestione_Recensioni-Sistema" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[ac4586a435a0d3e2c72618250c972fac]
+link Recupero_Password to Sistema--><g id="link_Recupero_Password_Sistema"><path d="M1138.2,910.15 C1160.25,922.68 1190.62,939.5 1218,953.08 C1251.29,969.59 1290.77,986.69 1315.48,997.11 " fill="none" id="Recupero_Password-Sistema" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[78e7bbe6570a2096468f2f74da70099d]
+link Utente_Non_Autenticato to Accesso--><g id="link_Utente_Non_Autenticato_Accesso"><path d="M211.72,309.26 C228.64,349.98 260.91,412.25 310,445.08 C346.37,469.4 396.4,476.11 432.94,477.37 " fill="none" id="Utente_Non_Autenticato-Accesso" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[50cb7800060694eb8005760947be3194]
+link Utente_Non_Autenticato to Registrazione--><g id="link_Utente_Non_Autenticato_Registrazione"><path d="M269.19,298.48 C279.78,302.27 290.62,305.93 301,309.08 C343.07,321.85 391.66,332.98 427.75,340.57 " fill="none" id="Utente_Non_Autenticato-Registrazione" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[3a62fe4b8257cd5f4bebbe439ceb73e5]
+link Utente_Non_Autenticato to Verifica_Email--><g id="link_Utente_Non_Autenticato_Verifica_Email"><path d="M226.62,309.34 C247.15,334.12 276.82,364.64 310,382.08 C341.95,398.88 381.33,406.97 414.24,410.82 " fill="none" id="Utente_Non_Autenticato-Verifica_Email" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[c0a1636004103f33761a90d7d0b72e62]
+link Utente_Autenticato to Accesso_Gruppo--><g id="link_Utente_Autenticato_Accesso_Gruppo"><path d="M254.63,148.43 C311.03,129.5 400.29,100.08 481,100.08 C481,100.08 481,100.08 1107,100.08 C1162.26,100.08 1182.74,112.37 1219,154.08 C1226.65,162.88 1218.75,170.83 1227,179.08 C1234.18,186.26 1242.79,192.01 1252,196.5 " fill="none" id="Utente_Autenticato-Accesso_Gruppo" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[c0a1636004103f33761a90d7d0b72e62]
+link Utente_Autenticato to Accesso_Gruppo--><g id="link_Utente_Autenticato_Accesso_Gruppo"><path d="M254.63,125.52 C311.03,99.5 400.29,70.08 481,70.08 C481,70.08 481,70.08 1107,70.08 C1162.26,70.08 1182.74,82.37 1219,124.08 C1226.65,132.88 1218.75,140.83 1227,149.08 C1245.05,167.13 1272.15,176.14 1295.23,182.36 " fill="none" id="Utente_Autenticato-Accesso_Gruppo-1" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[3831f5d3566617defa57a86ab5c40fde]
+link Utente_Autenticato to Gestione_Gruppo--><g id="link_Utente_Autenticato_Gestione_Gruppo"><path d="M254.5,191.74 C267.48,199.19 280.98,207.52 293,216.08 C301.21,221.92 301.24,226.1 310,231.08 C379.4,270.55 401.17,286.08 481,286.08 C481,286.08 481,286.08 1107,286.08 C1114.62,286.08 1270.52,448.07 1322.67,502.49 " fill="none" id="Utente_Autenticato-Gestione_Gruppo" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[acff782c6660a33ef21998fc3f57b51a]
+link Utente_Autenticato to Modifica_Profilo--><g id="link_Utente_Autenticato_Modifica_Profilo"><path d="M222.96,122.88 C241.57,97.41 269.05,65.61 301,47.08 C371.8,6 399.14,8.08 481,8.08 C481,8.08 481,8.08 1107,8.08 C1197.12,8.08 1286.22,81.51 1322.5,115.36 " fill="none" id="Utente_Autenticato-Modifica_Profilo" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[553e1c588a963ccba6fd1832d32e5965]
+link Utente_Autenticato to Modifica_Recensione--><g id="link_Utente_Autenticato_Modifica_Recensione"><path d="M254.52,162.08 C311.76,162.08 402.5,162.08 481,162.08 C481,162.08 481,162.08 1107,162.08 C1159.71,162.08 1183.72,161.92 1219,201.08 C1229.39,212.61 1216.46,223.68 1227,235.08 C1237.86,246.83 1252.54,254.76 1267.71,260.11 " fill="none" id="Utente_Autenticato-Modifica_Recensione" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[e1ab788bf1d1673fafe48ec5401ab12e]
+link Utente_Autenticato to Scrive_Recensione--><g id="link_Utente_Autenticato_Scrive_Recensione"><path d="M254.53,182.12 C311.21,200.24 401.02,224.08 481,224.08 C481,224.08 481,224.08 1107,224.08 C1159.71,224.08 1184.65,223.1 1219,263.08 C1231.67,277.82 1215.62,290.32 1227,306.08 C1242.93,328.14 1269.23,343.25 1292.39,353.03 " fill="none" id="Utente_Autenticato-Scrive_Recensione" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[bb8a6fd413711a0e5505ccff820ff872]
+@startuml UseCase
+
+left to right direction
+
+skinparam nodesep 30
+skinparam ranksep 50
+
+'Attori'
+together {
+    actor "Utente" as Utente <<abstract>>
+    actor "Utente Autenticato" as Utente_Autenticato
+    actor "Utente Non Autenticato" as Utente_Non_Autenticato
+}
+actor Sistema
+
+rectangle UniTeam {
+    'Use Case Sistema'
+    together {
+        usecase Autenticazione
+        usecase "Crea Account" as Crea_Account
+        usecase "Invia Email di\\nVerifica" as Invia_Email_Verifica 
+        usecase "Recupero Password" as Recupero_Password
+        usecase "Gestione Gruppi" as Gestione_Gruppi
+        usecase "Gestione Recensioni" as Gestione_Recensioni
+    }
+
+    'Use Case Utente'
+    together {
+        usecase "Legge Recensione" as Legge_Recensione
+        usecase "Ricerca Gruppo" as Ricerca_Gruppo
+        usecase "Visualizza informazioni Corso" as Visualizza_Info_Corso
+        usecase "Visualizza informazioni Professore" as Visualizza_Info_Professore
+    }
+
+    'Use Case Utente Non Autenticato'
+    together {
+        usecase Accesso
+        usecase Registrazione
+        usecase "Verifica Email" as Verifica_Email
+    }
+
+    'Use Case Utente Autenticato'
+    together {
+        usecase "Modifica Profilo" as Modifica_Profilo
+        usecase "Crea Gruppo" as Crea_Gruppo
+        usecase "Accesso a un Gruppo" as Accesso_Gruppo 
+        usecase "Elimina Gruppo" as Elimina_Gruppo
+        usecase "Gestione Gruppo" as Gestione_Gruppo
+        usecase "Scrive Recensione" as Scrive_Recensione
+        usecase "Scrive Recensione\\nCorso" as Scrive_Recensione_Corso
+        usecase "Scrive Recensione\\nProfessore" as Scrive_Recensione_Professore
+        usecase "Modifica Recensione" as Modifica_Recensione
+        usecase "Modifica Recensione\\nCorso" as Modifica_Recensione_Corso
+        usecase "Modifica Recensione\\nProfessore" as Modifica_Recensione_Professore
+    }
+}
+'- - - -Relazioni di generalizzazione'
+'Tra attori'
+Utente <|- - Utente_Autenticato
+Utente <|- - Utente_Non_Autenticato
+
+'Tra casi d'uso'
+Scrive_Recensione <|- - Scrive_Recensione_Corso
+Scrive_Recensione <|- - Scrive_Recensione_Professore
+Modifica_Recensione <|- - Modifica_Recensione_Corso
+Modifica_Recensione <|- - Modifica_Recensione_Professore
+Gestione_Gruppo <|- - Crea_Gruppo
+Gestione_Gruppo <|- - Elimina_Gruppo
+
+'- - - -Relazione semplici tra casi d'uso'
+Gestione_Gruppi - - Gestione_Gruppo
+Gestione_Recensioni - Scrive_Recensione
+Gestione_Recensioni - Modifica_Recensione
+
+'- - - -Relazioni di inclusione'
+Crea_Account ...> Invia_Email_Verifica : <<include>>
+Crea_Account ..> Verifica_Email: <<include>>
+
+'- - - -Relazioni di estensione con extension point'
+Registrazione <..... Crea_Account : <<extend>>
+note on link
+    Condizione: 
+    Email disponibile
+    Formato credenziali corretto
+
+    Extension point: 
+    Crea Account
+end note
+
+Accesso <..... Autenticazione : <<extend>>
+note on link
+    Condizione: 
+    Credenziali corrette
+
+    Extension point: 
+    Autenticazione
+end note
+
+Accesso <..... Recupero_Password : <<extend>>
+note on link
+    Condizione: 
+    Nuova Password Valida
+
+    Extension point: 
+    Recupero Password
+end note
+
+
+'Utente'
+Utente - Legge_Recensione
+Utente - Ricerca_Gruppo
+Utente - Visualizza_Info_Corso
+Utente - Visualizza_Info_Professore
+
+'Sistema'
+Sistema -u- Autenticazione
+Sistema -u- Crea_Account
+Sistema -u- Gestione_Gruppi
+Sistema -u- Gestione_Recensioni
+Sistema -u- Recupero_Password
+
+'Utente Non Autenticato'
+Utente_Non_Autenticato - - Accesso
+Utente_Non_Autenticato - - Registrazione
+Utente_Non_Autenticato - - Verifica_Email
+
+'Utente Autenticato'
+Utente_Autenticato - - Accesso_Gruppo
+Utente_Autenticato - - Accesso_Gruppo
+Utente_Autenticato - - Gestione_Gruppo
+Utente_Autenticato - - Modifica_Profilo
+Utente_Autenticato - - Modifica_Recensione
+Utente_Autenticato - - Scrive_Recensione
+
+@enduml
+
+@startuml UseCase
+
+left to right direction
+
+skinparam nodesep 30
+skinparam ranksep 50
+
+together {
+    actor "Utente" as Utente <<abstract>>
+    actor "Utente Autenticato" as Utente_Autenticato
+    actor "Utente Non Autenticato" as Utente_Non_Autenticato
+}
+actor Sistema
+
+rectangle UniTeam {
+    together {
+        usecase Autenticazione
+        usecase "Crea Account" as Crea_Account
+        usecase "Invia Email di\\nVerifica" as Invia_Email_Verifica 
+        usecase "Recupero Password" as Recupero_Password
+        usecase "Gestione Gruppi" as Gestione_Gruppi
+        usecase "Gestione Recensioni" as Gestione_Recensioni
+    }
+
+    together {
+        usecase "Legge Recensione" as Legge_Recensione
+        usecase "Ricerca Gruppo" as Ricerca_Gruppo
+        usecase "Visualizza informazioni Corso" as Visualizza_Info_Corso
+        usecase "Visualizza informazioni Professore" as Visualizza_Info_Professore
+    }
+
+    together {
+        usecase Accesso
+        usecase Registrazione
+        usecase "Verifica Email" as Verifica_Email
+    }
+
+    together {
+        usecase "Modifica Profilo" as Modifica_Profilo
+        usecase "Crea Gruppo" as Crea_Gruppo
+        usecase "Accesso a un Gruppo" as Accesso_Gruppo 
+        usecase "Elimina Gruppo" as Elimina_Gruppo
+        usecase "Gestione Gruppo" as Gestione_Gruppo
+        usecase "Scrive Recensione" as Scrive_Recensione
+        usecase "Scrive Recensione\\nCorso" as Scrive_Recensione_Corso
+        usecase "Scrive Recensione\\nProfessore" as Scrive_Recensione_Professore
+        usecase "Modifica Recensione" as Modifica_Recensione
+        usecase "Modifica Recensione\\nCorso" as Modifica_Recensione_Corso
+        usecase "Modifica Recensione\\nProfessore" as Modifica_Recensione_Professore
+    }
+}
+Utente <|- - Utente_Autenticato
+Utente <|- - Utente_Non_Autenticato
+
+Scrive_Recensione <|- - Scrive_Recensione_Corso
+Scrive_Recensione <|- - Scrive_Recensione_Professore
+Modifica_Recensione <|- - Modifica_Recensione_Corso
+Modifica_Recensione <|- - Modifica_Recensione_Professore
+Gestione_Gruppo <|- - Crea_Gruppo
+Gestione_Gruppo <|- - Elimina_Gruppo
+
+Gestione_Gruppi - - Gestione_Gruppo
+Gestione_Recensioni - Scrive_Recensione
+Gestione_Recensioni - Modifica_Recensione
+
+Crea_Account ...> Invia_Email_Verifica : <<include>>
+Crea_Account ..> Verifica_Email: <<include>>
+
+Registrazione <..... Crea_Account : <<extend>>
+note on link
+    Condizione: 
+    Email disponibile
+    Formato credenziali corretto
+
+    Extension point: 
+    Crea Account
+end note
+
+Accesso <..... Autenticazione : <<extend>>
+note on link
+    Condizione: 
+    Credenziali corrette
+
+    Extension point: 
+    Autenticazione
+end note
+
+Accesso <..... Recupero_Password : <<extend>>
+note on link
+    Condizione: 
+    Nuova Password Valida
+
+    Extension point: 
+    Recupero Password
+end note
+
+
+Utente - Legge_Recensione
+Utente - Ricerca_Gruppo
+Utente - Visualizza_Info_Corso
+Utente - Visualizza_Info_Professore
+
+Sistema -u- Autenticazione
+Sistema -u- Crea_Account
+Sistema -u- Gestione_Gruppi
+Sistema -u- Gestione_Recensioni
+Sistema -u- Recupero_Password
+
+Utente_Non_Autenticato - - Accesso
+Utente_Non_Autenticato - - Registrazione
+Utente_Non_Autenticato - - Verifica_Email
+
+Utente_Autenticato - - Accesso_Gruppo
+Utente_Autenticato - - Accesso_Gruppo
+Utente_Autenticato - - Gestione_Gruppo
+Utente_Autenticato - - Modifica_Profilo
+Utente_Autenticato - - Modifica_Recensione
+Utente_Autenticato - - Scrive_Recensione
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: it
+Country: IT
+--></g></svg>
