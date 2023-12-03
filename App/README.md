@@ -5,10 +5,10 @@ Una volta aperto il progetto, assicurarsi di essere dentro la cartella `/App`, d
 Una volta terminata questa operazione eseguire uno dei seguenti comandi per accendere il server locale:
 
 ```bash
-npm run dev
+npm run preview
 
 # o accendi il server e apri l'app in una nuova scheda del browser
-npm run dev -- --open
+npm run preview -- --open
 ```
 
 # Come eseguire i test
