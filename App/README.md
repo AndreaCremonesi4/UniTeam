@@ -1,38 +1,37 @@
-# create-svelte
+# Come utilizzare UniTeam
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Una volta aperto il progetto, assicurarsi di essere dentro la cartella `/App`, da qui eseguire il comando `npm install` (o `pnpm install` o `yarn`) per installare le dipendenze.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Una volta terminata questa operazione eseguire uno dei seguenti comandi per accendere il server locale:
 
 ```bash
 npm run dev
 
-# or start the server and open the app in a new browser tab
+# o accendi il server e apri l'app in una nuova scheda del browser
 npm run dev -- --open
 ```
 
-## Building
+# Come eseguire i test
 
-To create a production version of your app:
+Sempre dalla cartella `/App` eseguire i seguenti comandi:
+
+Test di Unità
 
 ```bash
-npm run build
+# per eseguire i test di unità con log su console
+npx vitest
+
+# per eseguire i test di unità con log su pagina web e/o con visualizzazione della copertura
+npx vitest (--ui) (--coverage)
+
 ```
 
-You can preview the production build with `npm run preview`.
+Test di Integrazione
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+# per eseguire i test di integrazione con log su console
+npx playwright test
+
+# per eseguire i test di integrazione con log su pagina web
+npx playwright test --reporter=html
+```
