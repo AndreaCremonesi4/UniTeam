@@ -1,8 +1,8 @@
 # Come utilizzare UniTeam
 
-Una volta aperto il progetto, assicurarsi di essere dentro la cartella `/App`, da qui eseguire il comando `npm install` (o `pnpm install` o `yarn`) per installare le dipendenze.
+Una volta aperto il progetto assicurarsi di essere dentro la cartella `/App`.
 
-Una volta terminata questa operazione eseguire uno dei seguenti comandi per accendere il server locale:
+Eseguire uno dei seguenti comandi per accendere il server locale:
 
 ```bash
 npm run preview
@@ -10,6 +10,8 @@ npm run preview
 # o accendi il server e apri l'app in una nuova scheda del browser
 npm run preview -- --open
 ```
+
+Nel caso si verificasse qualche problema eseguire il comando `npm install` (o `pnpm install` o `yarn`) per installare le dipendenze necessarie.
 
 # Come eseguire i test
 
