@@ -96,8 +96,8 @@ export async function joinGruppoWithCode(supabase, id_gruppo, codice_ingresso) {
 		id_gruppo
 	});
 
-	if (error) return { error };
 	if (!codeMatch) return { error: new Error('Il codice di ingresso è errato') };
+	if (error) return { error };
 
 	return supabase.from('iscrizioni_gruppi').insert({ id_gruppo });
 }

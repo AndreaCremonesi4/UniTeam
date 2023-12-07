@@ -1,38 +1,39 @@
-# create-svelte
+# Come utilizzare UniTeam
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Una volta aperto il progetto assicurarsi di essere dentro la cartella `/App`.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+Eseguire uno dei seguenti comandi per accendere il server locale:
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
+npm run preview
 
-# create a new project in my-app
-npm create svelte@latest my-app
+# o accendi il server e apri l'app in una nuova scheda del browser
+npm run preview -- --open
 ```
 
-## Developing
+Nel caso si verificasse qualche problema eseguire il comando `npm install` (o `pnpm install` o `yarn`) per installare le dipendenze necessarie.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+# Come eseguire i test
+
+Sempre dalla cartella `/App` eseguire i seguenti comandi:
+
+Test di Unità
 
 ```bash
-npm run dev
+# per eseguire i test di unità con log su console
+npx vitest
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# per eseguire i test di unità con log su pagina web e/o con visualizzazione della copertura
+npx vitest (--ui) (--coverage)
+
 ```
 
-## Building
-
-To create a production version of your app:
+Test di Integrazione
 
 ```bash
-npm run build
+# per eseguire i test di integrazione con log su console
+npx playwright test
+
+# per eseguire i test di integrazione con log su pagina web
+npx playwright test --reporter=html
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.

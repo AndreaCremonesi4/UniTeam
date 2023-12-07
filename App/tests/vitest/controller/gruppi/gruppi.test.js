@@ -603,7 +603,7 @@ describe('Test Unione ad un Gruppo Privato', () => {
 		const codice_ingresso = 'codice-gruppo-17';
 
 		mockSupabase.rpc.mockImplementationOnce(() => {
-			return { error: new Error('Errore durante il controllo del codice') };
+			return { data: true, error: new Error('Errore durante il controllo del codice') };
 		});
 
 		const { error } = await joinGruppoWithCode(mockSupabase, id_gruppo, codice_ingresso);
