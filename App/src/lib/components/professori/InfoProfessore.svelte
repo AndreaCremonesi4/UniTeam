@@ -5,12 +5,18 @@
 </script>
 
 <div class="row profile {$$props.class}">
-	<div class="col-lg-3 col-md-12 d-flex justify-content-center">
-		<img
-			src={professore.immagine ?? userIcon}
-			class="icon user-avatar rounded-circle image-fluid"
-			alt="Immagine Profilo"
-		/>
+	<div class="col-lg-3 col-md-12 d-flex justify-content-center align-items-center">
+		<div
+			class="rounded-circle d-flex align-items-center overflow-hidden"
+			style="aspect-ratio: 1; max-width: 175px;"
+		>
+			<img
+				class="object-fit-cover rounded-circle"
+				style="max-width: 100%; aspect-ratio:1"
+				src={professore.immagine ?? userIcon}
+				alt=""
+			/>
+		</div>
 	</div>
 	<div class="info-col col-lg-9 col-md-12 d-flex flex-column">
 		<h1 class="name text-title lh-1 mb-3 text-dark">
